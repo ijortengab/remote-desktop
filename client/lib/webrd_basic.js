@@ -445,13 +445,7 @@
 })(jQuery);
 
 
-$(document).ready(function(){
-	// var Drupal = {};
-	// alert(Drupal.basePath);
-	// alert(Webrd.settings.basePath);
-
-	// var asldkfjasljfd = getSetting('webrd_smlc_x','left');
-	// ajaxMsg(asldkfjasljfd);
+$(document).ready(function(){	
 
 	////////////////////////
 	// prepare
@@ -461,10 +455,6 @@ $(document).ready(function(){
 	var ww=window.innerWidth;
 	var wh=window.innerHeight;
 	$('#page').height(wh);
-	// $('#layer').width(ww);
-	// $('#layer').height(wh);
-	// $('#layer-ada').width(ww);
-	// $('#layer-ada').height(wh);
 
 	effectSettingAll();
 
@@ -681,7 +671,7 @@ $(document).ready(function(){
 					$("#img").css(cssObj);
 					$("#img").animate(hide,0,function(){ // tidak ada fungsi complete pada css(), maka digunakan animate yang memiliki fungsi complete
 						$('#img').show(function(){
-							$("#img").animate(unhide,300,function(){
+							$("#img").animate(unhide,100,function(){
 								$("#img-background").css(cssObj);
 							});
 						});
@@ -691,7 +681,6 @@ $(document).ready(function(){
 
 		}, 'json');
 	}
-
 
 	countSS = 0;
 
@@ -898,102 +887,11 @@ $(document).ready(function(){
 
 
 	}
-
-	////////////////////////
-	// submit(function(){});
-	////////////////////////
-
-	$("#form_client").submit(function(event) {
-		ajaxMsg('Waiting...');
-		$('#img').hide();
-
-		var $form = $(this);
-		var url = $form.attr( 'action' );
-		var variableForm = {
-			client_action: $form.find( 'input[name="client_action"]' ).val(),
-			client_action_screenshot_reload: $form.find( 'input[name="client_action_screenshot_reload"]' ).val(),
-			client_action_mouse_action: $form.find( 'input[name="client_action_mouse_action"]' ).val(),
-			client_action_mouse_mode: $form.find( 'input[name="client_action_mouse_mode"]' ).val(),
-			client_action_mouse_x: $form.find( 'input[name="client_action_mouse_x"]' ).val(),
-			client_action_mouse_y: $form.find( 'input[name="client_action_mouse_y"]' ).val(),
-			client_action_mouse_button: $form.find( 'input[name="client_action_mouse_button"]' ).val(),
-			client_action_mouse_count: $form.find( 'input[name="client_action_mouse_count"]' ).val(),
-			client_action_keystroke: $form.find( 'textarea[name="client_action_keystroke"]' ).val()
-			};
-
-		// clear value
-		$("#form_client").find( 'textarea[name="client_action_keystroke"]' ).val('');
-
-		$.post( url, variableForm , function(data) {
-			// clear value
-			$("#form_client").find( 'input[name="client_action_mouse_x"]' ).val('');
-			$("#form_client").find( 'input[name="client_action_mouse_y"]' ).val('');
-			$("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('');
-			$("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('');
-			$("#form_client").find( 'input[name="client_action_mouse_button"]' ).val('');
-			$("#form_client").find( 'input[name="client_action_mouse_count"]' ).val('');
-
-
-
-			if(data.result == 1){
-
-				$('.ajax_msg').text(data.msg);	//Loading...
-				var cssObj = {'background-image' : 'url('+data.screenshot+')', 'width' : data.width, 'height' : data.height};
-				var hide = {opacity : 0};
-				var unhide = {opacity : 1};
-				var img = new Image();
-
-				$(img).load(data.screenshot, function(){
-					$('.ajax_msg').hide();
-					$("#img").css(cssObj);
-					$("#img").animate(hide,0,function(){ // tidak ada fungsi complete pada css(), maka digunakan animate yang memiliki fungsi complete
-						$('#img').show(function(){
-							$("#img").animate(unhide,300,function(){
-								$("#img-disabled").css(cssObj);
-								$("#img-background").css(cssObj);
-							});
-						});
-					});
-				});
-			}
-			else{
-				// $('.ajax_msg').text(data.msg).delay(2000).fadeOut(1000);
-				$('.ajax_msg').text(data.msg);
-				$('#img').show();
-			}
-
-		}, 'json');
-
-		event.preventDefault();
-	});
-
-
-	////////////////////////
-	// click(function(){});
-	////////////////////////
-
-	// $("#img").mousemove(function(e){
-		// ajaxMsg('move');
-	// }
-
-	// $("#img").click(function(){
-		// var CoordinatWindowXY = getCoordinatWindow(arguments[0]);
-		// var CoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
-		// var CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
-		// $("#form_client").find( 'input[name="client_action_mouse_x"]' ).val(CoordinatX);
-		// $("#form_client").find( 'input[name="client_action_mouse_y"]' ).val(CoordinatY);
-		// $("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('click');
-		// $("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('Screen');
-		// $("#form_client").find( 'input[name="client_action_mouse_button"]' ).val('left');
-		// $("#form_client").find( 'input[name="client_action_mouse_count"]' ).val('1');
-		// $("#form_client").submit();
-	// });
-
+	
 	var DELAY = 250,
     clicks = 0,
     timerMouse = null;
 	mousedown = null;
-
 
 	////////////////////////
 	// HANDLE MOUSE EVENT
@@ -1097,6 +995,7 @@ $(document).ready(function(){
 	});
 
 	timerMousemove = null;
+	
 	$("#img").on("mousemove",function(e){
 		smv = getSetting('webrd_smv', "0");
 		if(smv == 0) return;
@@ -1113,157 +1012,14 @@ $(document).ready(function(){
     });
 
 	////////////////////////
-	// NAVIGATION
-	////////////////////////
-
-	$("#nav_button_settings").click(function(event){
-		event.preventDefault();
-		var page = '#page_settings';
-		var navheight = $("#nav").height();
-		var $height = $(window).height() - navheight;
-		// var $width = $(window).width()/2;
-		var $width =$(page).width();
-		var $left = $(window).width()/4;
-		var keystrokeShow = {left:'0'};
-		var keystrokeHide = {left:'-' + $width +'px'};
-		if($(page).css('display') == 'none'){
-			// ajaxMsg('none');
-			$(page).css({	position:'fixed',
-										width: $width + 'px',
-										height: $height + 'px',
-										bottom: '0px',
-										left: '-' + $width +'px'}).show().animate(keystrokeShow, 300);
-		}
-		else{
-			// ajaxMsg('show');
-			$(page).animate(keystrokeHide, 150, function(){
-				$(page).hide()
-			});
-		}
-	});
-
-
-	////////////////////////
-	// SETTINGS
-	////////////////////////
-
-	$(".settings_checkbox").click(function(){
-		$(this).each(function(){
-			// var id = $(this).attr('id');
-			var name = $(this).attr('name');
-			$(this).prop('checked') ? setSetting(name, "1") : setSetting(name, "0");
-			effectSetting(name);
-		});
-	});
-	//$('.specific_character').change(function(){
-	$(".settings_select").change(function(){
-		$(this).each(function(){
-			// var id = $(this).attr('id');
-			var name = $(this).attr('name');
-			var value = $(this).val();
-			setSetting(name, value);
-			effectSetting(name);
-		});
-	});
-
-	////////////////////////
-	// MISC
-	////////////////////////
-
-	$(".action").click(function(){
-		$(this).each(function(){
-			var id = $(this).attr('id');
-			// alert(id);
-			if(id == 'fixbar_button'){
-				if($('#nav').css('position') != 'fixed'){
-					$('#nav').css({'position':'fixed', 'width':'100%', 'top':'0'});
-					$('#page').css({'margin-top':'34px'});
-				}
-				else{
-					$('#nav').css({'position':'relative', 'width':'auto', 'top':'0'});
-					$('#page').css({'margin-top':'0px'});
-				};
-			}
-			if(id == 'reload_button'){
-				$("#form_client").find( 'input[name="client_action_screenshot_reload"]' ).val('1');
-				$("#form_client").submit();
-			}
-			if(id == 'keystroke_button'){
-				var $height = $(window).height()/1.5;
-				var $width = $(window).width()/2;
-				var $left = $(window).width()/4;
-				var keystrokeShow = {bottom:'0'};
-				var keystrokeHide = {bottom:'-' + $height +'px'};
-				if($("#keystroke_area").css('display') == 'none'){
-					$("#keystroke_area").css({	position:'fixed',
-												width: $width + 'px',
-												height: $height + 'px',
-												left: $left + 'px',
-												bottom: '-' + $height +'px'}).show().animate(keystrokeShow, 300);
-					$("#keystroke_input").focus();
-				}
-				else{
-					$("#keystroke_area").animate(keystrokeHide, 150, function(){
-						$("#keystroke_area").hide()
-					});
-				}
-			}
-		});
-	});
-
-	$(".special_char_label").click(function(){
-		$(this).each(function(){
-			var attrfor = $(this).attr('for');
-			if(attrfor == 'special_ctrl'){
-				if($('#special_ctrl').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-			if(attrfor == 'special_shift'){
-				if($('#special_shift').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-			if(attrfor == 'special_alt'){
-				if($('#special_alt').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-		});
-	});
-
-
-	$("#k-send").click(function(){
-		$("#form_client").submit();
-	});
-
-	////////////////////////
-	// change(function(){});
-	////////////////////////
-
-	$('.specific_character').change(function(){
-
-		//build the text
-		var $value = $(this).val();
-		if($('#special_alt').prop('checked')) $value = '{alt down}' + $value + '{alt up}';
-		if($('#special_shift').prop('checked')) $value = '{shift down}' + $value + '{shift up}';
-		if($('#special_ctrl').prop('checked')) $value = '{ctrl down}' + $value + '{ctrl up}';
-
-		// set the text
-		specialInsertToTextArea('#keystroke_input',$value);
-
-		//clear current value
-		$(this).val('none').attr('selected', 'selected');
-		if($('#special_ctrl').prop('checked')) $('label[for="special_ctrl"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
-		if($('#special_shift').prop('checked')) $('label[for="special_shift"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
-		if($('#special_alt').prop('checked')) $('label[for="special_alt"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
-	});
-
-	////////////////////////
-	// keydown(function(){});
+	// HANDLE KEY EVENT
 	////////////////////////
 
 	holdAlt = null; holdShift = null; holdCtrl = null;
 	repeatAlt = true; repeatShift = true; repeatCtrl = true; repeatChar = true;
 	timerKeystroke = null;
 	sk = null;
+	
 	$(document).keydown(function(event){
 		sk = getSetting('webrd_sk', "1");
 		if(sk == 0) return;
@@ -1295,7 +1051,7 @@ $(document).ready(function(){
 		event.preventDefault();
 
 	});
-
+	
 	$(document).keyup(function(event){
 		if(sk == 0) return;
 		var sk_x = getSetting('webrd_sk_x', "250");
@@ -1323,4 +1079,57 @@ $(document).ready(function(){
 		event.preventDefault();
 	});
 
+	////////////////////////
+	// NAVIGATION
+	////////////////////////
+
+	$("#nav_button_settings").click(function(event){
+		event.preventDefault();
+		var page = '#page_settings';
+		var navheight = $("#nav").height();
+		var $height = $(window).height() - navheight;
+		// var $width = $(window).width()/2;
+		var $width =$(page).width();
+		var $left = $(window).width()/4;
+		var keystrokeShow = {left:'0'};
+		var keystrokeHide = {left:'-' + $width +'px'};
+		if($(page).css('display') == 'none'){
+			// ajaxMsg('none');
+			$(page).css({	position:'fixed',
+										width: $width + 'px',
+										height: $height + 'px',
+										bottom: '0px',
+										left: '-' + $width +'px'}).show().animate(keystrokeShow, 300);
+		}
+		else{
+			// ajaxMsg('show');
+			$(page).animate(keystrokeHide, 150, function(){
+				$(page).hide()
+			});
+		}
+	});
+
+	////////////////////////
+	// SETTINGS
+	////////////////////////
+
+	$(".settings_checkbox").click(function(){
+		$(this).each(function(){
+			// var id = $(this).attr('id');
+			var name = $(this).attr('name');
+			$(this).prop('checked') ? setSetting(name, "1") : setSetting(name, "0");
+			effectSetting(name);
+		});
+	});
+	
+	$(".settings_select").change(function(){
+		$(this).each(function(){
+			// var id = $(this).attr('id');
+			var name = $(this).attr('name');
+			var value = $(this).val();
+			setSetting(name, value);
+			effectSetting(name);
+		});
+	});
+	
 });

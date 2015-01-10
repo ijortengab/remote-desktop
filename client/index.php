@@ -36,12 +36,13 @@
 // }
 // $a = parse_ini_file("client_request.ini");
 // print_r($a);
-// exit;
-define('WEBRD_ROOT', getcwd());
-define('MAX_LOOP_TIME', 20);
+
+define('GETCWD', getcwd());
+define('MAX_LOOP_TIME', 3);
+define('TIME', time());
 define('DIRNAME_SCREENSHOT', 'screenshots');
-define('PATH_FILE_SCREENSHOT', WEBRD_ROOT . '/'. DIRNAME_SCREENSHOT .'/screenshot.jpg');
-define('PATH_FILE_SAVE', WEBRD_ROOT . '/save.txt');
+define('PATH_FILE_SCREENSHOT', GETCWD . '/'. DIRNAME_SCREENSHOT .'/screenshot.' . TIME . '.jpg');
+define('PATH_FILE_SAVE', GETCWD . '/save.txt');
 header("Pragma: no-cache");
 header("Cache-Control: no-store");
 foreach ($_GET as $key => $val) $data[$key]=$val;
@@ -68,15 +69,6 @@ if(!file_exists('settings.ini')){
 $data['settings'] = parse_ini_file("settings.ini");
 
 
-
-
-
-
-
-
-
-// print_r(load_new_screenshot()) ;
-// exit;
 
 //jika ada masalah dengan settings.ini saat proses, maka hilangkan dan bikin baru.
 if(empty($data['settings'])){
@@ -114,6 +106,7 @@ else{
 		switch($data['server_action']){
 			case 'read_client_request': read('client_request.ini'); break;
 			case 'write_confirm': write('.confirm'); break;
+			case 'server_confirm': process('server_confirm'); break;
 			default: draw('form_login');
 		}
 	}
@@ -122,13 +115,8 @@ else{
 function read($file){
 	global $data;
 	switch($file){
-		case "client_request.ini":
-			// if(file_exists("client_request.ini")){
-				// print serialize(parse_ini_file("client_request.ini", TRUE));
-				// unlink("client_request.ini");
-			// }
-			$dir = getcwd();
-			$scandir = scandir($dir);
+		case "client_request.ini":			
+			$scandir = scandir(GETCWD);
 			$all = array();
 			foreach($scandir as $file){
 				$pola = '/^client_request\.(.*)\.ini/';
@@ -162,8 +150,6 @@ function write($file){
 		case "client_request.ini":
 			$time = time();
 			write_ini_file($data['client_request'],"client_request.".$time.".ini");
-			// write_ini_file($data['client_request'],"client_request.ini",TRUE);
-			// write_ini_file($data['client_request'],"client_request.ini");
 			break;
 		case "settings.ini":
 			write_ini_file($data['settings'],"settings.ini");
@@ -199,41 +185,27 @@ function process($action=NULL){
 			if(isset($data['client_action_keystroke'])) $data['client_request']['client_action_keystroke'] = $data['client_action_keystroke'];
 			// setting server
 			if(isset($data['client_action_setting_server_name'])) $data['client_request']['client_action_setting_server_name'] = $data['client_action_setting_server_name'];
-			if(isset($data['client_action_setting_server_value'])) $data['client_request']['client_action_setting_server_value'] = $data['client_action_setting_server_value'];
-			// $data['client_request']['screenshot']['reload'] = $data['client_action_screenshot_reload'];
-			// $data['client_request']['keystroke']['value'] 	= $data['client_action_keystroke'];
+			if(isset($data['client_action_setting_server_value'])) $data['client_request']['client_action_setting_server_value'] = $data['client_action_setting_server_value'];		
 
-			write('client_request.ini');
-			// WAITING FOR OUTPUT
-			// if(!file_exists_loop(".confirm",MAX_LOOP_TIME)){//jika gagal
-				// delete_if_exists('client_request.ini');
-				// delete_if_exists('.confirm');
-				// echo json_encode(array("result" => 0, "msg" => "No response from server."));
-			// }
-			// else{
-				// delete_if_exists('client_request.ini');
-				// delete_if_exists('.confirm');
-				// $screenshot = the_last_screenshot();
-				// $size = getimagesize($screenshot);
-				// $width = $size[0];
-				// $height = $size[1];
-				// echo json_encode(array("result" => 1, "msg" => "Loading...", "screenshot" => $screenshot, "width" => $width, "height" => $height));
-			// }
+			write('client_request.ini');			
 			break;
 		case 'setting_client':
-			// sleep(2);
 			$name = $data['client_action_setting_client_name'];
-			$value = $data['client_action_setting_client_value'];
-			// foreach($_POST as $key=>$value){
-				// if($key == 'client_action') continue;
-				// $data['settings'][$key] = $value;
-			// }
+			$value = $data['client_action_setting_client_value'];			
 			$data['settings'][$name] = $value;
 			write('settings.ini');
 			echo json_encode(array('result'=> 1, 'messagestatus'=>'saved'));
 			break;
 		case 'load_new_screenshot':
-			load_new_screenshot();			
+			load_new_screenshot();
+			break;
+		case 'server_confirm':
+			if(isset($data['server_screenshot'])){
+				$path_file_screenshot = DIRNAME_SCREENSHOT . '/' . $data['server_screenshot']['name'];				
+				$move = move_uploaded_file($data['server_screenshot']['tmp_name'], $path_file_screenshot);
+				if($move) echo "file berhasil kami terima dengan baik.";
+				else echo "file gagl kami terima.";
+			}
 			break;
 		default:
 			if(file_exists("client_request.ini")) {
@@ -265,7 +237,7 @@ function the_last_screenshot(){
 		$im = imagecreatetruecolor(600, 400);
 		$text_color = imagecolorallocate($im, 255, 255, 255);
 		imagestring($im, 5, 200, 100,  'Screenshot not found', $text_color);
-		imagejpeg($im, DIRNAME_SCREENSHOT . '/screenshot.jpg');
+		imagejpeg($im, DIRNAME_SCREENSHOT . '/'.time().'.jpg');
 		imagedestroy($im);
 		// replay
 		$list = scandir(DIRNAME_SCREENSHOT);
@@ -274,7 +246,6 @@ function the_last_screenshot(){
 	$screenshot = DIRNAME_SCREENSHOT . '/'. $the_last_screenshot;
 	return $screenshot;
 }
-
 function load_new_screenshot(){
 	global $data;
 	if(!file_exists(DIRNAME_SCREENSHOT)) mkdir(DIRNAME_SCREENSHOT,0755,TRUE);
@@ -284,7 +255,7 @@ function load_new_screenshot(){
 		$im = imagecreatetruecolor(600, 400);
 		$text_color = imagecolorallocate($im, 255, 255, 255);
 		imagestring($im, 5, 200, 100,  'Screenshot not found', $text_color);
-		imagejpeg($im, DIRNAME_SCREENSHOT . '/screenshot.jpg');
+		imagejpeg($im, DIRNAME_SCREENSHOT . '/'.time().'.jpg');
 		imagedestroy($im);
 		// replay
 		$list = scandir(DIRNAME_SCREENSHOT);
@@ -292,65 +263,18 @@ function load_new_screenshot(){
 	$the_last_screenshot = array_pop($list);
 	$the_last_screenshot = DIRNAME_SCREENSHOT . '/'. $the_last_screenshot;
 
-	// cari di settings, jika tidak ada di settings, maka tulis baru di settings.
-	// if(!isset($data['settings']['screenshot'])){
-		// $data['settings']['screenshot'] = $the_last_screenshot;
-		// write('settings.ini');
-		// $size = getimagesize($the_last_screenshot);
-		// $width = $size[0];
-		// $height = $size[1];
-		// echo json_encode(array("result" => 1, "msg" => "", "screenshot" => $the_last_screenshot, "width" => $width, "height" => $height));		
-	// }
-	// else{
-		// if($data['settings']['screenshot'] == $the_last_screenshot){
-			// echo json_encode(array("result" => 0));
-		// }
-		// else{
-			// $data['settings']['screenshot'] = $the_last_screenshot;
-			// write('settings.ini');
-			// $size = getimagesize($the_last_screenshot);
-			// $width = $size[0];
-			// $height = $size[1];
-			// echo json_encode(array("result" => 1, "msg" => "", "screenshot" => $the_last_screenshot, "width" => $width, "height" => $height));
-		// }
-	// }
-	
 	if(isset($data['settings']['screenshot']) && $data['settings']['screenshot'] == $the_last_screenshot){
-		echo json_encode(array("result" => 0));	
+		echo json_encode(array("result" => 0));
 	}
-	else{		
+	else{
 		$data['settings']['screenshot'] = $the_last_screenshot;
 		write('settings.ini');
 		$size = getimagesize($the_last_screenshot);
 		$width = $size[0];
 		$height = $size[1];
-		echo json_encode(array("result" => 1, "msg" => "", "screenshot" => $the_last_screenshot, "width" => $width, "height" => $height));	
+		echo json_encode(array("result" => 1, "msg" => "", "screenshot" => $the_last_screenshot, "width" => $width, "height" => $height));
 	}
-	
-	
-	
-	// if(isset($data['settings']['screenshot']) && $data['settings']['screenshot'] == $the_last_screenshot){
-		// $return = '0';
-	// }
-	// else{
-		// $data['settings']['screenshot'] = $the_last_screenshot;
-		// write('settings.ini');
-		// $return = $the_last_screenshot;
-	// }
-	// return $return;
-	
-	// $screenshot = load_new_screenshot();
-	// if($screenshot == 0){
-		// echo json_encode(array("result" => 0));
-	// }
-	// else{
-		// $size = getimagesize($screenshot);
-		// $width = $size[0];
-		// $height = $size[1];
-		// echo json_encode(array("result" => 1, "msg" => "", "screenshot" => $screenshot, "width" => $width, "height" => $height));
-	// }
-			
-			
+
 }
 function draw($theme=NULL){
 	global $data;
@@ -584,7 +508,7 @@ function draw($theme=NULL){
 				$var_check = 'webrd_' . $key;
 				$checked = (isset($data['settings'][$var_check]) && $data['settings'][$var_check] == "1") ? " checked" : "";
 				echo '<li'.$value['li_id'].$value['li_class'].'>';
-				echo '<input type="checkbox" id="'.$key.'" class="settings_checkbox" name="webrd_'.$key.'" title="settings screenshot '.$value.'" value="1"'.$checked.'>';
+				echo '<input type="checkbox" id="'.$key.'" class="settings_checkbox" name="webrd_'.$key.'" title="settings screenshot '.$value['name'].'" value="1"'.$checked.'>';
 				echo '<label for="'.$key.'">'.$value['name'].'</label>';
 				if(!empty($value['desc'])) echo '<span>' . $value['desc'] . '</span>';
 				echo '</li>';
@@ -606,210 +530,4 @@ function draw($theme=NULL){
 	}
 }
 
-// echo '<div id="page" style="width:'.$width.'px;">';
-			// echo '<div id="layer" style="position:absolute;z-index: 2;">';
-
-			// echo '<div id="layer-ada" style="position:absolute;z-index: 2;">';
-
-			// echo '</div><!--/#layer -->';
-			// echo '</div><!--/#layer -->';
-			/* echo '<!--//--><![CDATA[//><!--
-jQuery.extend(Drupal, { "basePath": "roji"} );
-//--><!]]>'; */
-			// echo '<script>jQuery.extend(Webrd.settings, '.$extend.' )</script>';
-
-// echo '<div class="arrow-right">';
-			// echo '</div><!--/.arrow-right -->';
-			// echo ' <span>Move the mouse over the div.</span>';
-			// echo '<input id="temporaryX" value="" type="text">';
-
-
-			// echo '<div class="message" id="13245687">';
-			// echo '[success...] mouse move to 234,567';
-			// echo '</div><!--/#13245687 -->';
-			// echo '<div class="message" id="5465466546">';
-			// echo '[success...] mouse move to 234,567';
-			// echo '</div><!--/#5465466546 -->';
-// mouse
-// if(isset($data['client_action_mouse_action'])) $data['client_request']['client_action_mouse_action'] = $data['client_action_mouse_action'];
-// if(isset($data['client_action_mouse_mode'])) $data['client_request']['client_action_mouse_mode'] = $data['client_action_mouse_mode'];
-// if(isset($data['client_action_mouse_x'])) $data['client_request']['client_action_mouse_x'] = $data['client_action_mouse_x'];
-// if(isset($data['client_action_mouse_y'])) $data['client_request']['client_action_mouse_y'] = $data['client_action_mouse_y'];
-// if(isset($data['client_action_mouse_x2'])) $data['client_request']['client_action_mouse_x2'] = $data['client_action_mouse_x2'];
-// if(isset($data['client_action_mouse_y2'])) $data['client_request']['client_action_mouse_y2'] = $data['client_action_mouse_y2'];
-// if(isset($data['client_action_mouse_button'])) $data['client_request']['client_action_mouse_button'] = $data['client_action_mouse_button'];
-// if(isset($data['client_action_mouse_count'])) $data['client_request']['client_action_mouse_count'] = $data['client_action_mouse_count'];
-/* $limit = $data['settings']['key_save_limit'];
-			$a  = file(PATH_FILE_SAVE);
-			// print_r($a);
-			$show = 0;
-			$hide= 0;
-			$countkey = 0;
-			$elementshow = '';
-			$elementhide = '';
-			echo '<br>';
-			foreach($a as $key=>$value){
-				$value = rtrim($value);
-				if($key < $limit){
-					if(!empty($value)){
-						$id = $key+1;
-						$elementshow .=  '<div id="parent'.$id.'" class="savedvalue"><a class="shortkey" target="ctrl'.$id.'">ctrl+'.$id.': '.$value.'</a><!-- /.shortkey --><input size="50" id="ctrl'.$id.'" type="text" disabled value="'.$value.'"><div target="parent'.$id.'" class="closekey">[X]</div><!-- /.closekey --></div><!-- /.savedvalue -->';
-						// $show++;
-					}
-					else{
-						$id = $key+1;
-						// $elementhide .=  '<div class="shortkey" target="ctrl'.$id.'">ctrl'.$id.'<input size="50" id="ctrl'.$id.'" type="text" disabled value=""><div class="closekey">[X]</div></div>';
-						$elementhide .=  '<div id="parent'.$id.'" class="savedvalue"><a class="shortkey" target="ctrl'.$id.'">ctrl+'.$id.': '.$value.'</a><!-- /.shortkey --><input size="50" id="ctrl'.$id.'" type="text" disabled value="'.$value.'"><div target="parent'.$id.'" class="closekey">[X]</div><!-- /.closekey --></div><!-- /.savedvalue -->';
-						// $hide++;
-					}
-					$countkey++;
-				}
-			}
-			// $nextid = $hide+$show;
-			// echo '($nextid: '.$nextid.')';
-			echo '($countkey: '.$countkey.')';
-			while($countkey < $limit){
-				$id = $countkey+1;
-				// $elementhide .=  '<div class="shortkey" target="ctrl'.$id.'">ctrl'.$id.'<input size="50" id="ctrl'.$id.'" type="text" disabled value=""><div class="closekey">[X]</div></div>';
-				$elementhide .=  '<div id="parent'.$id.'" class="savedvalue"><a class="shortkey" target="ctrl'.$id.'">ctrl+'.$id.': '.$value.'</a><!-- /.shortkey --><input size="50" id="ctrl'.$id.'" type="text" disabled value="'.$value.'"><div target="parent'.$id.'" class="closekey">[X]</div><!-- /.closekey --></div><!-- /.savedvalue -->';
-				$countkey++;
-			}
-			echo '<br>';
-			// echo $elementshow;
-			// echo $elementhide;
-			echo '<fieldset>';
-			echo '<legend>';
-			echo 'Load';
-			echo '</legend>';
-			echo '<div class="load-keystroke">';
-			// echo '<div class="shortkey" target="ctrl1">ctrl1<input id="ctrl1" type="text" disabled value="tempe"></div>';
-			echo $elementshow;
-			echo '</div><!--/.load-keystroke -->';
-			echo '</fieldset>';
-			echo '<fieldset>';
-			echo '<legend>';
-			echo 'Before Load';
-			echo '</legend>';
-			echo '<div class="before-load-keystroke">';
-			// echo '<div class="shortkey" target="ctrl2">ctrl2<input id="ctrl2" type="text" disabled value="tahu"></div>';
-			echo $elementhide;
-			echo '</div><!--/.before-load-keystroke -->';
-			echo '</fieldset>'; */
-
-
-/*
-echo '<form name="form_client" method="post" id="form_client" action="">';
-			echo '<input name="client_action" value="create_request" placeholder="client_action" type="text" >';
-			echo '<input name="client_action_screenshot_reload" value="1" placeholder="client_action_screenshot_reload" type="text">';
-			echo '<input name="client_action_mouse_action" value="" placeholder="client_action_mouse_action" type="text">';
-			echo '<input name="client_action_mouse_mode" value="" placeholder="client_action_mouse_mode" type="text">';
-			echo '<input name="client_action_mouse_x" value="" placeholder="client_action_mouse_x" type="text">';
-			echo '<input name="client_action_mouse_y" value="" placeholder="client_action_mouse_y" type="text">';
-			echo '<input name="client_action_mouse_button" value="" placeholder="client_action_mouse_button" type="text">';
-			echo '<input name="client_action_mouse_count" value="" placeholder="client_action_mouse_count" type="text">';
-			echo '<input name="client_action_keystroke_holdshift" value="" placeholder="client_action_keystroke_holdshift" type="text">';
-			echo '<input name="client_action_keystroke_holdctrl" value="" placeholder="client_action_keystroke_holdctrl" type="text">';
-			echo '<input name="client_action_keystroke_holdalt" value="" placeholder="client_action_keystroke_holdalt" type="text">';
-			echo '<textarea id="tempe" style="height:150px;width:200px"></textarea>';
-			echo '<textarea id="bacem" style="height:150px;width:200px"></textarea>';
-			// echo '<input type="text" name="client_action_keystroke" value="">';
-			// echo '<input type="text" name="client_action_keystroke_value" value="">';
-			// echo '<input type="text" name="client_action_screenshot" value="<?php echo $client_action_screenshot;?>">';
-			echo '<input type="text" name="client_action_screenshot_delay" value="<?php echo $client_action_screenshot_delay;?>">';
-			// echo '<img id="hideimage" style="display:none;">';
-			echo '<div id="keystroke_area">';
-			echo '<div class="keystroke_input">';
-			// echo '<input name="client_action_keystroke" value="" placeholder="Type Something" id="keystroke_input">';
-			echo '<textarea rows="4" name="client_action_keystroke" placeholder="Type Something" id="keystroke_input">';
-			echo '</textarea>';
-			echo '<div class="keystroke_button">';
-			echo '<span title="Ctrl+Enter" class="button action" id="k-send">Send</span>';
-			// echo '<span title="Ctrl+Delete" class="button action" id="k-save">Save</span>';
-			// echo '<span title="Ctrl+Insert" class="button action" id="k-load">Load</span>';
-			echo '<span title="" class="message2" id="message2"></span>';
-			echo '</div><!-- ./keystroke_button-->';
-			echo '</div><!--/.keystroke_input -->';
-			echo '<fieldset>';
-			echo '<legend>';
-			echo 'Insert Specific Character';
-			echo '</legend>';
-			echo '<span class="keystroke_special">';
-			echo '<input type="checkbox" id="special_ctrl" class="special_char"><label class="special_char_label" for="special_ctrl">CTRL +</label>';
-			echo ' ';
-			echo '<input type="checkbox" id="special_shift" class="special_char"><label class="special_char_label" for="special_shift">SHIFT +</label>';
-			echo ' ';
-			echo '<input type="checkbox" id="special_alt" class="special_char"><label class="special_char_label" for="special_alt">ALT +</label>';
-			echo ' ';
-			echo '</span><!--/.keystroke_special-->';
-			// echo 'keystroke';
-			// echo '</div><!--/.keystroke_special ctrl-->';
-			// echo '<div class="keystroke_special shift">';
-			// echo '</div><!--/.keystroke_special shift-->';
-			// echo '<div class="keystroke_special alt">';
-			$special_character = array(
-				array("{Tab}", "Tab"),
-				array("{Enter}", "Enter"),
-				array("{Esc}", "Esc"),
-				array("{Backspace}", "Backspace"),
-				array("{Delete}", "Delete"),
-				array("{Insert}", "Insert"),
-				array("{Home}", "Home"),
-				array("{End}", "End"),
-				array("{PgUp}", "Page Up"),
-				array("{PgDn}", "Page Down"),
-				array("{Up}", "Arrow Up"),
-				array("{Down}", "Arrow Down"),
-				array("{Left}", "Arrow Left"),
-				array("{Right}", "Arrow Right"),
-			);
-			$function_character = array(
-				array("{F1}", "F1"),
-				array("{F2}", "F2"),
-				array("{F3}", "F3"),
-				array("{F4}", "F4"),
-				array("{F5}", "F5"),
-				array("{F6}", "F6"),
-				array("{F7}", "F7"),
-				array("{F8}", "F8"),
-				array("{F9}", "F9"),
-				array("{F10}", "F10"),
-				array("{F11}", "F11"),
-				array("{F12}", "F12")
-			);
-			$alphabet = 'abcdefghijklmnopqrstuvwxyz';
-			echo '<select class="specific_character" id="" name="" size="1">';
-			echo '<option value="none" selected>{a-z}</option>';
-			$strlen = strlen($alphabet);
-			for($x=0;$x<$strlen;$x++){
-				echo '<option>'.$alphabet[$x].'</option>';
-			}
-			echo '</select>';
-			$numeric = '0123456789';
-			echo '<select class="specific_character" id="" name="" size="1">';
-			echo '<option value="none" selected>{0-9}</option>';
-			$strlen = strlen($numeric);
-			for($x=0;$x<$strlen;$x++){
-				echo '<option>'.$numeric[$x].'</option>';
-			}
-			echo '</select>';
-			echo '<select class="specific_character" id="" name="" size="1">';
-			echo '<option value="none" selected>{special}</option>';
-			foreach($special_character as $key){
-				echo '<option value="'.$key[0].'">'.$key[1].'</option>';
-			}
-			echo '</select>';
-			echo '<select class="specific_character" id="" name="" size="1">';
-			echo '<option value="none" selected>{F}</option>';
-			foreach($function_character as $key){
-				echo '<option value="'.$key[0].'">'.$key[1].'</option>';
-			}
-			echo '</select>';
-			echo '';
-			echo '';
-			echo '';
-			echo '';
-			echo '</fieldset>';
-			echo '</div><!--/#keystroke_area -->';
-			echo '</form>';
-     */
 ?>

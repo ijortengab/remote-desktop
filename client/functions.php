@@ -76,7 +76,6 @@ function delete_if_exists($file){
 	if(file_exists($file)) unlink($file);
 }
 
-
 function this_file(){
 	return htmlentities(basename($_SERVER['PHP_SELF']));
 }

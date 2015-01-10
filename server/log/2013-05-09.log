@@ -1,0 +1,950 @@
+unnamed	1368104582	2013-05-09	21:03:02	|	21:03:02	test
+unnamed	1368104583	2013-05-09	21:03:03	|	21:03:03	test
+unnamed	1368104584	2013-05-09	21:03:04	|	21:03:04	test
+ssp	1368104585	2013-05-09	21:03:05	|	21:03:05	Prepare to make screenshot.
+unnamed	1368104585	2013-05-09	21:03:05	|	21:03:05	test
+unnamed	1368104586	2013-05-09	21:03:06	|	21:03:06	test
+unnamed	1368104588	2013-05-09	21:03:08	|	21:03:08	test
+unnamed	1368104589	2013-05-09	21:03:09	|	21:03:09	test
+unnamed	1368104590	2013-05-09	21:03:10	|	21:03:10	test
+ssp	1368104585	2013-05-09	21:03:05	|	21:03:10	Screenshot created.
+ssp	1368104585	2013-05-09	21:03:05	|	21:03:10	Screenshot renamed: 1368104585.94.jpg
+ssp	1368104585	2013-05-09	21:03:05	|	21:03:10	Prepare to send screenshot: 1368104585.94.jpg
+ssp	1368104585	2013-05-09	21:03:05	|	21:03:10	file berhasil kami terima dengan baik.
+ssp	1368104585	2013-05-09	21:03:05	|	21:03:10	Screenshot was sent: 1368104585.94.jpg
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:10	Prepare to make screenshot.
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:10	Screenshot created.
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:10	Screenshot renamed: 1368104590.27.jpg
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:10	Prepare to send screenshot: 1368104590.27.jpg
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:10	file berhasil kami terima dengan baik.
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:10	Screenshot was sent: 1368104590.27.jpg
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:10	Prepare to make screenshot.
+unnamed	1368104591	2013-05-09	21:03:11	|	21:03:11	test
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:11	Screenshot created.
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:11	Screenshot renamed: 1368104590.88.jpg
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:11	Current screenshot detected same than before.
+ssp	1368104590	2013-05-09	21:03:10	|	21:03:11	Deleted Screenshot: 1368104590.88.jpg
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:11	Prepare to make screenshot.
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:11	Screenshot created.
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:11	Screenshot renamed: 1368104591.29.jpg
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:11	Prepare to send screenshot: 1368104591.29.jpg
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:11	file berhasil kami terima dengan baik.
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:11	Screenshot was sent: 1368104591.29.jpg
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:11	Prepare to make screenshot.
+unnamed	1368104592	2013-05-09	21:03:12	|	21:03:12	test
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:12	Screenshot created.
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:12	Screenshot renamed: 1368104591.75.jpg
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:12	Current screenshot detected same than before.
+ssp	1368104591	2013-05-09	21:03:11	|	21:03:12	Deleted Screenshot: 1368104591.75.jpg
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:12	Prepare to make screenshot.
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:12	Screenshot created.
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:12	Screenshot renamed: 1368104592.25.jpg
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:12	Prepare to send screenshot: 1368104592.25.jpg
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:12	file berhasil kami terima dengan baik.
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:12	Screenshot was sent: 1368104592.25.jpg
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:12	Prepare to make screenshot.
+unnamed	1368104593	2013-05-09	21:03:13	|	21:03:13	test
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:13	Screenshot created.
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:13	Screenshot renamed: 1368104592.78.jpg
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:13	Current screenshot detected same than before.
+ssp	1368104592	2013-05-09	21:03:12	|	21:03:13	Deleted Screenshot: 1368104592.78.jpg
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:13	Prepare to make screenshot.
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:13	Screenshot created.
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:13	Screenshot renamed: 1368104593.23.jpg
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:13	Prepare to send screenshot: 1368104593.23.jpg
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:13	file berhasil kami terima dengan baik.
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:13	Screenshot was sent: 1368104593.23.jpg
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:13	Prepare to make screenshot.
+unnamed	1368104594	2013-05-09	21:03:14	|	21:03:14	test
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:14	Screenshot created.
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:14	Screenshot renamed: 1368104593.96.jpg
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:14	Prepare to send screenshot: 1368104593.96.jpg
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:14	file berhasil kami terima dengan baik.
+ssp	1368104593	2013-05-09	21:03:13	|	21:03:14	Screenshot was sent: 1368104593.96.jpg
+unnamed	1368104595	2013-05-09	21:03:15	|	21:03:15	test
+ssp	1368104595	2013-05-09	21:03:15	|	21:03:15	Prepare to make screenshot.
+ssp	1368104595	2013-05-09	21:03:15	|	21:03:15	Screenshot created.
+ssp	1368104595	2013-05-09	21:03:15	|	21:03:15	Screenshot renamed: 1368104595.16.jpg
+ssp	1368104595	2013-05-09	21:03:15	|	21:03:15	Prepare to send screenshot: 1368104595.16.jpg
+ssp	1368104595	2013-05-09	21:03:15	|	21:03:15	file berhasil kami terima dengan baik.
+ssp	1368104595	2013-05-09	21:03:15	|	21:03:15	Screenshot was sent: 1368104595.16.jpg
+unnamed	1368104596	2013-05-09	21:03:16	|	21:03:16	test
+ssp	1368104596	2013-05-09	21:03:16	|	21:03:16	Prepare to make screenshot.
+ssp	1368104596	2013-05-09	21:03:16	|	21:03:16	Screenshot created.
+ssp	1368104596	2013-05-09	21:03:16	|	21:03:16	Screenshot renamed: 1368104596.12.jpg
+ssp	1368104596	2013-05-09	21:03:16	|	21:03:16	Prepare to send screenshot: 1368104596.12.jpg
+ssp	1368104596	2013-05-09	21:03:16	|	21:03:16	file berhasil kami terima dengan baik.
+ssp	1368104596	2013-05-09	21:03:16	|	21:03:16	Screenshot was sent: 1368104596.12.jpg
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:17	Prepare to make screenshot.
+unnamed	1368104597	2013-05-09	21:03:17	|	21:03:17	test
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:17	Screenshot created.
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:17	Screenshot renamed: 1368104597.12.jpg
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:17	Prepare to send screenshot: 1368104597.12.jpg
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:17	file berhasil kami terima dengan baik.
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:17	Screenshot was sent: 1368104597.12.jpg
+unnamed	1368104597	2013-05-09	21:03:17	|	21:03:17	test
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:17	Prepare to make screenshot.
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:18	Screenshot created.
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:18	Screenshot renamed: 1368104597.97.jpg
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:18	Prepare to send screenshot: 1368104597.97.jpg
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:18	file berhasil kami terima dengan baik.
+ssp	1368104597	2013-05-09	21:03:17	|	21:03:18	Screenshot was sent: 1368104597.97.jpg
+unnamed	1368104598	2013-05-09	21:03:18	|	21:03:18	test
+ssp	1368104598	2013-05-09	21:03:18	|	21:03:18	Prepare to make screenshot.
+ssp	1368104598	2013-05-09	21:03:18	|	21:03:19	Screenshot created.
+ssp	1368104598	2013-05-09	21:03:18	|	21:03:19	Screenshot renamed: 1368104598.95.jpg
+ssp	1368104598	2013-05-09	21:03:18	|	21:03:19	Prepare to send screenshot: 1368104598.95.jpg
+ssp	1368104598	2013-05-09	21:03:18	|	21:03:19	file berhasil kami terima dengan baik.
+ssp	1368104598	2013-05-09	21:03:18	|	21:03:19	Screenshot was sent: 1368104598.95.jpg
+unnamed	1368104599	2013-05-09	21:03:19	|	21:03:19	test
+ssp	1368104599	2013-05-09	21:03:19	|	21:03:19	Prepare to make screenshot.
+ssp	1368104599	2013-05-09	21:03:19	|	21:03:20	Screenshot created.
+ssp	1368104599	2013-05-09	21:03:19	|	21:03:20	Screenshot renamed: 1368104599.94.jpg
+ssp	1368104599	2013-05-09	21:03:19	|	21:03:20	Prepare to send screenshot: 1368104599.94.jpg
+ssp	1368104599	2013-05-09	21:03:19	|	21:03:20	file berhasil kami terima dengan baik.
+ssp	1368104599	2013-05-09	21:03:19	|	21:03:20	Screenshot was sent: 1368104599.94.jpg
+unnamed	1368104600	2013-05-09	21:03:20	|	21:03:20	test
+ssp	1368104601	2013-05-09	21:03:21	|	21:03:21	Prepare to make screenshot.
+ssp	1368104601	2013-05-09	21:03:21	|	21:03:21	Screenshot created.
+ssp	1368104601	2013-05-09	21:03:21	|	21:03:21	Screenshot renamed: 1368104601.jpg
+ssp	1368104601	2013-05-09	21:03:21	|	21:03:21	Prepare to send screenshot: 1368104601.jpg
+ssp	1368104601	2013-05-09	21:03:21	|	21:03:21	file berhasil kami terima dengan baik.
+ssp	1368104601	2013-05-09	21:03:21	|	21:03:21	Screenshot was sent: 1368104601.jpg
+unnamed	1368104601	2013-05-09	21:03:21	|	21:03:21	test
+ssp	1368104602	2013-05-09	21:03:22	|	21:03:22	Prepare to make screenshot.
+ssp	1368104602	2013-05-09	21:03:22	|	21:03:22	Screenshot created.
+ssp	1368104602	2013-05-09	21:03:22	|	21:03:22	Screenshot renamed: 1368104602.07.jpg
+ssp	1368104602	2013-05-09	21:03:22	|	21:03:22	Prepare to send screenshot: 1368104602.07.jpg
+ssp	1368104602	2013-05-09	21:03:22	|	21:03:22	file berhasil kami terima dengan baik.
+ssp	1368104602	2013-05-09	21:03:22	|	21:03:22	Screenshot was sent: 1368104602.07.jpg
+unnamed	1368104603	2013-05-09	21:03:23	|	21:03:23	test
+ssp	1368104603	2013-05-09	21:03:23	|	21:03:23	Prepare to make screenshot.
+ssp	1368104603	2013-05-09	21:03:23	|	21:03:23	Screenshot created.
+ssp	1368104603	2013-05-09	21:03:23	|	21:03:23	Screenshot renamed: 1368104603.07.jpg
+ssp	1368104603	2013-05-09	21:03:23	|	21:03:23	Prepare to send screenshot: 1368104603.07.jpg
+ssp	1368104603	2013-05-09	21:03:23	|	21:03:23	file berhasil kami terima dengan baik.
+ssp	1368104603	2013-05-09	21:03:23	|	21:03:23	Screenshot was sent: 1368104603.07.jpg
+unnamed	1368104604	2013-05-09	21:03:24	|	21:03:24	test
+ssp	1368104604	2013-05-09	21:03:24	|	21:03:24	Prepare to make screenshot.
+ssp	1368104604	2013-05-09	21:03:24	|	21:03:24	Screenshot created.
+ssp	1368104604	2013-05-09	21:03:24	|	21:03:24	Screenshot renamed: 1368104604.01.jpg
+ssp	1368104604	2013-05-09	21:03:24	|	21:03:24	Prepare to send screenshot: 1368104604.01.jpg
+ssp	1368104604	2013-05-09	21:03:24	|	21:03:24	file berhasil kami terima dengan baik.
+ssp	1368104604	2013-05-09	21:03:24	|	21:03:24	Screenshot was sent: 1368104604.01.jpg
+unnamed	1368104605	2013-05-09	21:03:25	|	21:03:25	test
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:25	Prepare to make screenshot.
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:25	Screenshot created.
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:25	Screenshot renamed: 1368104605.07.jpg
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:25	Prepare to send screenshot: 1368104605.07.jpg
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:25	file berhasil kami terima dengan baik.
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:25	Screenshot was sent: 1368104605.07.jpg
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:25	Prepare to make screenshot.
+unnamed	1368104606	2013-05-09	21:03:26	|	21:03:26	test
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:26	Screenshot created.
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:26	Screenshot renamed: 1368104605.96.jpg
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:26	Prepare to send screenshot: 1368104605.96.jpg
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:26	file berhasil kami terima dengan baik.
+ssp	1368104605	2013-05-09	21:03:25	|	21:03:26	Screenshot was sent: 1368104605.96.jpg
+ssp	1368104606	2013-05-09	21:03:26	|	21:03:26	Prepare to make screenshot.
+unnamed	1368104607	2013-05-09	21:03:27	|	21:03:27	test
+ssp	1368104606	2013-05-09	21:03:26	|	21:03:27	Screenshot created.
+ssp	1368104606	2013-05-09	21:03:26	|	21:03:27	Screenshot renamed: 1368104606.98.jpg
+ssp	1368104606	2013-05-09	21:03:26	|	21:03:27	Current screenshot detected same than before.
+ssp	1368104606	2013-05-09	21:03:26	|	21:03:27	Deleted Screenshot: 1368104606.98.jpg
+unnamed	1368104608	2013-05-09	21:03:28	|	21:03:28	test
+ssp	1368104608	2013-05-09	21:03:28	|	21:03:28	Prepare to make screenshot.
+ssp	1368104608	2013-05-09	21:03:28	|	21:03:28	Screenshot created.
+ssp	1368104608	2013-05-09	21:03:28	|	21:03:28	Screenshot renamed: 1368104608.16.jpg
+ssp	1368104608	2013-05-09	21:03:28	|	21:03:28	Prepare to send screenshot: 1368104608.16.jpg
+ssp	1368104608	2013-05-09	21:03:28	|	21:03:28	file berhasil kami terima dengan baik.
+ssp	1368104608	2013-05-09	21:03:28	|	21:03:28	Screenshot was sent: 1368104608.16.jpg
+unnamed	1368104609	2013-05-09	21:03:29	|	21:03:29	test
+ssp	1368104609	2013-05-09	21:03:29	|	21:03:29	Prepare to make screenshot.
+ssp	1368104609	2013-05-09	21:03:29	|	21:03:29	Screenshot created.
+ssp	1368104609	2013-05-09	21:03:29	|	21:03:29	Screenshot renamed: 1368104609.15.jpg
+ssp	1368104609	2013-05-09	21:03:29	|	21:03:29	Prepare to send screenshot: 1368104609.15.jpg
+ssp	1368104609	2013-05-09	21:03:29	|	21:03:29	file berhasil kami terima dengan baik.
+ssp	1368104609	2013-05-09	21:03:29	|	21:03:29	Screenshot was sent: 1368104609.15.jpg
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:30	Prepare to make screenshot.
+unnamed	1368104610	2013-05-09	21:03:30	|	21:03:30	test
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:30	Screenshot created.
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:30	Screenshot renamed: 1368104609.99.jpg
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:30	Prepare to send screenshot: 1368104609.99.jpg
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:30	file berhasil kami terima dengan baik.
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:30	Screenshot was sent: 1368104609.99.jpg
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:30	Prepare to make screenshot.
+unnamed	1368104611	2013-05-09	21:03:31	|	21:03:31	test
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:31	Screenshot created.
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:31	Screenshot renamed: 1368104610.94.jpg
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:31	Prepare to send screenshot: 1368104610.94.jpg
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:31	file berhasil kami terima dengan baik.
+ssp	1368104610	2013-05-09	21:03:30	|	21:03:31	Screenshot was sent: 1368104610.94.jpg
+unnamed	1368104612	2013-05-09	21:03:32	|	21:03:32	test
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:32	Prepare to make screenshot.
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:32	Screenshot created.
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:32	Screenshot renamed: 1368104612.17.jpg
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:32	Prepare to send screenshot: 1368104612.17.jpg
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:32	file berhasil kami terima dengan baik.
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:32	Screenshot was sent: 1368104612.17.jpg
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:32	Prepare to make screenshot.
+unnamed	1368104613	2013-05-09	21:03:33	|	21:03:33	test
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:33	Screenshot created.
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:33	Screenshot renamed: 1368104612.94.jpg
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:33	Prepare to send screenshot: 1368104612.94.jpg
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:33	file berhasil kami terima dengan baik.
+ssp	1368104612	2013-05-09	21:03:32	|	21:03:33	Screenshot was sent: 1368104612.94.jpg
+unnamed	1368104614	2013-05-09	21:03:34	|	21:03:34	test
+ssp	1368104614	2013-05-09	21:03:34	|	21:03:34	Prepare to make screenshot.
+ssp	1368104614	2013-05-09	21:03:34	|	21:03:34	Screenshot created.
+ssp	1368104614	2013-05-09	21:03:34	|	21:03:34	Screenshot renamed: 1368104614.14.jpg
+ssp	1368104614	2013-05-09	21:03:34	|	21:03:34	Prepare to send screenshot: 1368104614.14.jpg
+ssp	1368104614	2013-05-09	21:03:34	|	21:03:34	file berhasil kami terima dengan baik.
+ssp	1368104614	2013-05-09	21:03:34	|	21:03:34	Screenshot was sent: 1368104614.14.jpg
+ssp	1368104615	2013-05-09	21:03:35	|	21:03:35	Prepare to make screenshot.
+unnamed	1368104615	2013-05-09	21:03:35	|	21:03:35	test
+ssp	1368104615	2013-05-09	21:03:35	|	21:03:35	Screenshot created.
+ssp	1368104615	2013-05-09	21:03:35	|	21:03:35	Screenshot renamed: 1368104615.1.jpg
+ssp	1368104615	2013-05-09	21:03:35	|	21:03:35	Prepare to send screenshot: 1368104615.1.jpg
+ssp	1368104615	2013-05-09	21:03:35	|	21:03:35	file berhasil kami terima dengan baik.
+ssp	1368104615	2013-05-09	21:03:35	|	21:03:35	Screenshot was sent: 1368104615.1.jpg
+ssp	1368104616	2013-05-09	21:03:36	|	21:03:36	Prepare to make screenshot.
+unnamed	1368104616	2013-05-09	21:03:36	|	21:03:36	test
+ssp	1368104616	2013-05-09	21:03:36	|	21:03:36	Screenshot created.
+ssp	1368104616	2013-05-09	21:03:36	|	21:03:36	Screenshot renamed: 1368104616.15.jpg
+ssp	1368104616	2013-05-09	21:03:36	|	21:03:36	Prepare to send screenshot: 1368104616.15.jpg
+ssp	1368104616	2013-05-09	21:03:36	|	21:03:36	file berhasil kami terima dengan baik.
+ssp	1368104616	2013-05-09	21:03:36	|	21:03:36	Screenshot was sent: 1368104616.15.jpg
+unnamed	1368104616	2013-05-09	21:03:36	|	21:03:36	test
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:37	Prepare to make screenshot.
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:37	Screenshot created.
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:37	Screenshot renamed: 1368104617.16.jpg
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:37	Prepare to send screenshot: 1368104617.16.jpg
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:37	file berhasil kami terima dengan baik.
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:37	Screenshot was sent: 1368104617.16.jpg
+unnamed	1368104617	2013-05-09	21:03:37	|	21:03:37	test
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:37	Prepare to make screenshot.
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:38	Screenshot created.
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:38	Screenshot renamed: 1368104617.95.jpg
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:38	Prepare to send screenshot: 1368104617.95.jpg
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:38	file berhasil kami terima dengan baik.
+ssp	1368104617	2013-05-09	21:03:37	|	21:03:38	Screenshot was sent: 1368104617.95.jpg
+unnamed	1368104618	2013-05-09	21:03:38	|	21:03:38	test
+ssp	1368104619	2013-05-09	21:03:39	|	21:03:39	Prepare to make screenshot.
+ssp	1368104619	2013-05-09	21:03:39	|	21:03:39	Screenshot created.
+ssp	1368104619	2013-05-09	21:03:39	|	21:03:39	Screenshot renamed: 1368104619.15.jpg
+ssp	1368104619	2013-05-09	21:03:39	|	21:03:39	Prepare to send screenshot: 1368104619.15.jpg
+ssp	1368104619	2013-05-09	21:03:39	|	21:03:39	file berhasil kami terima dengan baik.
+ssp	1368104619	2013-05-09	21:03:39	|	21:03:39	Screenshot was sent: 1368104619.15.jpg
+unnamed	1368104619	2013-05-09	21:03:39	|	21:03:39	test
+ssp	1368104620	2013-05-09	21:03:40	|	21:03:40	Prepare to make screenshot.
+ssp	1368104620	2013-05-09	21:03:40	|	21:03:40	Screenshot created.
+ssp	1368104620	2013-05-09	21:03:40	|	21:03:40	Screenshot renamed: 1368104620.15.jpg
+ssp	1368104620	2013-05-09	21:03:40	|	21:03:40	Prepare to send screenshot: 1368104620.15.jpg
+ssp	1368104620	2013-05-09	21:03:40	|	21:03:40	file berhasil kami terima dengan baik.
+ssp	1368104620	2013-05-09	21:03:40	|	21:03:40	Screenshot was sent: 1368104620.15.jpg
+unnamed	1368104620	2013-05-09	21:03:40	|	21:03:40	test
+ssp	1368104621	2013-05-09	21:03:41	|	21:03:41	Prepare to make screenshot.
+ssp	1368104621	2013-05-09	21:03:41	|	21:03:41	Screenshot created.
+ssp	1368104621	2013-05-09	21:03:41	|	21:03:41	Screenshot renamed: 1368104621.16.jpg
+ssp	1368104621	2013-05-09	21:03:41	|	21:03:41	Prepare to send screenshot: 1368104621.16.jpg
+ssp	1368104621	2013-05-09	21:03:41	|	21:03:41	file berhasil kami terima dengan baik.
+ssp	1368104621	2013-05-09	21:03:41	|	21:03:41	Screenshot was sent: 1368104621.16.jpg
+unnamed	1368104621	2013-05-09	21:03:41	|	21:03:41	test
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:42	Prepare to make screenshot.
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:42	Screenshot created.
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:42	Screenshot renamed: 1368104621.99.jpg
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:42	Prepare to send screenshot: 1368104621.99.jpg
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:42	file berhasil kami terima dengan baik.
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:42	Screenshot was sent: 1368104621.99.jpg
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:42	Prepare to make screenshot.
+unnamed	1368104622	2013-05-09	21:03:42	|	21:03:42	test
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:43	Screenshot created.
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:43	Screenshot renamed: 1368104622.94.jpg
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:43	Current screenshot detected same than before.
+ssp	1368104622	2013-05-09	21:03:42	|	21:03:43	Deleted Screenshot: 1368104622.94.jpg
+unnamed	1368104624	2013-05-09	21:03:44	|	21:03:44	test
+ssp	1368104624	2013-05-09	21:03:44	|	21:03:44	Prepare to make screenshot.
+ssp	1368104624	2013-05-09	21:03:44	|	21:03:44	Screenshot created.
+ssp	1368104624	2013-05-09	21:03:44	|	21:03:44	Screenshot renamed: 1368104624.16.jpg
+ssp	1368104624	2013-05-09	21:03:44	|	21:03:44	Prepare to send screenshot: 1368104624.16.jpg
+ssp	1368104624	2013-05-09	21:03:44	|	21:03:44	file berhasil kami terima dengan baik.
+ssp	1368104624	2013-05-09	21:03:44	|	21:03:44	Screenshot was sent: 1368104624.16.jpg
+unnamed	1368104625	2013-05-09	21:03:45	|	21:03:45	test
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:45	Prepare to make screenshot.
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:45	Screenshot created.
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:45	Screenshot renamed: 1368104625.16.jpg
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:45	Prepare to send screenshot: 1368104625.16.jpg
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:45	file berhasil kami terima dengan baik.
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:45	Screenshot was sent: 1368104625.16.jpg
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:45	Prepare to make screenshot.
+unnamed	1368104626	2013-05-09	21:03:46	|	21:03:46	test
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:46	Screenshot created.
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:46	Screenshot renamed: 1368104625.96.jpg
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:46	Prepare to send screenshot: 1368104625.96.jpg
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:46	file berhasil kami terima dengan baik.
+ssp	1368104625	2013-05-09	21:03:45	|	21:03:46	Screenshot was sent: 1368104625.96.jpg
+unnamed	1368104627	2013-05-09	21:03:47	|	21:03:47	test
+ssp	1368104627	2013-05-09	21:03:47	|	21:03:47	Prepare to make screenshot.
+ssp	1368104627	2013-05-09	21:03:47	|	21:03:47	Screenshot created.
+ssp	1368104627	2013-05-09	21:03:47	|	21:03:47	Screenshot renamed: 1368104627.14.jpg
+ssp	1368104627	2013-05-09	21:03:47	|	21:03:47	Prepare to send screenshot: 1368104627.14.jpg
+ssp	1368104627	2013-05-09	21:03:47	|	21:03:47	file berhasil kami terima dengan baik.
+ssp	1368104627	2013-05-09	21:03:47	|	21:03:47	Screenshot was sent: 1368104627.14.jpg
+unnamed	1368104628	2013-05-09	21:03:48	|	21:03:48	test
+ssp	1368104628	2013-05-09	21:03:48	|	21:03:48	Prepare to make screenshot.
+ssp	1368104628	2013-05-09	21:03:48	|	21:03:48	Screenshot created.
+ssp	1368104628	2013-05-09	21:03:48	|	21:03:48	Screenshot renamed: 1368104628.1.jpg
+ssp	1368104628	2013-05-09	21:03:48	|	21:03:48	Current screenshot detected same than before.
+ssp	1368104628	2013-05-09	21:03:48	|	21:03:48	Deleted Screenshot: 1368104628.1.jpg
+unnamed	1368104629	2013-05-09	21:03:49	|	21:03:49	test
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:49	Prepare to make screenshot.
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:49	Screenshot created.
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:49	Screenshot renamed: 1368104629.09.jpg
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:49	Prepare to send screenshot: 1368104629.09.jpg
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:49	file berhasil kami terima dengan baik.
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:49	Screenshot was sent: 1368104629.09.jpg
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:49	Prepare to make screenshot.
+unnamed	1368104630	2013-05-09	21:03:50	|	21:03:50	test
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:50	Screenshot created.
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:50	Screenshot renamed: 1368104629.96.jpg
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:50	Prepare to send screenshot: 1368104629.96.jpg
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:50	file berhasil kami terima dengan baik.
+ssp	1368104629	2013-05-09	21:03:49	|	21:03:50	Screenshot was sent: 1368104629.96.jpg
+unnamed	1368104631	2013-05-09	21:03:51	|	21:03:51	test
+ssp	1368104631	2013-05-09	21:03:51	|	21:03:51	Prepare to make screenshot.
+ssp	1368104631	2013-05-09	21:03:51	|	21:03:51	Screenshot created.
+ssp	1368104631	2013-05-09	21:03:51	|	21:03:51	Screenshot renamed: 1368104631.16.jpg
+ssp	1368104631	2013-05-09	21:03:51	|	21:03:51	Prepare to send screenshot: 1368104631.16.jpg
+ssp	1368104631	2013-05-09	21:03:51	|	21:03:51	file berhasil kami terima dengan baik.
+ssp	1368104631	2013-05-09	21:03:51	|	21:03:51	Screenshot was sent: 1368104631.16.jpg
+unnamed	1368104632	2013-05-09	21:03:52	|	21:03:52	test
+ssp	1368104632	2013-05-09	21:03:52	|	21:03:52	Prepare to make screenshot.
+ssp	1368104632	2013-05-09	21:03:52	|	21:03:52	Screenshot created.
+ssp	1368104632	2013-05-09	21:03:52	|	21:03:52	Screenshot renamed: 1368104632.13.jpg
+ssp	1368104632	2013-05-09	21:03:52	|	21:03:52	Prepare to send screenshot: 1368104632.13.jpg
+ssp	1368104632	2013-05-09	21:03:52	|	21:03:52	file berhasil kami terima dengan baik.
+ssp	1368104632	2013-05-09	21:03:52	|	21:03:52	Screenshot was sent: 1368104632.13.jpg
+unnamed	1368104633	2013-05-09	21:03:53	|	21:03:53	test
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:53	Prepare to make screenshot.
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:53	Screenshot created.
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:53	Screenshot renamed: 1368104633.13.jpg
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:53	Prepare to send screenshot: 1368104633.13.jpg
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:53	file berhasil kami terima dengan baik.
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:53	Screenshot was sent: 1368104633.13.jpg
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:53	Prepare to make screenshot.
+unnamed	1368104634	2013-05-09	21:03:54	|	21:03:54	test
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:54	Screenshot created.
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:54	Screenshot renamed: 1368104633.95.jpg
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:54	Prepare to send screenshot: 1368104633.95.jpg
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:54	file berhasil kami terima dengan baik.
+ssp	1368104633	2013-05-09	21:03:53	|	21:03:54	Screenshot was sent: 1368104633.95.jpg
+unnamed	1368104635	2013-05-09	21:03:55	|	21:03:55	test
+ssp	1368104635	2013-05-09	21:03:55	|	21:03:55	Prepare to make screenshot.
+ssp	1368104635	2013-05-09	21:03:55	|	21:03:55	Screenshot created.
+ssp	1368104635	2013-05-09	21:03:55	|	21:03:55	Screenshot renamed: 1368104635.15.jpg
+ssp	1368104635	2013-05-09	21:03:55	|	21:03:55	Prepare to send screenshot: 1368104635.15.jpg
+ssp	1368104635	2013-05-09	21:03:55	|	21:03:55	file berhasil kami terima dengan baik.
+ssp	1368104635	2013-05-09	21:03:55	|	21:03:55	Screenshot was sent: 1368104635.15.jpg
+ssp	1368104636	2013-05-09	21:03:56	|	21:03:56	Prepare to make screenshot.
+unnamed	1368104636	2013-05-09	21:03:56	|	21:03:56	test
+ssp	1368104636	2013-05-09	21:03:56	|	21:03:56	Screenshot created.
+ssp	1368104636	2013-05-09	21:03:56	|	21:03:56	Screenshot renamed: 1368104636.12.jpg
+ssp	1368104636	2013-05-09	21:03:56	|	21:03:56	Prepare to send screenshot: 1368104636.12.jpg
+ssp	1368104636	2013-05-09	21:03:56	|	21:03:56	file berhasil kami terima dengan baik.
+ssp	1368104636	2013-05-09	21:03:56	|	21:03:56	Screenshot was sent: 1368104636.12.jpg
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:57	Prepare to make screenshot.
+unnamed	1368104637	2013-05-09	21:03:57	|	21:03:57	test
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:57	Screenshot created.
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:57	Screenshot renamed: 1368104637.14.jpg
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:57	Prepare to send screenshot: 1368104637.14.jpg
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:57	file berhasil kami terima dengan baik.
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:57	Screenshot was sent: 1368104637.14.jpg
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:57	Prepare to make screenshot.
+unnamed	1368104638	2013-05-09	21:03:58	|	21:03:58	test
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:58	Screenshot created.
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:58	Screenshot renamed: 1368104637.95.jpg
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:58	Prepare to send screenshot: 1368104637.95.jpg
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:58	file berhasil kami terima dengan baik.
+ssp	1368104637	2013-05-09	21:03:57	|	21:03:58	Screenshot was sent: 1368104637.95.jpg
+unnamed	1368104638	2013-05-09	21:03:58	|	21:03:58	test
+ssp	1368104639	2013-05-09	21:03:59	|	21:03:59	Prepare to make screenshot.
+ssp	1368104639	2013-05-09	21:03:59	|	21:03:59	Screenshot created.
+ssp	1368104639	2013-05-09	21:03:59	|	21:03:59	Screenshot renamed: 1368104639.15.jpg
+ssp	1368104639	2013-05-09	21:03:59	|	21:03:59	Prepare to send screenshot: 1368104639.15.jpg
+ssp	1368104639	2013-05-09	21:03:59	|	21:03:59	file berhasil kami terima dengan baik.
+ssp	1368104639	2013-05-09	21:03:59	|	21:03:59	Screenshot was sent: 1368104639.15.jpg
+unnamed	1368104639	2013-05-09	21:03:59	|	21:03:59	test
+ssp	1368104640	2013-05-09	21:04:00	|	21:04:00	Prepare to make screenshot.
+ssp	1368104640	2013-05-09	21:04:00	|	21:04:00	Screenshot created.
+ssp	1368104640	2013-05-09	21:04:00	|	21:04:00	Screenshot renamed: 1368104640.1.jpg
+ssp	1368104640	2013-05-09	21:04:00	|	21:04:00	Prepare to send screenshot: 1368104640.1.jpg
+ssp	1368104640	2013-05-09	21:04:00	|	21:04:00	file berhasil kami terima dengan baik.
+ssp	1368104640	2013-05-09	21:04:00	|	21:04:00	Screenshot was sent: 1368104640.1.jpg
+unnamed	1368104640	2013-05-09	21:04:00	|	21:04:00	test
+ssp	1368104641	2013-05-09	21:04:01	|	21:04:01	Prepare to make screenshot.
+ssp	1368104641	2013-05-09	21:04:01	|	21:04:01	Screenshot created.
+ssp	1368104641	2013-05-09	21:04:01	|	21:04:01	Screenshot renamed: 1368104641.jpg
+ssp	1368104641	2013-05-09	21:04:01	|	21:04:01	Prepare to send screenshot: 1368104641.jpg
+ssp	1368104641	2013-05-09	21:04:01	|	21:04:01	file berhasil kami terima dengan baik.
+ssp	1368104641	2013-05-09	21:04:01	|	21:04:01	Screenshot was sent: 1368104641.jpg
+unnamed	1368104641	2013-05-09	21:04:01	|	21:04:01	test
+ssp	1368104642	2013-05-09	21:04:02	|	21:04:02	Prepare to make screenshot.
+ssp	1368104642	2013-05-09	21:04:02	|	21:04:02	Screenshot created.
+ssp	1368104642	2013-05-09	21:04:02	|	21:04:02	Screenshot renamed: 1368104642.02.jpg
+ssp	1368104642	2013-05-09	21:04:02	|	21:04:02	Prepare to send screenshot: 1368104642.02.jpg
+ssp	1368104642	2013-05-09	21:04:02	|	21:04:02	file berhasil kami terima dengan baik.
+ssp	1368104642	2013-05-09	21:04:02	|	21:04:02	Screenshot was sent: 1368104642.02.jpg
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:03	Prepare to make screenshot.
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:03	Screenshot created.
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:03	Screenshot renamed: 1368104643.01.jpg
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:03	Prepare to send screenshot: 1368104643.01.jpg
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:03	file berhasil kami terima dengan baik.
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:03	Screenshot was sent: 1368104643.01.jpg
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:03	Prepare to make screenshot.
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:04	Screenshot created.
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:04	Screenshot renamed: 1368104643.98.jpg
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:04	Prepare to send screenshot: 1368104643.98.jpg
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:04	file berhasil kami terima dengan baik.
+ssp	1368104643	2013-05-09	21:04:03	|	21:04:04	Screenshot was sent: 1368104643.98.jpg
+ssp	1368104644	2013-05-09	21:04:04	|	21:04:05	------------------------------------
+unnamed	1368104974	2013-05-09	21:09:34	|	21:09:34	test
+ssp	1368104974	2013-05-09	21:09:34	|	21:09:34	Prepare to make screenshot.
+unnamed	1368104975	2013-05-09	21:09:35	|	21:09:35	test
+ssp	1368104974	2013-05-09	21:09:34	|	21:09:35	Screenshot created.
+ssp	1368104974	2013-05-09	21:09:34	|	21:09:35	Screenshot renamed: 1368104974.81.jpg
+ssp	1368104974	2013-05-09	21:09:34	|	21:09:35	Prepare to send screenshot: 1368104974.81.jpg
+ssp	1368104974	2013-05-09	21:09:34	|	21:09:35	file berhasil kami terima dengan baik.
+ssp	1368104974	2013-05-09	21:09:34	|	21:09:35	Screenshot was sent: 1368104974.81.jpg
+ssp	1368104975	2013-05-09	21:09:35	|	21:09:35	Prepare to make screenshot.
+unnamed	1368104976	2013-05-09	21:09:36	|	21:09:36	test
+ssp	1368104975	2013-05-09	21:09:35	|	21:09:36	Screenshot created.
+ssp	1368104975	2013-05-09	21:09:35	|	21:09:36	Screenshot renamed: 1368104975.91.jpg
+ssp	1368104975	2013-05-09	21:09:35	|	21:09:36	Prepare to send screenshot: 1368104975.91.jpg
+ssp	1368104975	2013-05-09	21:09:35	|	21:09:36	file berhasil kami terima dengan baik.
+ssp	1368104975	2013-05-09	21:09:35	|	21:09:36	Screenshot was sent: 1368104975.91.jpg
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:37	Prepare to make screenshot.
+unnamed	1368104977	2013-05-09	21:09:37	|	21:09:37	test
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:37	Screenshot created.
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:37	Screenshot renamed: 1368104977.jpg
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:37	Prepare to send screenshot: 1368104977.jpg
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:37	file berhasil kami terima dengan baik.
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:37	Screenshot was sent: 1368104977.jpg
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:38	Prepare to make screenshot.
+unnamed	1368104978	2013-05-09	21:09:38	|	21:09:38	test
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:38	Screenshot created.
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:38	Screenshot renamed: 1368104977.99.jpg
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:38	Prepare to send screenshot: 1368104977.99.jpg
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:38	file berhasil kami terima dengan baik.
+ssp	1368104977	2013-05-09	21:09:37	|	21:09:38	Screenshot was sent: 1368104977.99.jpg
+ssp	1368104979	2013-05-09	21:09:39	|	21:09:39	Prepare to make screenshot.
+unnamed	1368104979	2013-05-09	21:09:39	|	21:09:39	test
+ssp	1368104979	2013-05-09	21:09:39	|	21:09:39	Screenshot created.
+ssp	1368104979	2013-05-09	21:09:39	|	21:09:39	Screenshot renamed: 1368104979.03.jpg
+ssp	1368104979	2013-05-09	21:09:39	|	21:09:39	Prepare to send screenshot: 1368104979.03.jpg
+ssp	1368104979	2013-05-09	21:09:39	|	21:09:39	file berhasil kami terima dengan baik.
+ssp	1368104979	2013-05-09	21:09:39	|	21:09:39	Screenshot was sent: 1368104979.03.jpg
+ssp	1368104980	2013-05-09	21:09:40	|	21:09:40	Prepare to make screenshot.
+unnamed	1368104980	2013-05-09	21:09:40	|	21:09:40	test
+ssp	1368104980	2013-05-09	21:09:40	|	21:09:40	Screenshot created.
+ssp	1368104980	2013-05-09	21:09:40	|	21:09:40	Screenshot renamed: 1368104980.05.jpg
+ssp	1368104980	2013-05-09	21:09:40	|	21:09:40	Prepare to send screenshot: 1368104980.05.jpg
+ssp	1368104980	2013-05-09	21:09:40	|	21:09:40	file berhasil kami terima dengan baik.
+ssp	1368104980	2013-05-09	21:09:40	|	21:09:40	Screenshot was sent: 1368104980.05.jpg
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:41	Prepare to make screenshot.
+unnamed	1368104981	2013-05-09	21:09:41	|	21:09:41	test
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:41	Screenshot created.
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:41	Screenshot renamed: 1368104981.01.jpg
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:41	Prepare to send screenshot: 1368104981.01.jpg
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:41	file berhasil kami terima dengan baik.
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:41	Screenshot was sent: 1368104981.01.jpg
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:41	Prepare to make screenshot.
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:42	Screenshot created.
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:42	Screenshot renamed: 1368104981.82.jpg
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:42	Prepare to send screenshot: 1368104981.82.jpg
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:42	file berhasil kami terima dengan baik.
+ssp	1368104981	2013-05-09	21:09:41	|	21:09:42	Screenshot was sent: 1368104981.82.jpg
+unnamed	1368104982	2013-05-09	21:09:42	|	21:09:42	test
+ssp	1368104983	2013-05-09	21:09:43	|	21:09:43	Prepare to make screenshot.
+unnamed	1368104983	2013-05-09	21:09:43	|	21:09:43	test
+ssp	1368104983	2013-05-09	21:09:43	|	21:09:43	Screenshot created.
+ssp	1368104983	2013-05-09	21:09:43	|	21:09:43	Screenshot renamed: 1368104983.04.jpg
+ssp	1368104983	2013-05-09	21:09:43	|	21:09:43	Prepare to send screenshot: 1368104983.04.jpg
+ssp	1368104983	2013-05-09	21:09:43	|	21:09:43	file berhasil kami terima dengan baik.
+ssp	1368104983	2013-05-09	21:09:43	|	21:09:43	Screenshot was sent: 1368104983.04.jpg
+ssp	1368104984	2013-05-09	21:09:44	|	21:09:44	Prepare to make screenshot.
+unnamed	1368104984	2013-05-09	21:09:44	|	21:09:44	test
+ssp	1368104984	2013-05-09	21:09:44	|	21:09:44	Screenshot created.
+ssp	1368104984	2013-05-09	21:09:44	|	21:09:44	Screenshot renamed: 1368104984.04.jpg
+ssp	1368104984	2013-05-09	21:09:44	|	21:09:44	Prepare to send screenshot: 1368104984.04.jpg
+ssp	1368104984	2013-05-09	21:09:44	|	21:09:44	file berhasil kami terima dengan baik.
+ssp	1368104984	2013-05-09	21:09:44	|	21:09:44	Screenshot was sent: 1368104984.04.jpg
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:45	Prepare to make screenshot.
+unnamed	1368104985	2013-05-09	21:09:45	|	21:09:45	test
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:45	Screenshot created.
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:45	Screenshot renamed: 1368104985.04.jpg
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:45	Prepare to send screenshot: 1368104985.04.jpg
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:45	file berhasil kami terima dengan baik.
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:45	Screenshot was sent: 1368104985.04.jpg
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:45	Prepare to make screenshot.
+unnamed	1368104986	2013-05-09	21:09:46	|	21:09:46	test
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:46	Screenshot created.
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:46	Screenshot renamed: 1368104985.81.jpg
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:46	Prepare to send screenshot: 1368104985.81.jpg
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:46	file berhasil kami terima dengan baik.
+ssp	1368104985	2013-05-09	21:09:45	|	21:09:46	Screenshot was sent: 1368104985.81.jpg
+ssp	1368104986	2013-05-09	21:09:46	|	21:09:46	Prepare to make screenshot.
+unnamed	1368104987	2013-05-09	21:09:47	|	21:09:47	test
+ssp	1368104986	2013-05-09	21:09:46	|	21:09:47	Screenshot created.
+ssp	1368104986	2013-05-09	21:09:46	|	21:09:47	Screenshot renamed: 1368104986.87.jpg
+ssp	1368104986	2013-05-09	21:09:46	|	21:09:47	Prepare to send screenshot: 1368104986.87.jpg
+ssp	1368104986	2013-05-09	21:09:46	|	21:09:47	file berhasil kami terima dengan baik.
+ssp	1368104986	2013-05-09	21:09:46	|	21:09:47	Screenshot was sent: 1368104986.87.jpg
+ssp	1368104987	2013-05-09	21:09:47	|	21:09:47	Prepare to make screenshot.
+ssp	1368104987	2013-05-09	21:09:47	|	21:09:48	Screenshot created.
+unnamed	1368104988	2013-05-09	21:09:48	|	21:09:48	test
+ssp	1368104987	2013-05-09	21:09:47	|	21:09:48	Screenshot renamed: 1368104987.92.jpg
+ssp	1368104987	2013-05-09	21:09:47	|	21:09:48	Prepare to send screenshot: 1368104987.92.jpg
+ssp	1368104987	2013-05-09	21:09:47	|	21:09:48	file berhasil kami terima dengan baik.
+ssp	1368104987	2013-05-09	21:09:47	|	21:09:48	Screenshot was sent: 1368104987.92.jpg
+ssp	1368104988	2013-05-09	21:09:48	|	21:09:48	Prepare to make screenshot.
+ssp	1368104988	2013-05-09	21:09:48	|	21:09:49	Screenshot created.
+ssp	1368104988	2013-05-09	21:09:48	|	21:09:49	Screenshot renamed: 1368104988.9.jpg
+unnamed	1368104989	2013-05-09	21:09:49	|	21:09:49	test
+ssp	1368104988	2013-05-09	21:09:48	|	21:09:49	Prepare to send screenshot: 1368104988.9.jpg
+ssp	1368104988	2013-05-09	21:09:48	|	21:09:49	file berhasil kami terima dengan baik.
+ssp	1368104988	2013-05-09	21:09:48	|	21:09:49	Screenshot was sent: 1368104988.9.jpg
+ssp	1368104989	2013-05-09	21:09:49	|	21:09:49	Prepare to make screenshot.
+unnamed	1368104990	2013-05-09	21:09:50	|	21:09:50	test
+ssp	1368104989	2013-05-09	21:09:49	|	21:09:50	Screenshot created.
+ssp	1368104989	2013-05-09	21:09:49	|	21:09:50	Screenshot renamed: 1368104989.91.jpg
+ssp	1368104989	2013-05-09	21:09:49	|	21:09:50	Prepare to send screenshot: 1368104989.91.jpg
+ssp	1368104989	2013-05-09	21:09:49	|	21:09:50	file berhasil kami terima dengan baik.
+ssp	1368104989	2013-05-09	21:09:49	|	21:09:50	Screenshot was sent: 1368104989.91.jpg
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:51	Prepare to make screenshot.
+unnamed	1368104991	2013-05-09	21:09:51	|	21:09:51	test
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:51	Screenshot created.
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:51	Screenshot renamed: 1368104991.02.jpg
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:51	Prepare to send screenshot: 1368104991.02.jpg
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:51	file berhasil kami terima dengan baik.
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:51	Screenshot was sent: 1368104991.02.jpg
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:51	Prepare to make screenshot.
+unnamed	1368104992	2013-05-09	21:09:52	|	21:09:52	test
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:52	Screenshot created.
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:52	Screenshot renamed: 1368104991.96.jpg
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:52	Prepare to send screenshot: 1368104991.96.jpg
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:52	file berhasil kami terima dengan baik.
+ssp	1368104991	2013-05-09	21:09:51	|	21:09:52	Screenshot was sent: 1368104991.96.jpg
+ssp	1368104992	2013-05-09	21:09:52	|	21:09:53	Prepare to make screenshot.
+unnamed	1368104993	2013-05-09	21:09:53	|	21:09:53	test
+ssp	1368104992	2013-05-09	21:09:52	|	21:09:53	Screenshot created.
+ssp	1368104992	2013-05-09	21:09:52	|	21:09:53	Screenshot renamed: 1368104993.jpg
+ssp	1368104992	2013-05-09	21:09:52	|	21:09:53	Prepare to send screenshot: 1368104993.jpg
+ssp	1368104992	2013-05-09	21:09:52	|	21:09:53	file berhasil kami terima dengan baik.
+ssp	1368104992	2013-05-09	21:09:52	|	21:09:53	Screenshot was sent: 1368104993.jpg
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:54	Prepare to make screenshot.
+unnamed	1368104994	2013-05-09	21:09:54	|	21:09:54	test
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:54	Screenshot created.
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:54	Screenshot renamed: 1368104994.05.jpg
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:54	Prepare to send screenshot: 1368104994.05.jpg
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:54	file berhasil kami terima dengan baik.
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:54	Screenshot was sent: 1368104994.05.jpg
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:54	Prepare to make screenshot.
+unnamed	1368104995	2013-05-09	21:09:55	|	21:09:55	test
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:55	Screenshot created.
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:55	Screenshot renamed: 1368104994.86.jpg
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:55	Prepare to send screenshot: 1368104994.86.jpg
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:55	file berhasil kami terima dengan baik.
+ssp	1368104994	2013-05-09	21:09:54	|	21:09:55	Screenshot was sent: 1368104994.86.jpg
+ssp	1368104995	2013-05-09	21:09:55	|	21:09:55	Prepare to make screenshot.
+unnamed	1368104996	2013-05-09	21:09:56	|	21:09:56	test
+ssp	1368104995	2013-05-09	21:09:55	|	21:09:56	Screenshot created.
+ssp	1368104995	2013-05-09	21:09:55	|	21:09:56	Screenshot renamed: 1368104995.87.jpg
+ssp	1368104995	2013-05-09	21:09:55	|	21:09:56	Prepare to send screenshot: 1368104995.87.jpg
+ssp	1368104995	2013-05-09	21:09:55	|	21:09:56	file berhasil kami terima dengan baik.
+ssp	1368104995	2013-05-09	21:09:55	|	21:09:56	Screenshot was sent: 1368104995.87.jpg
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:57	Prepare to make screenshot.
+unnamed	1368104997	2013-05-09	21:09:57	|	21:09:57	test
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:57	Screenshot created.
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:57	Screenshot renamed: 1368104997.05.jpg
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:57	Prepare to send screenshot: 1368104997.05.jpg
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:57	file berhasil kami terima dengan baik.
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:57	Screenshot was sent: 1368104997.05.jpg
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:57	Prepare to make screenshot.
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:58	Screenshot created.
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:58	Screenshot renamed: 1368104997.82.jpg
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:58	Prepare to send screenshot: 1368104997.82.jpg
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:58	file berhasil kami terima dengan baik.
+ssp	1368104997	2013-05-09	21:09:57	|	21:09:58	Screenshot was sent: 1368104997.82.jpg
+unnamed	1368104998	2013-05-09	21:09:58	|	21:09:58	test
+ssp	1368104998	2013-05-09	21:09:58	|	21:09:58	Prepare to make screenshot.
+ssp	1368104998	2013-05-09	21:09:58	|	21:09:59	Screenshot created.
+ssp	1368104998	2013-05-09	21:09:58	|	21:09:59	Screenshot renamed: 1368104998.88.jpg
+ssp	1368104998	2013-05-09	21:09:58	|	21:09:59	Prepare to send screenshot: 1368104998.88.jpg
+ssp	1368104998	2013-05-09	21:09:58	|	21:09:59	file berhasil kami terima dengan baik.
+ssp	1368104998	2013-05-09	21:09:58	|	21:09:59	Screenshot was sent: 1368104998.88.jpg
+unnamed	1368104999	2013-05-09	21:09:59	|	21:09:59	test
+ssp	1368104999	2013-05-09	21:09:59	|	21:09:59	Prepare to make screenshot.
+unnamed	1368105000	2013-05-09	21:10:00	|	21:10:00	test
+ssp	1368104999	2013-05-09	21:09:59	|	21:10:00	Screenshot created.
+ssp	1368104999	2013-05-09	21:09:59	|	21:10:00	Screenshot renamed: 1368104999.94.jpg
+ssp	1368104999	2013-05-09	21:09:59	|	21:10:00	Prepare to send screenshot: 1368104999.94.jpg
+ssp	1368104999	2013-05-09	21:09:59	|	21:10:00	file berhasil kami terima dengan baik.
+ssp	1368104999	2013-05-09	21:09:59	|	21:10:00	Screenshot was sent: 1368104999.94.jpg
+ssp	1368105000	2013-05-09	21:10:00	|	21:10:00	Prepare to make screenshot.
+unnamed	1368105001	2013-05-09	21:10:01	|	21:10:01	test
+ssp	1368105000	2013-05-09	21:10:00	|	21:10:01	Screenshot created.
+ssp	1368105000	2013-05-09	21:10:00	|	21:10:01	Screenshot renamed: 1368105000.93.jpg
+ssp	1368105000	2013-05-09	21:10:00	|	21:10:01	Prepare to send screenshot: 1368105000.93.jpg
+ssp	1368105000	2013-05-09	21:10:00	|	21:10:01	file berhasil kami terima dengan baik.
+ssp	1368105000	2013-05-09	21:10:00	|	21:10:01	Screenshot was sent: 1368105000.93.jpg
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:02	Prepare to make screenshot.
+unnamed	1368105002	2013-05-09	21:10:02	|	21:10:02	test
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:02	Screenshot created.
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:02	Screenshot renamed: 1368105002.01.jpg
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:02	Prepare to send screenshot: 1368105002.01.jpg
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:02	file berhasil kami terima dengan baik.
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:02	Screenshot was sent: 1368105002.01.jpg
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:02	Prepare to make screenshot.
+unnamed	1368105003	2013-05-09	21:10:03	|	21:10:03	test
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:03	Screenshot created.
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:03	Screenshot renamed: 1368105002.87.jpg
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:03	Prepare to send screenshot: 1368105002.87.jpg
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:03	file berhasil kami terima dengan baik.
+ssp	1368105002	2013-05-09	21:10:02	|	21:10:03	Screenshot was sent: 1368105002.87.jpg
+ssp	1368105003	2013-05-09	21:10:03	|	21:10:03	Prepare to make screenshot.
+unnamed	1368105004	2013-05-09	21:10:04	|	21:10:04	test
+ssp	1368105003	2013-05-09	21:10:03	|	21:10:04	Screenshot created.
+ssp	1368105003	2013-05-09	21:10:03	|	21:10:04	Screenshot renamed: 1368105003.95.jpg
+ssp	1368105003	2013-05-09	21:10:03	|	21:10:04	Prepare to send screenshot: 1368105003.95.jpg
+ssp	1368105003	2013-05-09	21:10:03	|	21:10:04	file berhasil kami terima dengan baik.
+ssp	1368105003	2013-05-09	21:10:03	|	21:10:04	Screenshot was sent: 1368105003.95.jpg
+ssp	1368105004	2013-05-09	21:10:04	|	21:10:04	Prepare to make screenshot.
+unnamed	1368105005	2013-05-09	21:10:05	|	21:10:05	test
+ssp	1368105004	2013-05-09	21:10:04	|	21:10:05	Screenshot created.
+ssp	1368105004	2013-05-09	21:10:04	|	21:10:05	Screenshot renamed: 1368105004.84.jpg
+ssp	1368105004	2013-05-09	21:10:04	|	21:10:05	Prepare to send screenshot: 1368105004.84.jpg
+ssp	1368105004	2013-05-09	21:10:04	|	21:10:05	file berhasil kami terima dengan baik.
+ssp	1368105004	2013-05-09	21:10:04	|	21:10:05	Screenshot was sent: 1368105004.84.jpg
+ssp	1368105005	2013-05-09	21:10:05	|	21:10:05	Prepare to make screenshot.
+unnamed	1368105006	2013-05-09	21:10:06	|	21:10:06	test
+ssp	1368105005	2013-05-09	21:10:05	|	21:10:06	Screenshot created.
+ssp	1368105005	2013-05-09	21:10:05	|	21:10:06	Screenshot renamed: 1368105005.95.jpg
+ssp	1368105005	2013-05-09	21:10:05	|	21:10:06	Prepare to send screenshot: 1368105005.95.jpg
+ssp	1368105005	2013-05-09	21:10:05	|	21:10:06	file berhasil kami terima dengan baik.
+ssp	1368105005	2013-05-09	21:10:05	|	21:10:06	Screenshot was sent: 1368105005.95.jpg
+ssp	1368105006	2013-05-09	21:10:06	|	21:10:06	Prepare to make screenshot.
+ssp	1368105006	2013-05-09	21:10:06	|	21:10:07	Screenshot created.
+ssp	1368105006	2013-05-09	21:10:06	|	21:10:07	Screenshot renamed: 1368105006.86.jpg
+ssp	1368105006	2013-05-09	21:10:06	|	21:10:07	Prepare to send screenshot: 1368105006.86.jpg
+ssp	1368105006	2013-05-09	21:10:06	|	21:10:07	file berhasil kami terima dengan baik.
+ssp	1368105006	2013-05-09	21:10:06	|	21:10:07	Screenshot was sent: 1368105006.86.jpg
+unnamed	1368105007	2013-05-09	21:10:07	|	21:10:07	test
+ssp	1368105007	2013-05-09	21:10:07	|	21:10:07	Prepare to make screenshot.
+unnamed	1368105008	2013-05-09	21:10:08	|	21:10:08	test
+ssp	1368105007	2013-05-09	21:10:07	|	21:10:08	Screenshot created.
+ssp	1368105007	2013-05-09	21:10:07	|	21:10:08	Screenshot renamed: 1368105007.93.jpg
+ssp	1368105007	2013-05-09	21:10:07	|	21:10:08	Prepare to send screenshot: 1368105007.93.jpg
+ssp	1368105007	2013-05-09	21:10:07	|	21:10:08	file berhasil kami terima dengan baik.
+ssp	1368105007	2013-05-09	21:10:07	|	21:10:08	Screenshot was sent: 1368105007.93.jpg
+ssp	1368105008	2013-05-09	21:10:08	|	21:10:08	Prepare to make screenshot.
+unnamed	1368105009	2013-05-09	21:10:09	|	21:10:09	test
+ssp	1368105008	2013-05-09	21:10:08	|	21:10:09	Screenshot created.
+ssp	1368105008	2013-05-09	21:10:08	|	21:10:09	Screenshot renamed: 1368105008.93.jpg
+ssp	1368105008	2013-05-09	21:10:08	|	21:10:09	Prepare to send screenshot: 1368105008.93.jpg
+ssp	1368105008	2013-05-09	21:10:08	|	21:10:09	file berhasil kami terima dengan baik.
+ssp	1368105008	2013-05-09	21:10:08	|	21:10:09	Screenshot was sent: 1368105008.93.jpg
+ssp	1368105009	2013-05-09	21:10:09	|	21:10:09	Prepare to make screenshot.
+unnamed	1368105010	2013-05-09	21:10:10	|	21:10:10	test
+ssp	1368105009	2013-05-09	21:10:09	|	21:10:10	Screenshot created.
+ssp	1368105009	2013-05-09	21:10:09	|	21:10:10	Screenshot renamed: 1368105009.97.jpg
+ssp	1368105009	2013-05-09	21:10:09	|	21:10:10	Prepare to send screenshot: 1368105009.97.jpg
+ssp	1368105009	2013-05-09	21:10:09	|	21:10:10	file berhasil kami terima dengan baik.
+ssp	1368105009	2013-05-09	21:10:09	|	21:10:10	Screenshot was sent: 1368105009.97.jpg
+ssp	1368105010	2013-05-09	21:10:10	|	21:10:10	Prepare to make screenshot.
+ssp	1368105010	2013-05-09	21:10:10	|	21:10:11	Screenshot created.
+ssp	1368105010	2013-05-09	21:10:10	|	21:10:11	Screenshot renamed: 1368105010.86.jpg
+ssp	1368105010	2013-05-09	21:10:10	|	21:10:11	Prepare to send screenshot: 1368105010.86.jpg
+ssp	1368105010	2013-05-09	21:10:10	|	21:10:11	file berhasil kami terima dengan baik.
+ssp	1368105010	2013-05-09	21:10:10	|	21:10:11	Screenshot was sent: 1368105010.86.jpg
+unnamed	1368105011	2013-05-09	21:10:11	|	21:10:11	test
+ssp	1368105011	2013-05-09	21:10:11	|	21:10:11	Prepare to make screenshot.
+ssp	1368105011	2013-05-09	21:10:11	|	21:10:12	Screenshot created.
+ssp	1368105011	2013-05-09	21:10:11	|	21:10:12	Screenshot renamed: 1368105011.87.jpg
+ssp	1368105011	2013-05-09	21:10:11	|	21:10:12	Prepare to send screenshot: 1368105011.87.jpg
+ssp	1368105011	2013-05-09	21:10:11	|	21:10:12	file berhasil kami terima dengan baik.
+ssp	1368105011	2013-05-09	21:10:11	|	21:10:12	Screenshot was sent: 1368105011.87.jpg
+unnamed	1368105012	2013-05-09	21:10:12	|	21:10:12	test
+ssp	1368105012	2013-05-09	21:10:12	|	21:10:12	Prepare to make screenshot.
+unnamed	1368105013	2013-05-09	21:10:13	|	21:10:13	test
+ssp	1368105012	2013-05-09	21:10:12	|	21:10:13	Screenshot created.
+ssp	1368105012	2013-05-09	21:10:12	|	21:10:13	Screenshot renamed: 1368105012.9.jpg
+ssp	1368105012	2013-05-09	21:10:12	|	21:10:13	Prepare to send screenshot: 1368105012.9.jpg
+ssp	1368105012	2013-05-09	21:10:12	|	21:10:13	file berhasil kami terima dengan baik.
+ssp	1368105012	2013-05-09	21:10:12	|	21:10:13	Screenshot was sent: 1368105012.9.jpg
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:14	Prepare to make screenshot.
+unnamed	1368105014	2013-05-09	21:10:14	|	21:10:14	test
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:14	Screenshot created.
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:14	Screenshot renamed: 1368105014.04.jpg
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:14	Prepare to send screenshot: 1368105014.04.jpg
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:14	file berhasil kami terima dengan baik.
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:14	Screenshot was sent: 1368105014.04.jpg
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:14	Prepare to make screenshot.
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:15	Screenshot created.
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:15	Screenshot renamed: 1368105014.89.jpg
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:15	Prepare to send screenshot: 1368105014.89.jpg
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:15	file berhasil kami terima dengan baik.
+ssp	1368105014	2013-05-09	21:10:14	|	21:10:15	Screenshot was sent: 1368105014.89.jpg
+unnamed	1368105015	2013-05-09	21:10:15	|	21:10:15	test
+ssp	1368105015	2013-05-09	21:10:15	|	21:10:15	Prepare to make screenshot.
+unnamed	1368105016	2013-05-09	21:10:16	|	21:10:16	test
+ssp	1368105015	2013-05-09	21:10:15	|	21:10:16	Screenshot created.
+ssp	1368105015	2013-05-09	21:10:15	|	21:10:16	Screenshot renamed: 1368105015.99.jpg
+ssp	1368105015	2013-05-09	21:10:15	|	21:10:16	Prepare to send screenshot: 1368105015.99.jpg
+ssp	1368105015	2013-05-09	21:10:15	|	21:10:16	file berhasil kami terima dengan baik.
+ssp	1368105015	2013-05-09	21:10:15	|	21:10:16	Screenshot was sent: 1368105015.99.jpg
+ssp	1368105017	2013-05-09	21:10:17	|	21:10:17	Prepare to make screenshot.
+unnamed	1368105017	2013-05-09	21:10:17	|	21:10:17	test
+ssp	1368105017	2013-05-09	21:10:17	|	21:10:17	Screenshot created.
+ssp	1368105017	2013-05-09	21:10:17	|	21:10:17	Screenshot renamed: 1368105017.02.jpg
+ssp	1368105017	2013-05-09	21:10:17	|	21:10:17	Prepare to send screenshot: 1368105017.02.jpg
+ssp	1368105017	2013-05-09	21:10:17	|	21:10:17	file berhasil kami terima dengan baik.
+ssp	1368105017	2013-05-09	21:10:17	|	21:10:17	Screenshot was sent: 1368105017.02.jpg
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:18	Prepare to make screenshot.
+unnamed	1368105018	2013-05-09	21:10:18	|	21:10:18	test
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:18	Screenshot created.
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:18	Screenshot renamed: 1368105018.02.jpg
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:18	Prepare to send screenshot: 1368105018.02.jpg
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:18	file berhasil kami terima dengan baik.
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:18	Screenshot was sent: 1368105018.02.jpg
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:18	Prepare to make screenshot.
+unnamed	1368105019	2013-05-09	21:10:19	|	21:10:19	test
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:19	Screenshot created.
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:19	Screenshot renamed: 1368105018.89.jpg
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:19	Prepare to send screenshot: 1368105018.89.jpg
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:19	file berhasil kami terima dengan baik.
+ssp	1368105018	2013-05-09	21:10:18	|	21:10:19	Screenshot was sent: 1368105018.89.jpg
+ssp	1368105019	2013-05-09	21:10:19	|	21:10:19	Prepare to make screenshot.
+unnamed	1368105020	2013-05-09	21:10:20	|	21:10:20	test
+ssp	1368105019	2013-05-09	21:10:19	|	21:10:20	Screenshot created.
+ssp	1368105019	2013-05-09	21:10:19	|	21:10:20	Screenshot renamed: 1368105019.91.jpg
+ssp	1368105019	2013-05-09	21:10:19	|	21:10:20	Prepare to send screenshot: 1368105019.91.jpg
+ssp	1368105019	2013-05-09	21:10:19	|	21:10:20	file berhasil kami terima dengan baik.
+ssp	1368105019	2013-05-09	21:10:19	|	21:10:20	Screenshot was sent: 1368105019.91.jpg
+ssp	1368105020	2013-05-09	21:10:20	|	21:10:20	Prepare to make screenshot.
+unnamed	1368105021	2013-05-09	21:10:21	|	21:10:21	test
+ssp	1368105020	2013-05-09	21:10:20	|	21:10:21	Screenshot created.
+ssp	1368105020	2013-05-09	21:10:20	|	21:10:21	Screenshot renamed: 1368105020.92.jpg
+ssp	1368105020	2013-05-09	21:10:20	|	21:10:21	Prepare to send screenshot: 1368105020.92.jpg
+ssp	1368105020	2013-05-09	21:10:20	|	21:10:21	file berhasil kami terima dengan baik.
+ssp	1368105020	2013-05-09	21:10:20	|	21:10:21	Screenshot was sent: 1368105020.92.jpg
+ssp	1368105021	2013-05-09	21:10:21	|	21:10:21	Prepare to make screenshot.
+unnamed	1368105022	2013-05-09	21:10:22	|	21:10:22	test
+ssp	1368105021	2013-05-09	21:10:21	|	21:10:22	Screenshot created.
+ssp	1368105021	2013-05-09	21:10:21	|	21:10:22	Screenshot renamed: 1368105021.95.jpg
+ssp	1368105021	2013-05-09	21:10:21	|	21:10:22	Prepare to send screenshot: 1368105021.95.jpg
+ssp	1368105021	2013-05-09	21:10:21	|	21:10:22	file berhasil kami terima dengan baik.
+ssp	1368105021	2013-05-09	21:10:21	|	21:10:22	Screenshot was sent: 1368105021.95.jpg
+ssp	1368105022	2013-05-09	21:10:22	|	21:10:22	Prepare to make screenshot.
+unnamed	1368105023	2013-05-09	21:10:23	|	21:10:23	test
+ssp	1368105022	2013-05-09	21:10:22	|	21:10:23	Screenshot created.
+ssp	1368105022	2013-05-09	21:10:22	|	21:10:23	Screenshot renamed: 1368105022.95.jpg
+ssp	1368105022	2013-05-09	21:10:22	|	21:10:23	Prepare to send screenshot: 1368105022.95.jpg
+ssp	1368105022	2013-05-09	21:10:22	|	21:10:23	file berhasil kami terima dengan baik.
+ssp	1368105022	2013-05-09	21:10:22	|	21:10:23	Screenshot was sent: 1368105022.95.jpg
+ssp	1368105023	2013-05-09	21:10:23	|	21:10:23	Prepare to make screenshot.
+unnamed	1368105024	2013-05-09	21:10:24	|	21:10:24	test
+ssp	1368105023	2013-05-09	21:10:23	|	21:10:24	Screenshot created.
+ssp	1368105023	2013-05-09	21:10:23	|	21:10:24	Screenshot renamed: 1368105023.94.jpg
+ssp	1368105023	2013-05-09	21:10:23	|	21:10:24	Prepare to send screenshot: 1368105023.94.jpg
+ssp	1368105023	2013-05-09	21:10:23	|	21:10:24	file berhasil kami terima dengan baik.
+ssp	1368105023	2013-05-09	21:10:23	|	21:10:24	Screenshot was sent: 1368105023.94.jpg
+ssp	1368105024	2013-05-09	21:10:24	|	21:10:24	Prepare to make screenshot.
+ssp	1368105024	2013-05-09	21:10:24	|	21:10:25	Screenshot created.
+ssp	1368105024	2013-05-09	21:10:24	|	21:10:25	Screenshot renamed: 1368105024.89.jpg
+ssp	1368105024	2013-05-09	21:10:24	|	21:10:25	Prepare to send screenshot: 1368105024.89.jpg
+ssp	1368105024	2013-05-09	21:10:24	|	21:10:25	file berhasil kami terima dengan baik.
+ssp	1368105024	2013-05-09	21:10:24	|	21:10:25	Screenshot was sent: 1368105024.89.jpg
+unnamed	1368105025	2013-05-09	21:10:25	|	21:10:25	test
+ssp	1368105025	2013-05-09	21:10:25	|	21:10:25	Prepare to make screenshot.
+ssp	1368105025	2013-05-09	21:10:25	|	21:10:26	Screenshot created.
+ssp	1368105025	2013-05-09	21:10:25	|	21:10:26	Screenshot renamed: 1368105025.87.jpg
+ssp	1368105025	2013-05-09	21:10:25	|	21:10:26	Prepare to send screenshot: 1368105025.87.jpg
+ssp	1368105025	2013-05-09	21:10:25	|	21:10:26	file berhasil kami terima dengan baik.
+ssp	1368105025	2013-05-09	21:10:25	|	21:10:26	Screenshot was sent: 1368105025.87.jpg
+unnamed	1368105026	2013-05-09	21:10:26	|	21:10:26	test
+ssp	1368105026	2013-05-09	21:10:26	|	21:10:26	Prepare to make screenshot.
+ssp	1368105026	2013-05-09	21:10:26	|	21:10:27	Screenshot created.
+ssp	1368105026	2013-05-09	21:10:26	|	21:10:27	Screenshot renamed: 1368105026.9.jpg
+ssp	1368105026	2013-05-09	21:10:26	|	21:10:27	Prepare to send screenshot: 1368105026.9.jpg
+ssp	1368105026	2013-05-09	21:10:26	|	21:10:27	file berhasil kami terima dengan baik.
+ssp	1368105026	2013-05-09	21:10:26	|	21:10:27	Screenshot was sent: 1368105026.9.jpg
+unnamed	1368105027	2013-05-09	21:10:27	|	21:10:27	test
+ssp	1368105027	2013-05-09	21:10:27	|	21:10:27	Prepare to make screenshot.
+unnamed	1368105028	2013-05-09	21:10:28	|	21:10:28	test
+ssp	1368105027	2013-05-09	21:10:27	|	21:10:28	Screenshot created.
+ssp	1368105027	2013-05-09	21:10:27	|	21:10:28	Screenshot renamed: 1368105027.89.jpg
+ssp	1368105027	2013-05-09	21:10:27	|	21:10:28	Prepare to send screenshot: 1368105027.89.jpg
+ssp	1368105027	2013-05-09	21:10:27	|	21:10:28	file berhasil kami terima dengan baik.
+ssp	1368105027	2013-05-09	21:10:27	|	21:10:28	Screenshot was sent: 1368105027.89.jpg
+ssp	1368105028	2013-05-09	21:10:28	|	21:10:28	Prepare to make screenshot.
+unnamed	1368105029	2013-05-09	21:10:29	|	21:10:29	test
+ssp	1368105028	2013-05-09	21:10:28	|	21:10:29	Screenshot created.
+ssp	1368105028	2013-05-09	21:10:28	|	21:10:29	Screenshot renamed: 1368105028.87.jpg
+ssp	1368105028	2013-05-09	21:10:28	|	21:10:29	Prepare to send screenshot: 1368105028.87.jpg
+ssp	1368105028	2013-05-09	21:10:28	|	21:10:29	file berhasil kami terima dengan baik.
+ssp	1368105028	2013-05-09	21:10:28	|	21:10:29	Screenshot was sent: 1368105028.87.jpg
+ssp	1368105029	2013-05-09	21:10:29	|	21:10:29	Prepare to make screenshot.
+unnamed	1368105030	2013-05-09	21:10:30	|	21:10:30	test
+ssp	1368105029	2013-05-09	21:10:29	|	21:10:30	Screenshot created.
+ssp	1368105029	2013-05-09	21:10:29	|	21:10:30	Screenshot renamed: 1368105029.87.jpg
+ssp	1368105029	2013-05-09	21:10:29	|	21:10:30	Prepare to send screenshot: 1368105029.87.jpg
+ssp	1368105029	2013-05-09	21:10:29	|	21:10:30	file berhasil kami terima dengan baik.
+ssp	1368105029	2013-05-09	21:10:29	|	21:10:30	Screenshot was sent: 1368105029.87.jpg
+ssp	1368105030	2013-05-09	21:10:30	|	21:10:30	Prepare to make screenshot.
+unnamed	1368105031	2013-05-09	21:10:31	|	21:10:31	test
+ssp	1368105030	2013-05-09	21:10:30	|	21:10:31	Screenshot created.
+ssp	1368105030	2013-05-09	21:10:30	|	21:10:31	Screenshot renamed: 1368105030.9.jpg
+ssp	1368105030	2013-05-09	21:10:30	|	21:10:31	Prepare to send screenshot: 1368105030.9.jpg
+ssp	1368105030	2013-05-09	21:10:30	|	21:10:31	file berhasil kami terima dengan baik.
+ssp	1368105030	2013-05-09	21:10:30	|	21:10:31	Screenshot was sent: 1368105030.9.jpg
+ssp	1368105031	2013-05-09	21:10:31	|	21:10:31	Prepare to make screenshot.
+unnamed	1368105032	2013-05-09	21:10:32	|	21:10:32	test
+ssp	1368105031	2013-05-09	21:10:31	|	21:10:32	Screenshot created.
+ssp	1368105031	2013-05-09	21:10:31	|	21:10:32	Screenshot renamed: 1368105031.97.jpg
+ssp	1368105031	2013-05-09	21:10:31	|	21:10:32	Prepare to send screenshot: 1368105031.97.jpg
+ssp	1368105031	2013-05-09	21:10:31	|	21:10:32	file berhasil kami terima dengan baik.
+ssp	1368105031	2013-05-09	21:10:31	|	21:10:32	Screenshot was sent: 1368105031.97.jpg
+ssp	1368105032	2013-05-09	21:10:32	|	21:10:32	Prepare to make screenshot.
+ssp	1368105032	2013-05-09	21:10:32	|	21:10:33	Screenshot created.
+ssp	1368105032	2013-05-09	21:10:32	|	21:10:33	Screenshot renamed: 1368105032.87.jpg
+ssp	1368105032	2013-05-09	21:10:32	|	21:10:33	Prepare to send screenshot: 1368105032.87.jpg
+unnamed	1368105033	2013-05-09	21:10:33	|	21:10:33	test
+ssp	1368105032	2013-05-09	21:10:32	|	21:10:33	file berhasil kami terima dengan baik.
+ssp	1368105032	2013-05-09	21:10:32	|	21:10:33	Screenshot was sent: 1368105032.87.jpg
+ssp	1368105033	2013-05-09	21:10:33	|	21:10:33	Prepare to make screenshot.
+ssp	1368105033	2013-05-09	21:10:33	|	21:10:34	Screenshot created.
+ssp	1368105033	2013-05-09	21:10:33	|	21:10:34	Screenshot renamed: 1368105033.89.jpg
+ssp	1368105033	2013-05-09	21:10:33	|	21:10:34	Prepare to send screenshot: 1368105033.89.jpg
+ssp	1368105033	2013-05-09	21:10:33	|	21:10:34	file berhasil kami terima dengan baik.
+ssp	1368105033	2013-05-09	21:10:33	|	21:10:34	Screenshot was sent: 1368105033.89.jpg
+ssp	1368105033	2013-05-09	21:10:33	|	21:10:34	------------------------------------
+unnamed	1368105066	2013-05-09	21:11:06	|	21:11:06	test
+unnamed	1368105067	2013-05-09	21:11:07	|	21:11:07	test
+unnamed	1368105068	2013-05-09	21:11:08	|	21:11:08	test
+unnamed	1368105069	2013-05-09	21:11:09	|	21:11:09	test
+unnamed	1368105070	2013-05-09	21:11:10	|	21:11:10	test
+unnamed	1368105071	2013-05-09	21:11:11	|	21:11:11	test
+unnamed	1368105072	2013-05-09	21:11:12	|	21:11:12	test
+unnamed	1368105073	2013-05-09	21:11:13	|	21:11:13	test
+unnamed	1368105074	2013-05-09	21:11:14	|	21:11:14	test
+unnamed	1368105075	2013-05-09	21:11:15	|	21:11:15	test
+unnamed	1368105076	2013-05-09	21:11:16	|	21:11:16	test
+unnamed	1368105077	2013-05-09	21:11:17	|	21:11:17	test
+unnamed	1368105078	2013-05-09	21:11:18	|	21:11:18	test
+unnamed	1368105079	2013-05-09	21:11:19	|	21:11:19	test
+unnamed	1368105080	2013-05-09	21:11:20	|	21:11:20	test
+unnamed	1368105081	2013-05-09	21:11:21	|	21:11:21	test
+unnamed	1368105082	2013-05-09	21:11:22	|	21:11:22	test
+unnamed	1368105083	2013-05-09	21:11:23	|	21:11:23	test
+unnamed	1368105084	2013-05-09	21:11:24	|	21:11:24	test
+unnamed	1368105085	2013-05-09	21:11:25	|	21:11:25	test
+unnamed	1368105086	2013-05-09	21:11:26	|	21:11:26	test
+unnamed	1368105087	2013-05-09	21:11:27	|	21:11:27	test
+unnamed	1368105088	2013-05-09	21:11:28	|	21:11:28	test
+unnamed	1368105089	2013-05-09	21:11:29	|	21:11:29	test
+unnamed	1368105090	2013-05-09	21:11:30	|	21:11:30	test
+unnamed	1368105091	2013-05-09	21:11:31	|	21:11:31	test
+unnamed	1368105092	2013-05-09	21:11:32	|	21:11:32	test
+unnamed	1368105093	2013-05-09	21:11:33	|	21:11:33	test
+unnamed	1368105094	2013-05-09	21:11:34	|	21:11:34	test
+unnamed	1368105095	2013-05-09	21:11:35	|	21:11:35	test
+unnamed	1368105096	2013-05-09	21:11:36	|	21:11:36	test
+unnamed	1368105097	2013-05-09	21:11:37	|	21:11:37	test
+unnamed	1368105098	2013-05-09	21:11:38	|	21:11:38	test
+unnamed	1368105099	2013-05-09	21:11:39	|	21:11:39	test
+unnamed	1368105100	2013-05-09	21:11:40	|	21:11:40	test
+unnamed	1368105101	2013-05-09	21:11:41	|	21:11:41	test
+unnamed	1368105102	2013-05-09	21:11:42	|	21:11:42	test
+unnamed	1368105103	2013-05-09	21:11:43	|	21:11:43	test
+unnamed	1368105104	2013-05-09	21:11:44	|	21:11:44	test
+unnamed	1368105105	2013-05-09	21:11:45	|	21:11:45	test
+unnamed	1368105106	2013-05-09	21:11:46	|	21:11:46	test
+unnamed	1368105107	2013-05-09	21:11:47	|	21:11:47	test
+unnamed	1368105108	2013-05-09	21:11:48	|	21:11:48	test
+unnamed	1368105109	2013-05-09	21:11:49	|	21:11:49	test
+unnamed	1368105110	2013-05-09	21:11:50	|	21:11:50	test
+unnamed	1368105111	2013-05-09	21:11:51	|	21:11:51	test
+unnamed	1368105112	2013-05-09	21:11:52	|	21:11:52	test
+unnamed	1368105113	2013-05-09	21:11:53	|	21:11:53	test
+unnamed	1368105114	2013-05-09	21:11:54	|	21:11:54	test
+unnamed	1368105115	2013-05-09	21:11:55	|	21:11:55	test
+unnamed	1368105116	2013-05-09	21:11:56	|	21:11:56	test
+unnamed	1368105117	2013-05-09	21:11:57	|	21:11:57	test
+unnamed	1368105118	2013-05-09	21:11:58	|	21:11:58	test
+unnamed	1368105119	2013-05-09	21:11:59	|	21:11:59	test
+unnamed	1368105120	2013-05-09	21:12:00	|	21:12:00	test
+unnamed	1368105121	2013-05-09	21:12:01	|	21:12:01	test
+unnamed	1368105122	2013-05-09	21:12:02	|	21:12:02	test
+unnamed	1368105123	2013-05-09	21:12:03	|	21:12:03	test
+unnamed	1368105124	2013-05-09	21:12:04	|	21:12:04	test
+unnamed	1368105125	2013-05-09	21:12:05	|	21:12:05	test
+unnamed	1368111352	2013-05-09	22:55:52	|	22:55:52	test
+unnamed	1368111354	2013-05-09	22:55:54	|	22:55:54	test
+unnamed	1368111354	2013-05-09	22:55:54	|	22:55:54	test
+unnamed	1368111355	2013-05-09	22:55:55	|	22:55:55	test
+unnamed	1368111356	2013-05-09	22:55:56	|	22:55:56	test
+unnamed	1368111357	2013-05-09	22:55:57	|	22:55:57	test
+unnamed	1368111358	2013-05-09	22:55:58	|	22:55:58	test
+unnamed	1368111359	2013-05-09	22:55:59	|	22:55:59	test
+unnamed	1368111360	2013-05-09	22:56:00	|	22:56:00	test
+unnamed	1368111361	2013-05-09	22:56:01	|	22:56:01	test
+unnamed	1368111362	2013-05-09	22:56:02	|	22:56:02	test
+unnamed	1368111363	2013-05-09	22:56:03	|	22:56:03	test
+unnamed	1368111364	2013-05-09	22:56:04	|	22:56:04	test
+unnamed	1368111365	2013-05-09	22:56:05	|	22:56:05	test
+unnamed	1368111366	2013-05-09	22:56:06	|	22:56:06	test
+unnamed	1368111367	2013-05-09	22:56:07	|	22:56:07	test
+unnamed	1368111368	2013-05-09	22:56:08	|	22:56:08	test
+unnamed	1368111369	2013-05-09	22:56:09	|	22:56:09	test
+unnamed	1368111370	2013-05-09	22:56:10	|	22:56:10	test
+unnamed	1368111371	2013-05-09	22:56:11	|	22:56:11	test
+unnamed	1368111372	2013-05-09	22:56:12	|	22:56:12	test
+unnamed	1368111373	2013-05-09	22:56:13	|	22:56:13	test
+unnamed	1368111374	2013-05-09	22:56:14	|	22:56:14	test
+unnamed	1368111375	2013-05-09	22:56:15	|	22:56:15	test
+unnamed	1368111377	2013-05-09	22:56:17	|	22:56:17	test
+unnamed	1368111378	2013-05-09	22:56:18	|	22:56:18	test
+unnamed	1368111379	2013-05-09	22:56:19	|	22:56:19	test
+unnamed	1368111380	2013-05-09	22:56:20	|	22:56:20	test
+unnamed	1368111381	2013-05-09	22:56:21	|	22:56:21	test
+unnamed	1368111382	2013-05-09	22:56:22	|	22:56:22	test
+unnamed	1368111383	2013-05-09	22:56:23	|	22:56:23	test
+unnamed	1368111384	2013-05-09	22:56:24	|	22:56:24	test
+unnamed	1368111384	2013-05-09	22:56:24	|	22:56:24	test
+unnamed	1368111385	2013-05-09	22:56:25	|	22:56:25	test
+unnamed	1368111386	2013-05-09	22:56:26	|	22:56:26	test
+unnamed	1368111387	2013-05-09	22:56:27	|	22:56:27	test
+unnamed	1368111388	2013-05-09	22:56:28	|	22:56:28	test
+unnamed	1368111389	2013-05-09	22:56:29	|	22:56:29	test
+unnamed	1368111390	2013-05-09	22:56:30	|	22:56:30	test
+unnamed	1368111391	2013-05-09	22:56:31	|	22:56:31	test
+unnamed	1368111392	2013-05-09	22:56:32	|	22:56:32	test
+unnamed	1368111393	2013-05-09	22:56:33	|	22:56:33	test
+unnamed	1368111394	2013-05-09	22:56:34	|	22:56:34	test
+unnamed	1368111395	2013-05-09	22:56:35	|	22:56:35	test
+unnamed	1368111396	2013-05-09	22:56:36	|	22:56:36	test
+unnamed	1368111397	2013-05-09	22:56:37	|	22:56:37	test
+unnamed	1368111398	2013-05-09	22:56:38	|	22:56:38	test
+unnamed	1368111399	2013-05-09	22:56:39	|	22:56:39	test
+unnamed	1368111400	2013-05-09	22:56:40	|	22:56:40	test
+unnamed	1368111402	2013-05-09	22:56:42	|	22:56:42	test
+unnamed	1368111403	2013-05-09	22:56:43	|	22:56:43	test
+unnamed	1368111404	2013-05-09	22:56:44	|	22:56:44	test
+unnamed	1368111405	2013-05-09	22:56:45	|	22:56:45	test
+unnamed	1368111406	2013-05-09	22:56:46	|	22:56:46	test
+unnamed	1368111407	2013-05-09	22:56:47	|	22:56:47	test
+unnamed	1368111408	2013-05-09	22:56:48	|	22:56:48	test
+unnamed	1368111409	2013-05-09	22:56:49	|	22:56:49	test
+unnamed	1368111410	2013-05-09	22:56:50	|	22:56:50	test
+unnamed	1368111410	2013-05-09	22:56:50	|	22:56:50	test
+unnamed	1368111411	2013-05-09	22:56:51	|	22:56:51	test
