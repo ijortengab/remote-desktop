@@ -105,7 +105,7 @@ function translate(&$text){
 	$before[] = "[123]"; $after[] = "{F12}"; 
 	$before[] = "[145]"; $after[] = "{ScrollLock}"; 
 	$before[] = "[173]"; $after[] = "-"; 
-	$before[] = "[188]"; $after[] = ","; 
+	$before[] = "[188]"; $after[] = "{,}"; // Harus kurung kurawal, karena jika polos akan error. Tanda koma adalah syntax untuk memisahkan argument pada function Send
 	$before[] = "[190]"; $after[] = "."; 
 	$before[] = "[191]"; $after[] = "/"; 
 	$before[] = "[192]"; $after[] = "`";

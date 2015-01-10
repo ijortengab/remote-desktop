@@ -166,11 +166,11 @@ function process($action=NULL){
 			header('Location: '. this_file());
 			break;
 		case 'login':
-			sleep(2);// sementara
+			// sleep(2);// sementara
 			if($data['settings']['password'] == md5($data['client_action_password_value'])){
-				$data['client_request']['screenshot']['reload'] = TRUE;
+				$data['client_request']['client_action_screenshot_reload'] = TRUE;
 				write('client_request.ini');
-				$extra = md5($data['client_action_password_value']);
+				$extra = md5($data['client_action_password_value']);				
 				echo json_encode(array("id" => 1, "msg" => "Login Success", "act" => "", "extra" => $extra));
 			}
 			else{
@@ -347,6 +347,7 @@ function draw($theme=NULL){
 			// echo "<script>var Webrd = { 'settings': {}};</script>";
 			echo "<script>var Webrd = { 'settings': ".$extend."};</script>";
 			echo '<script src="lib/webrd_basic.js"></script>';
+			echo '<script src="lib/webrd_object.js"></script>';
 			echo '</head>';
 			echo '<body>';
 			echo '<div id="page">';

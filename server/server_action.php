@@ -1,4 +1,6 @@
 <?php
+
+define('MAX_EXECUTION_TIME', ini_get('max_execution_time'));
 define('MAX_LOOP_TIME', 3);
 define('TIME', time());
 define('GETCWD', getcwd());
@@ -27,7 +29,7 @@ $result = 'NULL';
 
 $data['settings'] = parse_ini_file("settings.ini");
 
-while(time() <= TIME + 59){
+// while(time() <= TIME + MAX_EXECUTION_TIME - 1){ // dikurangi 1 agar tidak terjadi timeout
 
 	//membatasi agar aksi pembuatan screenshot ini hanya dilakukan minimal per satu detik
 	//start
@@ -38,14 +40,14 @@ while(time() <= TIME + 59){
 	}
 	elseif($microtime_current < $microtime_save+1 && $microtime_current != $microtime_save+1){
 		usleep(250000);
-		continue;
+		exit;
 	}
 	else{
 		$microtime_save = $microtime_save+1;
 	}
 	//finish
 
-	create_log("test", $time_current);
+	// create_log("test", $time_current);
 	
 	if(!isset($content)){
 		$data['server_request']['variable']['server_action'] = 'read_client_request';
@@ -93,5 +95,5 @@ while(time() <= TIME + 59){
 	}	
 	//clean before loop
 	unset($content);
-}
+// }
 ?>
