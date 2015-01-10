@@ -16,8 +16,8 @@ input{
 }
 #page {
     display:block;
-    height:550px;
-    overflow:auto;
+    /* height:550px; */
+    overflow:hidden;
     /* width:800px; */
 	width:100%px;
 	/* padding:20px; */
@@ -216,14 +216,28 @@ a.shortkey:hover{
 
 
 #form_client{
-    background:none repeat scroll 0 0 white;
-    height:500px;
+    background:none repeat scroll 0 0 white;    
     opacity:0.9;
     position:absolute;
-    right:0;
+    right:50px;
     top:40px;
     width:300px;
 }
 #form_client input{   
     width:300px;
+}
+#page_settings{
+	display:none;
+	background:yellow;
+}
+#messages{	
+	background:blue;
+	min-width:100px;
+	position:absolute;
+	bottom:10px;
+	right:30px;
+}
+
+.message{	
+	
 }

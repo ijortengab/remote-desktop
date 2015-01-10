@@ -46,13 +46,13 @@ $(document).ready(function(){
 		
 		$('#formlogin').fadeOut('slow');
 		
-		function phprd_process_login(data) {
+		function process_login(data) {
 			clearInterval(timer);
 			$('.messages').empty().append(data.msg);
 			$('.action').empty().append(data.act);
 			if(data.id == 1){
 			
-				createCookie('phprd',data.extra,7);
+				createCookie('webrd',data.extra,7);
 				
 				var count2 = 60;
 				
@@ -85,7 +85,7 @@ $(document).ready(function(){
 
 		/* Send the data using post and put the results in a div */
 		$.post( url, { client_action: client_action, client_action_password_value: client_action_password_value }, function(data) {
-			phprd_process_login(data)
+			process_login(data)
 		}, 'json'
 		);
 

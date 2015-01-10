@@ -1,8 +1,65 @@
+(function($) {
+// sumber: http://brandonaaron.net/code/mousewheel/demos
+// mirror: http://www.github.com/brandonaaron/jquery-mousewheel/downloads
+// diperbaiki pada attribut event oleh roji
+// sumber: http://stackoverflow.com/questions/8886281/event-wheeldelta-returns-undefined?lq=1
+// 18 April 2013
+var types = ['DOMMouseScroll', 'mousewheel'];
+
+$.event.special.mousewheel = {
+    setup: function() {
+        if ( this.addEventListener )
+            for ( var i=types.length; i; )
+                this.addEventListener( types[--i], handler, false );
+        else
+            this.onmousewheel = handler;
+    },
+
+    teardown: function() {
+        if ( this.removeEventListener )
+            for ( var i=types.length; i; )
+                this.removeEventListener( types[--i], handler, false );
+        else
+            this.onmousewheel = null;
+    }
+};
+
+$.fn.extend({
+    mousewheel: function(fn) {
+        return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
+    },
+
+    unmousewheel: function(fn) {
+        return this.unbind("mousewheel", fn);
+    }
+});
+
+
+function handler(event) {
+    var args = [].slice.call( arguments, 1 ), delta = 0, returnValue = true;
+
+    event = $.event.fix(event || window.event);
+    event.type = "mousewheel";
+
+	// roji ijor tengab ijortengab edited. 18 April 2013
+    // if ( event.wheelDelta ) delta = event.wheelDelta/120;
+    // if ( event.detail     ) delta = -event.detail/3;
+	if ( event.originalEvent.wheelDelta ) delta = event.originalEvent.wheelDelta/120;
+    if ( event.originalEvent.detail     ) delta = -event.originalEvent.detail/3;
+
+
+    // Add event and delta to the front of the arguments
+    args.unshift(event, delta);
+
+    return $.event.handle.apply(this, args);
+}
+
+})(jQuery);
+
+
 // http://
 (function($) {
 	$.fn.autoScrollMouseMove = function() {
-
-		// basic variable
 		var frame = this;
 		functions = new Object();
 		var arrowRight = 'roji-arrow-right';
@@ -55,10 +112,10 @@
 		}
 
 		// build a new element
-		frame.append(  '<div class="' + arrow + '" id="' + arrowRight 	+ '" style="opacity:0.1;z-index:2;display:none;height:400px;width:100px;position:fixed;background:none;top:0;right:0;"><!-- Right --></div>'
-						+ '<div class="' + arrow + '" id="' + arrowLeft 	+ '" style="opacity:0.1;z-index:2;display:none;height:400px;width:100px;position:fixed;background:none;top:0;left:0;"><!-- Left --></div>'
-						+ '<div class="' + arrow + '" id="' + arrowBottom 	+ '" style="opacity:0.1;z-index:2;display:none;height:100px;width:400px;position:fixed;background:none;bottom:0;left:0;"><!-- Bottom --></div>'
-						+ '<div class="' + arrow + '" id="' + arrowTop 		+ '" style="opacity:0.1;z-index:2;display:none;height:100px;width:400px;position:fixed;background:none;top:0;left:0;"><!-- Top --></div>');
+		frame.append(  '<div class="' + arrow + '" id="' + arrowRight 	+ '" style="opacity:0.1;z-index:100;display:none;height:400px;width:100px;position:fixed;background:none;top:0;right:0;"><!-- Right --></div>'
+						+ '<div class="' + arrow + '" id="' + arrowLeft 	+ '" style="opacity:0.1;z-index:100;display:none;height:400px;width:100px;position:fixed;background:none;top:0;left:0;"><!-- Left --></div>'
+						+ '<div class="' + arrow + '" id="' + arrowBottom 	+ '" style="opacity:0.1;z-index:100;display:none;height:100px;width:400px;position:fixed;background:none;bottom:0;left:0;"><!-- Bottom --></div>'
+						+ '<div class="' + arrow + '" id="' + arrowTop 		+ '" style="opacity:0.1;z-index:100;display:none;height:100px;width:400px;position:fixed;background:none;top:0;left:0;"><!-- Top --></div>');
 
 		frame.scroll(function(){
 
@@ -387,16 +444,66 @@
 
 
 $(document).ready(function(){
+	// var Drupal = {};
+	// alert(Drupal.basePath);
+	// alert(Webrd.settings.basePath);
+
+	// var asldkfjasljfd = getSetting('webrd_smlc_x','left');
+	// ajaxMsg(asldkfjasljfd);
+	$('#img').mousewheel(function(event, delta) {
+		ajaxMsg(delta);
+	});
 
 	////////////////////////
 	// prepare
 	////////////////////////
 
-	$('#page').autoScrollMouseMove();
+	$('#page').autoScrollMouseMove('target');
+	var ww=window.innerWidth;
+	var wh=window.innerHeight;
+	$('#page').height(wh);
+	// $('#layer').width(ww);
+	// $('#layer').height(wh);
+	// $('#layer-ada').width(ww);
+	// $('#layer-ada').height(wh);
+
+	effectSettingAll();
+
 
 	////////////////////////
 	// function
 	////////////////////////
+
+	function createCookie(name,value,days,basepath) {
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			var expires = "; expires="+date.toGMTString();
+		}
+		else var expires = "";
+		if (basepath) {
+			var date = new Date();
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			var path = "; path="+basepath;
+		}
+		else var path = "";
+		document.cookie = name+"="+value+expires+path;
+	}
+
+	function readCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		}
+		return null;
+	}
+
+	function eraseCookie(name) {
+		createCookie(name,"",-1);
+	}
 
 	function ajaxMsg(text){
 		var id = ".ajax_msg";
@@ -486,6 +593,154 @@ $(document).ready(function(){
 		$(idTextArea).val(newTextareaValue).focus().setCursorPosition(newCursorPosition);
 	}
 
+	function ajaxPost(url, variableForm, variableMsg){
+		// time
+		var date = new Date();
+		var timeNow = date.getTime();
+		// message
+		if(variableMsg){
+			var construct = '<div class="message" id="'+timeNow+'">'+'<span class="status">'+variableMsg.status+'</span>'+variableMsg.name+'</div>';
+			$('#messages').append(construct);
+		}
+		// send
+		$.post( url+'?'+timeNow, variableForm , function(data) {
+			if(data.result == 1){
+				if(variableMsg){
+					objectId = $('#'+timeNow);
+					objectId.find('span.status').text(data.messagestatus);
+					objectId.delay(2500).fadeOut('slow',function(){$(this).remove()});
+				}
+			}
+		}, 'json');
+		// $.post( url+'?'+timeNow, variableForm);
+	}
+
+	function setSetting(name,value){
+		// set cookie
+		createCookie(name,value);
+		// set messages
+		var variableMsg = 	{
+			status: 'sending',
+			name: 'save settings'
+		};
+		// set variables post
+		var variableForm = 	{
+			client_action: 'save_setting',
+			setName:name,
+			setValue:value
+			// webrd_smlc: $('#page_settings').find('input[name="webrd_smlc"]').prop('checked'),
+			// webrd_smdc: $('#page_settings').find('input[name="webrd_smdc"]').prop('checked'),
+			// webrd_smrc: $('#page_settings').find('input[name="webrd_smrc"]').prop('checked'),
+			// webrd_smmc: $('#page_settings').find('input[name="webrd_smmc"]').prop('checked'),
+			// webrd_smlc_x: $('#page_settings').find('select[name="webrd_smlc_x"]').val(),
+			// webrd_smdc_x: $('#page_settings').find('select[name="webrd_smdc_x"]').val(),
+			// webrd_smrc_x: $('#page_settings').find('select[name="webrd_smrc_x"]').val(),
+			// webrd_smmc_x: $('#page_settings').find('select[name="webrd_smmc_x"]').val()
+		};
+		// post
+		ajaxPost('', variableForm, variableMsg);
+	}
+
+	function getSetting(name, defaultValue){
+		// cari di cookie karena itu nilai terbaru,
+		// bila tidak ada, cari di object settings,
+		// tidak ada juga, baru gunakan default
+		var cookie = readCookie(name);
+		if(cookie) return cookie;
+		var defaultSettings =  Webrd.settings[name];
+		if(defaultSettings) return defaultSettings;
+		if(defaultValue) return defaultValue;
+		return null;
+	}
+
+	function effectSetting(name){
+		//set effect dikarenakan setting terhadap sesuatu.
+		if(name == 'webrd_smlc') {
+			$('#page_settings').find('input[name="webrd_smlc"]').prop('checked') ? $('#page_settings').find('select[name="webrd_smlc_x"]').removeAttr('disabled') : $('#page_settings').find('select[name="webrd_smlc_x"]').attr('disabled', 'disabled');
+		}
+		if(name == 'webrd_smdc') {
+			$('#page_settings').find('input[name="webrd_smdc"]').prop('checked') ? $('#page_settings').find('select[name="webrd_smdc_x"]').removeAttr('disabled') : $('#page_settings').find('select[name="webrd_smdc_x"]').attr('disabled', 'disabled');
+		}
+		if(name == 'webrd_smrc') {
+			$('#page_settings').find('input[name="webrd_smrc"]').prop('checked') ? $('#page_settings').find('select[name="webrd_smrc_x"]').removeAttr('disabled') : $('#page_settings').find('select[name="webrd_smrc_x"]').attr('disabled', 'disabled');
+		}
+		if(name == 'webrd_smmc') {
+			$('#page_settings').find('input[name="webrd_smmc"]').prop('checked') ? $('#page_settings').find('select[name="webrd_smmc_x"]').removeAttr('disabled') : $('#page_settings').find('select[name="webrd_smmc_x"]').attr('disabled', 'disabled');
+		}
+	}
+
+	function effectSettingAll(){
+		effectSetting('webrd_smlc');
+		effectSetting('webrd_smdc');
+		effectSetting('webrd_smrc');
+		effectSetting('webrd_smmc');
+	}
+
+	function dmouse(action,button,count){
+		if(!count) count = 1;
+		if(button == 'left'){
+			var smlc = getSetting('webrd_smlc', '1');
+			if(smlc == 0) return;
+			var theX = getSetting('webrd_smlc_x', 'left');
+			if(theX == 'double'){
+				theX = 'left';
+				count = 2;
+			}
+		}
+		if(button == 'double'){
+			var smdc = getSetting('webrd_smdc', '1');
+			if(smdc == 0) return;
+			var theX = getSetting('webrd_smdc_x', 'double');
+			if(theX == 'double'){
+				theX = 'left';
+				count = 2;
+			}
+		}
+		if(button == 'right'){
+			var smrc = getSetting('webrd_smrc', '1');
+			if(smrc == 0) return;
+			var theX = getSetting('webrd_smrc_x', 'right');
+			if(theX == 'double'){
+				theX = 'left';
+				count = 2;
+			}
+		}
+		if(button == 'middle'){
+			var smmc = getSetting('webrd_smmc', '1');
+			if(smmc == 0) return;
+			var theX = getSetting('webrd_smmc_x', 'right');
+			if(theX == 'double'){
+				theX = 'left';
+				count = 2;
+			}
+		}
+
+		var variableMsg = 	{
+			status: 'sending',
+			name: 'save settings'
+		};
+		
+		var variableForm = 	{
+			client_action: 'create_request',
+			client_action_mouse_action:action,
+			client_action_mouse_mode:'Screen',
+			client_action_click_x:CoordinatX,
+			client_action_click_y:CoordinatY,
+			client_action_click_button:theX,
+			client_action_click_count:count
+		};
+		
+		ajaxPost('', variableForm, variableMsg);
+		
+		// $("#form_client").find( 'input[name="client_action_mouse_action"]' ).val(action);
+		// $("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('Screen');
+		// $("#form_client").find( 'input[name="client_action_click_x"]' ).val(CoordinatX);
+		// $("#form_client").find( 'input[name="client_action_click_y"]' ).val(CoordinatY);
+		// $("#form_client").find( 'input[name="client_action_click_button"]' ).val(theX);
+		// $("#form_client").find( 'input[name="client_action_click_count"]' ).val(count);
+		
+	}
+
 	////////////////////////
 	// submit(function(){});
 	////////////////////////
@@ -505,7 +760,8 @@ $(document).ready(function(){
 				client_action_click_y: $form.find( 'input[name="client_action_click_y"]' ).val(),
 				client_action_click_button: $form.find( 'input[name="client_action_click_button"]' ).val(),
 				client_action_click_count: $form.find( 'input[name="client_action_click_count"]' ).val(),
-				client_action_keystroke: $form.find( 'textarea[name="client_action_keystroke"]' ).val()};
+				client_action_keystroke: $form.find( 'textarea[name="client_action_keystroke"]' ).val()
+				};
 
 			// clear value
 			$("#form_client").find( 'textarea[name="client_action_keystroke"]' ).val('');
@@ -558,18 +814,137 @@ $(document).ready(function(){
 	// click(function(){});
 	////////////////////////
 
-	$("#img").click(function(){
-		var CoordinatWindowXY = getCoordinatWindow(arguments[0]);
-		var CoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
-		var CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
-		$("#form_client").find( 'input[name="client_action_click_x"]' ).val(CoordinatX);
-		$("#form_client").find( 'input[name="client_action_click_y"]' ).val(CoordinatY);
-		$("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('click');
-		$("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('Screen');
-		$("#form_client").find( 'input[name="client_action_click_button"]' ).val('left');
-		$("#form_client").find( 'input[name="client_action_click_count"]' ).val('1');
-		$("#form_client").submit();
+	// $("#img").click(function(){
+		// var CoordinatWindowXY = getCoordinatWindow(arguments[0]);
+		// var CoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
+		// var CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
+		// $("#form_client").find( 'input[name="client_action_click_x"]' ).val(CoordinatX);
+		// $("#form_client").find( 'input[name="client_action_click_y"]' ).val(CoordinatY);
+		// $("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('click');
+		// $("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('Screen');
+		// $("#form_client").find( 'input[name="client_action_click_button"]' ).val('left');
+		// $("#form_client").find( 'input[name="client_action_click_count"]' ).val('1');
+		// $("#form_client").submit();
+	// });
+
+	var DELAY = 250,
+    clicks = 0,
+    timer = null;
+	mousedown = null;
+
+
+	////////////////////////
+	// HANDLE MOUSE EVENT
+	////////////////////////
+
+	$('#img').mousedown(function(e) {
+		e.preventDefault();// ini digunakan utk mencegah klik default browser pada image. http://stackoverflow.com/questions/14008468/jquery-mouseup-not-being-fired-when-mousemove-on-image
+		CoordinatWindowXY = getCoordinatWindow(arguments[0]);
+		CoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
+		CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
+		mousedown = true;
+		clicks++;
 	});
+
+	$('#img').mouseup(function(e) {
+		CoordinatWindowXY = getCoordinatWindow(arguments[0]);
+		newCoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
+		newCoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
+		if(clicks === 1) {
+			timer = setTimeout(function() {
+				if(CoordinatX == newCoordinatX && CoordinatY == newCoordinatY){
+					// PERFORM MOUSE SINGLE CLICK;
+					if(e.which == 1) dmouse('click','left');
+					if(e.which == 2) dmouse('click','middle');
+					if(e.which == 3) dmouse('click','right');
+				}
+				else {
+					// PERFORM MOUSE DRAG N DROP;
+					if(e.which == 1) dmouse('drag','left');
+					if(e.which == 2) dmouse('drag','middle');
+					if(e.which == 3) dmouse('drag','right');
+				}
+				clicks = 0;
+				clearTimeout(timer);
+				mousedown = null;
+			}, DELAY);
+		} else {
+			if(mousedown){
+				// PERFORM MOUSE DOULE CLICK;
+				if(e.which == 1) dmouse('click','double');
+				if(e.which == 2) dmouse('click','middle','2');
+				if(e.which == 3) dmouse('click','right','2');
+			}
+			clicks = 0;
+			clearTimeout(timer);
+			mousedown = null;
+
+		}
+		// ajaxMsg(e.which+'.');
+	});
+
+	$("#img").on("contextmenu",function(){
+		var dsetting = getSetting('webrd_smrc');
+		if(dsetting == 1) return false;
+    });
+	////////////////////////
+	// NAVIGATION
+	////////////////////////
+
+	$("#nav_button_settings").click(function(){
+		createCookie('A','asd','5');
+		var page = '#page_settings';
+		var navheight = $("#nav").height();
+		var $height = $(window).height() - navheight;
+		// var $width = $(window).width()/2;
+		var $width =$(page).width();
+		var $left = $(window).width()/4;
+		var keystrokeShow = {left:'0'};
+		var keystrokeHide = {left:'-' + $width +'px'};
+		if($(page).css('display') == 'none'){
+			$(page).css({	position:'fixed',
+										width: $width + 'px',
+										height: $height + 'px',
+										bottom: '0px',
+										left: '-' + $width +'px'}).show().animate(keystrokeShow, 300);
+		}
+		else{
+			$(page).animate(keystrokeHide, 150, function(){
+				$(page).hide()
+			});
+		}
+	});
+
+
+	////////////////////////
+	// SETTINGS
+	////////////////////////
+
+	$(".settings_button").click(function(){
+		$(this).each(function(){
+			// var id = $(this).attr('id');
+			var name = $(this).attr('name');
+			$(this).prop('checked') ? setSetting(name, "1") : setSetting(name, "0");
+			effectSetting(name);
+		});
+	});
+	//$('.specific_character').change(function(){
+	$(".settings_select").change(function(){
+		$(this).each(function(){
+			// var id = $(this).attr('id');
+			var name = $(this).attr('name');
+			var value = $(this).val();
+			setSetting(name, value);
+			effectSetting(name);
+		});
+	});
+
+
+
+	////////////////////////
+	// MISC
+	////////////////////////
+
 
 	$(".action").click(function(){
 		$(this).each(function(){
@@ -631,12 +1006,16 @@ $(document).ready(function(){
 	});
 
 
+	$("#k-send").click(function(){
+		$("#form_client").submit();
+	});
+
 	////////////////////////
 	// change(function(){});
 	////////////////////////
 
 	$('.specific_character').change(function(){
-	
+
 		//build the text
 		var $value = $(this).val();
 		if($('#special_alt').prop('checked')) $value = '{alt down}' + $value + '{alt up}';
@@ -656,13 +1035,13 @@ $(document).ready(function(){
 	////////////////////////
 	// keydown(function(){});
 	////////////////////////
-	
+
 	$(document).keydown(function(event){
 		// event.preventDefault();
 		// alert(event.keyCode);
 		if(event.altKey && event.keyCode == 115){ //alt+f4
 			alert('dimatikan');
-		}		
+		}
 	});
 
 });

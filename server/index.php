@@ -1,12 +1,15 @@
 <?php
+// phpinfo();exit;
+
+
 echo '<pre>';
 include('functions.php');
 
-define(MAX_LOOP_TIME, 20);
-define(DIRNAME_SCREENSHOT, 'screenshots');
-define(DIRNAME_EXEC, 'exec');
-define(PATH_FILE_SCREENSHOT, getcwd() . '/'. DIRNAME_SCREENSHOT .'/screenshot.jpg');
-define(PATH_FILE_EXEC, getcwd() . '/'. DIRNAME_EXEC .'/exec.ahk');
+define('MAX_LOOP_TIME', 20);
+define('DIRNAME_SCREENSHOT', 'screenshots');
+define('DIRNAME_EXEC', 'exec');
+define('PATH_FILE_SCREENSHOT', getcwd() . '/'. DIRNAME_SCREENSHOT .'/screenshot.jpg');
+define('PATH_FILE_EXEC', getcwd() . '/'. DIRNAME_EXEC .'/exec.ahk');
 
 
 $result = 'NULL';
