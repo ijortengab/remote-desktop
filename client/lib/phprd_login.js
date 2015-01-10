@@ -1,107 +1,104 @@
 $(document).ready(function(){
-	if( $("#hidepassword").is(':checked') ){
-		document.formlogin.client_action_password_value.type='password';
+	if( $("#hidepassword").is(':checked') ) document.formlogin.client_action_password_value.type='password';	
+	else document.formlogin.client_action_password_value.type='text';
+	
+	$("#hidepassword").click(function(){
+		if( $(this).is(':checked')) document.formlogin.client_action_password_value.type='password';
+		else document.formlogin.client_action_password_value.type='text';
+	});
+	
+	function createCookie(name,value,days) {
+	if (days) {
+			var date = new Date();
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			var expires = "; expires="+date.toGMTString();
 	}
-	else{
-		document.formlogin.client_action_password_value.type='text';
+	else var expires = "";
+	document.cookie = escape(name)+"="+escape(value)+expires+"; path=/";
 	}
 	
-	$("#hidepassword").click( function(){
-	   if( $(this).is(':checked') ){
-			document.formlogin.client_action_password_value.type='password';			
-	   }
-		else {
-			document.formlogin.client_action_password_value.type='text';
+	// alert($('.messages').html());
+	if($('.messages').html() != ''){		
+		$('.messages').hide();
+		$('.messages').show('slow');
+	}
+	
+	// sumber: http://api.jquery.com/jQuery.post/
+	$("#formlogin").submit(function(event) {
+	
+		function PleaseWait() {	
+			count++;
+			if(count%4 == 1)			
+			$('.messages').text('Please wait .');
+			else if (count%4 == 2)
+				$('.messages').text('Please wait . .');
+			else if (count%4 == 3)
+				$('.messages').text('Please wait . . .');				
+			else if (count%4 == 0)
+				$('.messages').text('Please wait ');
 		}
+		
+		var count = 0;
+		
+		$('.messages').text('Please wait ');
+		
+		var timer = setInterval(function() { PleaseWait(count); }, 1000);
+		
+		$('#formlogin').fadeOut('slow');
+		
+		function phprd_process_login(data) {
+			clearInterval(timer);
+			$('.messages').empty().append(data.msg);
+			$('.action').empty().append(data.act);
+			if(data.id == 1){
+			
+				createCookie('phprd',data.extra,7);
+				
+				var count2 = 60;
+				
+				var prefix = data.msg + '. ';
+				
+				function CountDown() {	
+					
+					if(count2 === 0) {
+						clearInterval(timer2);
+						$('.messages').text('No response from server.');
+						$('.action').text('Try Again.');
+					} else {
+						$('.messages').text(prefix + 'Waiting for response in ' + count2 + ' seconds.');
+						count2--;
+					}
+				}
+				
+				var timer2 = setInterval(function() { CountDown(count2); }, 1000);
+				
+				location.reload()
+			}
+			
+			
+		}
+		/* get some values from elements on the page: */
+		var $form = $( this ),
+			client_action = $form.find( 'input[name="client_action"]' ).val(),
+			client_action_password_value = $form.find( 'input[name="client_action_password_value"]' ).val(),
+			url = $form.attr( 'action' );
+
+		/* Send the data using post and put the results in a div */
+		$.post( url, { client_action: client_action, client_action_password_value: client_action_password_value }, function(data) {
+			phprd_process_login(data)
+		}, 'json'
+		);
+
+		/* stop form from submitting normally */
+		event.preventDefault(); 
+	});
+	
+	$(".action").click(function(){
+		$('.messages').empty();
+		$('.action').empty();
+		$('#formlogin').fadeIn('slow');	
+		event.preventDefault(); 
 	});
 
-	$('#submit').click(function () {
-         
-        var name = $('input[name=client_action_password_value]');
-		 
-		//http://stackoverflow.com/questions/5606600/simple-3-2-1-countdown-in-javascript-jquery
-		function endCountdown() {		
-			$('#submit').removeAttr('disabled');
-			$('#submit').val('Connect');	
-			$('#client_action_password_value').removeAttr('disabled');
-			$('#client_action_password_value').val('');
-			$('.loading').hide();
-		}
-		
-		function handleTimer() {
-			if(count === 0) {
-				clearInterval(timer);
-				endCountdown();
-			} else {
-				// $('#count_num').html(count);
-				$('#wait').text('Please wait in ' + count + ' seconds.');
-				count--;
-			}
-		}
-		
-		var count = 60;
-		
-		$('#submit').attr('disabled','true');
-		
-		// $('#submit').hide();
-		
-		$('#client_action_password_value').attr('disabled','true');
-		
-		$('#wait').text('Please wait in ' + count + ' seconds.');
-		
-		count--;
-		
-		var timer = setInterval(function() { handleTimer(count); }, 1000);
-
-        var data = 'name=' + name.val() + '&has_js=1';
-		
-		$('#submit').attr('disabled','true');
-		
-		// $('#submit').val('Please Wait...');
-
-		$('.loading').show();
-		
-		//start the ajax
-		$.ajax({
-			//this is the php file that processes the data and send mail
-			url: "process.php",
-			 
-			//GET method is used
-			type: "GET",
-
-			//pass the data        
-			data: data,    
-			 
-			//Do not cache the page
-			cache: false,
-			 
-			//success
-			success: function (html) {             
-				//if process.php returned 1/true (send mail success)
-				
-				// parse json 
-				var obj = jQuery.parseJSON(html);
-				
-				if (obj.id == 1) {
-				
-					$('.messages').hide();  
-					
-					$('.messages').text(obj.msg);
-					
-					//hide the form
-					$('#formlogin').fadeOut('slow');                
-					 
-					//show the success message
-					$('.messages').fadeIn('slow');
-					 
-				//if process.php returned 0/false (send mail failed)
-				} else alert(obj.msg);              
-			}
-		});
-        //cancel the submit button default behaviours
-		
-        return false;
-    
-	}); 
 	
 });

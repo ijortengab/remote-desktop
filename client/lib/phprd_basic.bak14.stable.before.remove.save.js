@@ -64,7 +64,7 @@
 
 			currentScrollLeft = frame.scrollLeft();
 			currentScrollTop = frame.scrollTop();
-
+			
 			if(currentScrollLeft > scrollMaxWidth){
 				mentokR = false;//penting jika pergerakan mouse keluar jalur dari frame
 				scrollMaxWidth = currentScrollLeft;
@@ -73,21 +73,21 @@
 				mentokB = false;//penting jika pergerakan mouse keluar jalur dari frame
 				scrollMaxHeight = currentScrollTop;
 			}
-
+			
 			clearTimeout(timer);
 			timer = setTimeout( function () {
 				if($coordinat.x > $startMoveR){
 					if($coordinat.x == tmpR){
 						mentokR = true;
 					}
-				}
+				}				
 				if($coordinat.y > $startMoveB){
 					if($coordinat.y == tmpB){
 						mentokB = true;
 					}
 				}
 			}, 150 );
-
+			
 			// var debug = '';
 			// debug += 'x: ' + $cursorPosition.x + ',';
 			// debug += 'y: ' + $cursorPosition.y + ';';
@@ -112,7 +112,7 @@
 			// debug += 'tmpR: ' + tmpR + ';';
 			// debug += 'tmpB: ' + tmpB + ';';
 			// msgDebug(debug);
-
+			
 		});
 
 		frame.mousemove(function(e){
@@ -138,7 +138,7 @@
 			}
 
 			cursorOverFrame.x = cursor.x - frame.offset().left + frame.scrollLeft();
-			cursorOverFrame.y = cursor.y - frame.offset().top + frame.scrollTop();
+			cursorOverFrame.y = cursor.y - frame.offset().top + frame.scrollTop();		
 
 			// DYNAMIC DEFINE because of cursor
 			$cursorPosition = cursor;
@@ -168,10 +168,10 @@
 
 			// horizontal, scroll to right
 			if($scrollDistanceX == scrollMaxWidth && mentokR == true ){
-				forceTo('hide', '#' + arrowRight);
+				forceTo('hide', '#' + arrowRight);				
 			}
 			else if($coordinat.x > $startMoveR && $coordinat.x > tmpX){
-				forceTo('show', '#' + arrowRight);
+				forceTo('show', '#' + arrowRight);				
 				tmpR = $coordinat.x;
 			}
 			else if($coordinat.x > $startMoveR && $coordinat.x < tmpX){
@@ -215,7 +215,7 @@
 			// update temporary value
 			tmpY = $coordinat.y;
 			tmpX = $coordinat.x;
-
+			
 			// var debug = '';
 			// debug += 'x: ' + $cursorPosition.x + ',';
 			// debug += 'y: ' + $cursorPosition.y + ';';
@@ -397,13 +397,13 @@ $(document).ready(function(){
 	////////////////////////
 	// function
 	////////////////////////
-
+	
 	function ajaxMsg(text){
 		var id = ".ajax_msg";
 		var left = $(window).width()/4;
-		$(id).css({'left': left}).show().text(text);
+		$(id).css({'left': left}).show().text(text);		
 	}
-
+	
 	function getCoordinatWindow(e){
 		if( !e ) {
 			if( window.event ) {
@@ -489,7 +489,7 @@ $(document).ready(function(){
 	////////////////////////
 	// submit(function(){});
 	////////////////////////
-
+	
 	$("#form_client").submit(function(event) {
 			ajaxMsg('Waiting...');
 			$('#img').hide();
@@ -553,15 +553,15 @@ $(document).ready(function(){
 			event.preventDefault();
 		});
 
-
+	
 	////////////////////////
 	// click(function(){});
-	////////////////////////
-
-	$("#img").click(function(){
+	////////////////////////	
+	
+	$("#img").click(function(){		
 		var CoordinatWindowXY = getCoordinatWindow(arguments[0]);
 		var CoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
-		var CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
+		var CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();		
 		$("#form_client").find( 'input[name="client_action_click_x"]' ).val(CoordinatX);
 		$("#form_client").find( 'input[name="client_action_click_y"]' ).val(CoordinatY);
 		$("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('click');
@@ -570,19 +570,20 @@ $(document).ready(function(){
 		$("#form_client").find( 'input[name="client_action_click_count"]' ).val('1');
 		$("#form_client").submit();
 	});
-
+	
 	$(".action").click(function(){
 		$(this).each(function(){
 			var id = $(this).attr('id');
 			// alert(id);
 			if(id == 'fixbar_button'){
+				// var isfixed = $('nav').css('position');
 				if($('#nav').css('position') != 'fixed'){
 					$('#nav').css({'position':'fixed', 'width':'100%', 'top':'0'});
 					$('#page').css({'margin-top':'34px'});
 				}
 				else{
 					$('#nav').css({'position':'relative', 'width':'auto', 'top':'0'});
-					$('#page').css({'margin-top':'0px'});
+					$('#page').css({'margin-top':'0px'});				
 				};
 			}
 			if(id == 'reload_button'){
@@ -609,61 +610,81 @@ $(document).ready(function(){
 					});
 				}
 			}
+			
+			if(id == 'k-save'){
+				// ambil isian dari textarea
+				var keyvalue = $('#keystroke_input').val();
+				if(keyvalue.length == 0) {
+					alert('no text');
+					$('#keystroke_input').focus()
+					return;
+				}
+				// masukkan ke value input
+				var kids = $(".before-load-keystroke").children();
+				
+				if(kids.length == 0) {
+					alert('save limit has reach');
+					$('#keystroke_input').focus();
+					return;
+				}
+				
+				var shortkey = $(kids[0]).find('.shortkey');
+				var target = shortkey.attr('target');
+				$('#'+target).val(keyvalue);
+				// ubah shortkeynya
+				var shortkeyText = shortkey.text();
+				shortkeyText = shortkeyText + keyvalue;
+				shortkey.text(shortkeyText);
+				// pindahkan
+				$(".load-keystroke").append($(kids[0]));
+				$('#keystroke_input').focus();
+			}
+			// if(id == 'load'){
+				// alert('load now');
+			// }
 		});
 	});
-
-	$(".special_char_label").click(function(){
-		$(this).each(function(){
-			var attrfor = $(this).attr('for');
-			if(attrfor == 'special_ctrl'){
-				if($('#special_ctrl').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-			if(attrfor == 'special_shift'){
-				if($('#special_shift').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-			if(attrfor == 'special_alt'){
-				if($('#special_alt').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-		});
-	});
-
-
-	////////////////////////
-	// change(function(){});
-	////////////////////////
-
-	$('.specific_character').change(function(){
 	
-		//build the text
-		var $value = $(this).val();
-		if($('#special_alt').prop('checked')) $value = '{alt down}' + $value + '{alt up}';
-		if($('#special_shift').prop('checked')) $value = '{shift down}' + $value + '{shift up}';
-		if($('#special_ctrl').prop('checked')) $value = '{ctrl down}' + $value + '{ctrl up}';
-
-		// set the text
-		specialInsertToTextArea('#keystroke_input',$value);
-
-		//clear current value
-		$(this).val('none').attr('selected', 'selected');
-		if($('#special_ctrl').prop('checked')) $('label[for="special_ctrl"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
-		if($('#special_shift').prop('checked')) $('label[for="special_shift"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
-		if($('#special_alt').prop('checked')) $('label[for="special_alt"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
+	$(".shortkey").click(function(){
+		var aaaa = $(this).attr('target');
+		var bbb = $('#'+aaaa).val();
+		// alert('a');
+		// alert(aaaa);
+		specialInsertToTextArea('#keystroke_input', bbb);
 	});
-
-	////////////////////////
-	// keydown(function(){});
-	////////////////////////
 	
-	$(document).keydown(function(event){
-		// event.preventDefault();
-		// alert(event.keyCode);
-		if(event.altKey && event.keyCode == 115){ //alt+f4
-			alert('dimatikan');
-		}
+	$(".closekey").click(function(){
+		var target = $(this).attr('target');
+		var shortkey = $('#'+target).find('.shortkey');
+		var shortkeyTarget = shortkey.attr('target');
+		var newtext = shortkeyTarget.replace('ctrl','ctrl+');
+		var newtext = newtext + ': ';
+		shortkey.text(newtext);		
+		$('#'+shortkeyTarget).val('');		
+		$(".before-load-keystroke").prepend($('#'+target));
+		$('#keystroke_input').focus();
+	});
+	
+	
+	
+	
 		
-	});
 
 });
+
+// var kids = $(".load-keystroke").children();
+				// var $countkids = kids.length;
+				// var $urutan = ++$countkids;
+				// var construct =  '<div class="shortkey" target="ctrl'+$urutan+'" onclick="var a = $(this).attr(\'target\');var b = $(\'#\'+a).val();$.specialInsertToTextArea(\'#keystroke_input\', b);">CTRL+'+$urutan+'<input id="ctrl'+$urutan+'" type="text" disabled value="'+keyvalue+'"></div>';
+				// var construct =  '<div class="shortkey" target="ctrl'+$urutan+'">CTRL+'+$urutan+'<input id="ctrl'+$urutan+'" type="text" disabled value="'+keyvalue+'"></div>';
+				
+				// $(".load-keystroke").append(construct);
+				// $(".load-keystroke").append($('#tempe'));
+				// alert(a);
+				// alert(kids.length);
+				// alert($urutan);
+				// var aku = $('.before-load-keystroke').find('div[target="ctrl2"]');
+				// $(".load-keystroke").append(aku);
+				// alert(aku);
+				
+				

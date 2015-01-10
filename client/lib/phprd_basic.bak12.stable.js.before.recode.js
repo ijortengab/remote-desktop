@@ -1,7 +1,9 @@
 // http://
 (function($) {
-	$.fn.autoScrollMouseMove = function() {
+	$.fn.autoScroll = function(target) {
 
+		if(!target) return false;
+		
 		// basic variable
 		var frame = this;
 		functions = new Object();
@@ -10,122 +12,43 @@
 		var arrowTop = 'roji-arrow-top';
 		var arrowBottom = 'roji-arrow-bottom';
 		var arrow = 'roji-arrow';
-		var paddingtmp = frame.css('padding-top').split('px');
-		var paddingT = parseInt(paddingtmp[0]);
-		var paddingtmp = frame.css('padding-bottom').split('px');
-		var paddingB = parseInt(paddingtmp[0]);
-		var paddingtmp = frame.css('padding-right').split('px');
-		var paddingR = parseInt(paddingtmp[0]);
-		var paddingtmp = frame.css('padding-left').split('px');
-		var paddingL = parseInt(paddingtmp[0]);
-		//
-		var scrollMaxWidth = 0;
-		var scrollMaxHeight = 0;
-		var mentokR = false;
-		var mentokB = false;
-		var tmpR = 0;
-		var tmpB = 0;
-		var timer;
-		//
-		tmpX = 0;
-		tmpY = 0;
+		deltaX = target.offset().left - frame.offset().left;
+		deltaY = target.offset().top - frame.offset().top;
 
-		// fix requirement
-		// frame.css('overflow','hidden');
 
-		// function msgDebug(text, hide=null, delay=null){
-			// var id = ".ajax_msg";
-			// var left = $(window).width()/4;
-			// $(id).css({'left': left}).show().text(text);
-			// if(hide != null) {
-				// if(delay != null) $(id).delay(delay).fadeOut(hide);
-				// else $(id).fadeOut(hide);
-			// }
-		// }
-
-		function forceTo(method, element){
-			switch(method){
-				case 'show':
-					if($(element).css('display') == 'none') $(element).show();
-				break;
-				case 'hide':
-					if($(element).css('display') != 'none') $(element).hide();
-				break
+		function ajaxMsg2(text, hide=null, delay=null){
+			var id = ".ajax_msg";
+			var left = $(window).width()/4;
+			$(id).css({'left': left}).show().text(text);
+			if(hide != null) {
+				if(delay != null) $(id).delay(delay).fadeOut(hide);
+				else $(id).fadeOut(hide);
 			}
 		}
 
+		// fix requirement
+		// frame.css('position','relative');
+		frame.css('overflow','hidden');
+
+
 		// build a new element
-		frame.append(  '<div class="' + arrow + '" id="' + arrowRight 	+ '" style="opacity:0.1;z-index:2;display:none;height:400px;width:100px;position:fixed;background:none;top:0;right:0;"><!-- Right --></div>'
-						+ '<div class="' + arrow + '" id="' + arrowLeft 	+ '" style="opacity:0.1;z-index:2;display:none;height:400px;width:100px;position:fixed;background:none;top:0;left:0;"><!-- Left --></div>'
-						+ '<div class="' + arrow + '" id="' + arrowBottom 	+ '" style="opacity:0.1;z-index:2;display:none;height:100px;width:400px;position:fixed;background:none;bottom:0;left:0;"><!-- Bottom --></div>'
-						+ '<div class="' + arrow + '" id="' + arrowTop 		+ '" style="opacity:0.1;z-index:2;display:none;height:100px;width:400px;position:fixed;background:none;top:0;left:0;"><!-- Top --></div>');
+		frame.append(  '<div class="' + arrow + '" id="' + arrowRight 	+ '" style="opacity:0.8;z-index:2;display:none;height:400px;width:100px;position:fixed;background:;top:0;right:0;"><!-- Right --></div>'
+						+ '<div class="' + arrow + '" id="' + arrowLeft 	+ '" style="opacity:0.8;z-index:2;display:none;height:400px;width:100px;position:fixed;background:;top:0;left:0;"><!-- Left --></div>'
+						+ '<div class="' + arrow + '" id="' + arrowBottom 	+ '" style="opacity:0.8;z-index:2;display:none;height:100px;width:400px;position:fixed;background:;bottom:0;left:0;"><!-- Bottom --></div>'
+						+ '<div class="' + arrow + '" id="' + arrowTop 		+ '" style="opacity:0.8;z-index:2;display:none;height:100px;width:400px;position:fixed;background:;top:0;left:0;"><!-- Top --></div>');
 
-		frame.scroll(function(){
-
-			currentScrollLeft = frame.scrollLeft();
-			currentScrollTop = frame.scrollTop();
-
-			if(currentScrollLeft > scrollMaxWidth){
-				mentokR = false;//penting jika pergerakan mouse keluar jalur dari frame
-				scrollMaxWidth = currentScrollLeft;
-			}
-			if(currentScrollTop > scrollMaxHeight){
-				mentokB = false;//penting jika pergerakan mouse keluar jalur dari frame
-				scrollMaxHeight = currentScrollTop;
-			}
-
-			clearTimeout(timer);
-			timer = setTimeout( function () {
-				if($coordinat.x > $startMoveR){
-					if($coordinat.x == tmpR){
-						mentokR = true;
-					}
-				}
-				if($coordinat.y > $startMoveB){
-					if($coordinat.y == tmpB){
-						mentokB = true;
-					}
-				}
-			}, 150 );
-
-			// var debug = '';
-			// debug += 'x: ' + $cursorPosition.x + ',';
-			// debug += 'y: ' + $cursorPosition.y + ';';
-			// debug += 'wW: ' + frameWidth + ';';
-			// debug += 'wH: ' + frameHeight + ';';
-			// debug += '$sDX: ' + $scrollDistanceX + ';';
-			// debug += '$sDY: ' + $scrollDistanceY + ';';
-			// debug += '$lengthFrameX: ' + $lengthFrameX + ';';
-			// debug += '$lengthFrameY: ' + $lengthFrameY + ';';
-			// debug += '$startMoveT: ' + $startMoveT + ';';
-			// debug += '$startMoveR: ' + $startMoveR + ';';
-			// debug += '$startMoveL: ' + $startMoveL + ';';
-			// debug += '$startMoveB: ' + $startMoveB + ';';
-			// debug += 'c.x: ' + $coordinat.x + ';';
-			// debug += 'c.y: ' + $coordinat.y + ';';
-			// debug += 'tmpX: ' + tmpX + ';';
-			// debug += 'tmpY: ' + tmpY + ';';
-			// debug += 'scrollMaxWidth: ' + scrollMaxWidth + ';';
-			// debug += 'scrollMaxHeight: ' + scrollMaxHeight + ';';
-			// debug += 'mentokR: ' + mentokR + ';';
-			// debug += 'mentokB: ' + mentokB + ';';
-			// debug += 'tmpR: ' + tmpR + ';';
-			// debug += 'tmpB: ' + tmpB + ';';
-			// msgDebug(debug);
-
-		});
 
 		frame.mousemove(function(e){
 
 			// DEFINE basic measure
-			frameWidth = frame.width() + paddingR + paddingL; // sudah termasuk lebar dari scroll vertical
-			frameHeight = frame.height() + paddingT + paddingB; // sudah termasuk lebar dari scroll horizontal
-			windowScrollTop = $(window).scrollTop();
-			windowScrollLeft = $(window).scrollLeft();
+			targetWidth = target.width(); // keseluruhan lebar dari target object
+			targetHeight = target.height();
+			frameWidth = frame.width(); // sudah termasuk lebar dari scroll vertical
+			frameHeight = frame.height(); // sudah termasuk lebar dari scroll horizontal
 
 			// cursor
 			var cursor = {x:0, y:0};
-			var cursorOverFrame = {x:0, y:0};
+			var cursorOverTarget = {x:0, y:0};
 			if (e.pageX || e.pageY) {
 				cursor.x = e.pageX;
 				cursor.y = e.pageY;
@@ -136,110 +59,91 @@
 				cursor.x = e.clientX + ((de.scrollLeft || b.scrollLeft) - (de.clientLeft || 0));
 				cursor.y = e.clientY + ((de.scrollTop || b.scrollTop) - (de.clientTop || 0));
 			}
-
-			cursorOverFrame.x = cursor.x - frame.offset().left + frame.scrollLeft();
-			cursorOverFrame.y = cursor.y - frame.offset().top + frame.scrollTop();
+			cursorOverTarget.x = cursor.x - target.offset().left + deltaX;
+			cursorOverTarget.y = cursor.y - target.offset().top + deltaY;
 
 			// DYNAMIC DEFINE because of cursor
 			$cursorPosition = cursor;
-			$coordinat = cursorOverFrame;
+			$coordinat = cursorOverTarget;
 
 			// DEFINE margin
-			marginTop = frameHeight/3;
-			marginRight = frameWidth/3;
-			marginBottom = frameHeight/3;
-			marginLeft = frameWidth/3;
+			marginTop = frameHeight/5;
+			marginRight = frameWidth/5;
+			marginBottom = frameHeight/5;
+			marginLeft = frameWidth/5;
 
 			// DYNAMIC DEFINE because of scroll
 			$scrollDistanceX = frame.scrollLeft();
 			$scrollDistanceY = frame.scrollTop();
 			$lengthFrameX = frameWidth + $scrollDistanceX;
 			$lengthFrameY = frameHeight + $scrollDistanceY;
+			$lengthTargetX = $lengthFrameX - deltaX;
+			$lengthTargetY = $lengthFrameY - deltaY;
 			$startMoveR = $lengthFrameX - marginRight;
 			$startMoveL = ($lengthFrameX - frameWidth) + marginLeft;
 			$startMoveT = ($lengthFrameY - frameHeight) + marginTop;
 			$startMoveB = $lengthFrameY - marginBottom;
 
 			// manipulate css
-			$('#' + arrowRight).css({'width': marginRight, 'left': frameWidth  + frame.offset().left - marginRight  , 'top': frame.offset().top - windowScrollTop, 'height': frameHeight});
-			$('#' + arrowLeft).css({'width': marginLeft, 'left': frame.offset().left, 'top': frame.offset().top - windowScrollTop, 'height': frameHeight});
-			$('#' + arrowBottom).css({'width': frameWidth, 'left': frame.offset().left, 'top': frameHeight + frame.offset().top - marginBottom - windowScrollTop, 'height': marginBottom});
-			$('#' + arrowTop).css({'width': frameWidth, 'left': frame.offset().left, 'top': frame.offset().top - windowScrollTop, 'height': marginTop});
+			// $('#' + arrowRight).css({'width': marginRight, 'left': frameWidth - marginRight + frame.offset().left, 'top': marginTop + frame.offset().top, 'height': frameHeight - (marginTop+marginBottom)});
+			// $('#' + arrowLeft).css({'width': marginLeft, 'left': frame.offset().left, 'top': marginTop + frame.offset().top, 'height': frameHeight - (marginTop+marginBottom)});
+			// $('#' + arrowBottom).css({'width': frameWidth - (marginLeft+marginRight), 'left': frame.offset().left+marginLeft, 'top': frameHeight - marginBottom + frame.offset().top, 'height': marginBottom});
+			// $('#' + arrowTop).css({'width': frameWidth - (marginLeft+marginRight), 'left': frame.offset().left+marginLeft, 'top': frame.offset().top, 'height': marginTop});
+			$('#' + arrowRight).css({'width': marginRight, 'left': frameWidth - marginRight + frame.offset().left, 'top': frame.offset().top, 'height': frameHeight});
+			$('#' + arrowLeft).css({'width': marginLeft, 'left': frame.offset().left, 'top': frame.offset().top, 'height': frameHeight});
+			$('#' + arrowBottom).css({'width': frameWidth, 'left': frame.offset().left, 'top': frameHeight - marginBottom + frame.offset().top, 'height': marginBottom});
+			$('#' + arrowTop).css({'width': frameWidth, 'left': frame.offset().left, 'top': frame.offset().top, 'height': marginTop});
 
 			// horizontal, scroll to right
-			if($scrollDistanceX == scrollMaxWidth && mentokR == true ){
-				forceTo('hide', '#' + arrowRight);
+			if(targetWidth == $lengthTargetX){
+				if($('#' + arrowRight).css('display') != 'none') $('#' + arrowRight).hide();
 			}
-			else if($coordinat.x > $startMoveR && $coordinat.x > tmpX){
-				forceTo('show', '#' + arrowRight);
-				tmpR = $coordinat.x;
+			if($coordinat.x > $startMoveR && targetWidth != $lengthTargetX) {
+				$('#' + arrowRight).show();
 			}
-			else if($coordinat.x > $startMoveR && $coordinat.x < tmpX){
-				forceTo('hide', '#' + arrowRight);
-			}
-
 			// horizontal, scroll to left
 			if($scrollDistanceX == 0){
-				forceTo('hide', '#' + arrowLeft);
+				if($('#' + arrowLeft).css('display') != 'none') $('#' + arrowLeft).hide();
 			}
-			else if($coordinat.x < $startMoveL && $coordinat.x < tmpX){
-				forceTo('show', '#' + arrowLeft);
+			if($coordinat.x < $startMoveL && $scrollDistanceX != 0){
+				$('#' + arrowLeft).show();
 			}
-			else if($coordinat.x < $startMoveL && $coordinat.x > tmpX){
-				forceTo('hide', '#' + arrowLeft);
-			}
-
 			// vertical, scroll to bottom
-			if($scrollDistanceY == scrollMaxHeight && mentokB == true ){
-				forceTo('hide', '#' + arrowBottom);
+			if(targetHeight == $lengthTargetY){
+				if($('#' + arrowBottom).css('display') != 'none') $('#' + arrowBottom).hide();
 			}
-			else if($coordinat.y > $startMoveB && $coordinat.y > tmpY){
-				forceTo('show', '#' + arrowBottom);
-				tmpB = $coordinat.y;
+			if($coordinat.y > $startMoveB && targetHeight != $lengthTargetY) {
+				$('#' + arrowBottom).show();
 			}
-			else if($coordinat.y > $startMoveB && $coordinat.y < tmpY){
-				forceTo('hide', '#' + arrowBottom);
-			}
-
 			// vertical, scroll to top
 			if($scrollDistanceY == 0){
-				forceTo('hide', '#' + arrowTop);
+				if($('#' + arrowTop).css('display') != 'none') $('#' + arrowTop).hide();
 			}
-			else if($coordinat.y < $startMoveT && $coordinat.y < tmpY){
-				forceTo('show', '#' + arrowTop);
-			}
-			else if($coordinat.y < $startMoveT && $coordinat.y > tmpY){
-				forceTo('hide', '#' + arrowTop);
+			if($coordinat.y < $startMoveT && $scrollDistanceY != 0){
+				$('#' + arrowTop).show();
 			}
 
-			// update temporary value
-			tmpY = $coordinat.y;
-			tmpX = $coordinat.x;
 
-			// var debug = '';
-			// debug += 'x: ' + $cursorPosition.x + ',';
-			// debug += 'y: ' + $cursorPosition.y + ';';
-			// debug += 'wW: ' + frameWidth + ';';
-			// debug += 'wH: ' + frameHeight + ';';
-			// debug += '$sDX: ' + $scrollDistanceX + ';';
-			// debug += '$sDY: ' + $scrollDistanceY + ';';
-			// debug += '$lengthFrameX: ' + $lengthFrameX + ';';
-			// debug += '$lengthFrameY: ' + $lengthFrameY + ';';
-			// debug += '$startMoveT: ' + $startMoveT + ';';
-			// debug += '$startMoveR: ' + $startMoveR + ';';
-			// debug += '$startMoveL: ' + $startMoveL + ';';
-			// debug += '$startMoveB: ' + $startMoveB + ';';
-			// debug += 'c.x: ' + $coordinat.x + ';';
-			// debug += 'c.y: ' + $coordinat.y + ';';
-			// debug += 'tmpX: ' + tmpX + ';';
-			// debug += 'tmpY: ' + tmpY + ';';
-			// debug += 'scrollMaxWidth: ' + scrollMaxWidth + ';';
-			// debug += 'scrollMaxHeight: ' + scrollMaxHeight + ';';
-			// debug += 'mentokR: ' + mentokR + ';';
-			// debug += 'mentokB: ' + mentokB + ';';
-			// debug += 'tmpR: ' + tmpR + ';';
-			// debug += 'tmpB: ' + tmpB + ';';
-			// msgDebug(debug);
+			// var a = '';
+			// a+= 'x: ' + $cursorPosition.x + ',';
+			// a+= 'y: ' + $cursorPosition.y + ';';
+			// a+= 'eW: ' + targetWidth + ';';
+			// a+= 'eH: ' + targetHeight + ';';
+			// a += 'wW: ' + frameWidth + ';';
+			// a += 'wH: ' + frameHeight + ';';
+			// a += '$sDX: ' + $scrollDistanceX + ';';
+			// a += '$sDY: ' + $scrollDistanceY + ';';
+			// a += '$lengthFrameX: ' + $lengthFrameX + ';';
+			// a += '$startMoveT: ' + $startMoveT + ';';
+			// a += '$startMoveR: ' + $startMoveR + ';';
+			// a += '$startMoveL: ' + $startMoveL + ';';
+			// a += '$startMoveB: ' + $startMoveB + ';';
+			// a += 'c.x: ' + $coordinat.x + ';';
+			// a += 'c.y: ' + $coordinat.y + ';';
+			// a += 'deltaX: ' + deltaX + ';';
+			// a += '$lengthTargetX: ' + $lengthTargetX + ';';
+			// a += '$lengthTargetY: ' + $lengthTargetY + ';';
+			// ajaxMsg2(a);
 		});
 
 		$('.' + arrow).mouseenter(function(){
@@ -252,7 +156,7 @@
 		});
 
 		functions.startScroll = function(){
-
+			
 			center = {x:0,y:0};
 
 			center.x = Math.round(frameWidth/2 + frame.offset().left);
@@ -295,7 +199,7 @@
 						((percentY > 50) ? 10 :
 						((percentY > 30) ? 5 : 1))));
 				if($cursorPosition.x > center.x) {
-					nextPositionX = currentPositionX+pointX;
+					nextPositionX = currentPositionX+pointX;					
 				}
 				else if($cursorPosition.x < center.x) {
 					nextPositionX = currentPositionX-pointX;
@@ -306,12 +210,12 @@
 				else if($cursorPosition.y < center.y) {
 					nextPositionY = currentPositionY-pointY;
 				}
-
+				
 				// scrolling
-				frame.scrollLeft(nextPositionX);
-				frame.scrollTop(nextPositionY);
-
-				// set cursor
+				frame.scrollLeft(nextPositionX); 
+				frame.scrollTop(nextPositionY); 
+				
+				// set pointer
 				if($cursorPosition.x > center.x && $cursorPosition.y > center.y && percentX > 0 && percentY > 0) {
 					$('body').css({cursor:'se-resize'});
 				}
@@ -336,7 +240,6 @@
 				else if($cursorPosition.y < center.y && percentX < 0) {
 					$('body').css({cursor:'n-resize'});
 				}
-
 			}, 40);
 		};
 
@@ -345,10 +248,8 @@
 			clearInterval(scrolling);
 			$('body').css({cursor:'default'});// set cursor
 		};
-
 	}
 })(jQuery);
-
 
 // http://stackoverflow.com/questions/2897155/get-caret-position-within-an-text-input-field
 (function($) {
@@ -369,7 +270,6 @@
 	}
 })(jQuery);
 
-
 // http://stackoverflow.com/questions/499126/jquery-set-cursor-position-in-text-area
 (function($) {
   $.fn.setCursorPosition = function(pos) {
@@ -385,24 +285,15 @@
   }
 })(jQuery);
 
-
 $(document).ready(function(){
-
-	////////////////////////
-	// prepare
-	////////////////////////
-
-	$('#page').autoScrollMouseMove();
-
+	
+	// $('window').autoScroll($('#img'));
+	$('#page').autoScroll($('#img-background'));
+	// $('#img-background').autoScroll($('#img'));
 	////////////////////////
 	// function
 	////////////////////////
 
-	function ajaxMsg(text){
-		var id = ".ajax_msg";
-		var left = $(window).width()/4;
-		$(id).css({'left': left}).show().text(text);
-	}
 
 	function getCoordinatWindow(e){
 		if( !e ) {
@@ -443,6 +334,24 @@ $(document).ready(function(){
 
 		var xycoord = [xcoord, ycoord];
 		return xycoord;
+	}
+
+	function ajaxMsg(text, hide=null, delay=null){
+		var id = ".ajax_msg";
+		var left = $(window).width()/4;
+		$(id).css({'left': left}).show().text(text);
+		if(hide != null) {
+			if(delay != null) $(id).delay(delay).fadeOut(hide);
+			else $(id).fadeOut(hide);
+		}
+	}
+
+	function setMsg(elementID, text, hide=null, delay=null){
+		$(elementID).text(text).show();
+		if(hide != null) {
+			if(delay != null) $(elementID).delay(delay).fadeOut(hide);
+			else $(elementID).fadeOut(hide);
+		}
 	}
 
 	function specialInsertToTextArea(idTextArea, string){
@@ -553,117 +462,153 @@ $(document).ready(function(){
 			event.preventDefault();
 		});
 
-
 	////////////////////////
-	// click(function(){});
+	// keydown(function(){});
 	////////////////////////
 
-	$("#img").click(function(){
-		var CoordinatWindowXY = getCoordinatWindow(arguments[0]);
-		var CoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
-		var CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
-		$("#form_client").find( 'input[name="client_action_click_x"]' ).val(CoordinatX);
-		$("#form_client").find( 'input[name="client_action_click_y"]' ).val(CoordinatY);
-		$("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('click');
-		$("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('Screen');
-		$("#form_client").find( 'input[name="client_action_click_button"]' ).val('left');
-		$("#form_client").find( 'input[name="client_action_click_count"]' ).val('1');
-		$("#form_client").submit();
+	$(document).keydown(function(event){
+		var keyCodeEsc = 27;
+		var keyCodeK = 75;
+		if(event.keyCode == keyCodeEsc){
+			if($("#keystroke_area").css('display') != 'none'){
+				$("#keystroke_area").fadeOut();
+				event.preventDefault();
+			}
+		}
+		if(event.ctrlKey && event.shiftKey && event.keyCode == keyCodeK){
+			$("#keystroke_button").click();
+			event.preventDefault();
+		}
 	});
 
-	$(".action").click(function(){
-		$(this).each(function(){
-			var id = $(this).attr('id');
-			// alert(id);
-			if(id == 'fixbar_button'){
-				if($('#nav').css('position') != 'fixed'){
-					$('#nav').css({'position':'fixed', 'width':'100%', 'top':'0'});
-					$('#page').css({'margin-top':'34px'});
-				}
-				else{
-					$('#nav').css({'position':'relative', 'width':'auto', 'top':'0'});
-					$('#page').css({'margin-top':'0px'});
-				};
-			}
-			if(id == 'reload_button'){
-				$("#form_client").find( 'input[name="client_action_screenshot_reload"]' ).val('1');
-				$("#form_client").submit();
-			}
-			if(id == 'keystroke_button'){
-				var $height = $(window).height()/1.5;
-				var $width = $(window).width()/2;
-				var $left = $(window).width()/4;
-				var keystrokeShow = {bottom:'0'};
-				var keystrokeHide = {bottom:'-' + $height +'px'};
-				if($("#keystroke_area").css('display') == 'none'){
-					$("#keystroke_area").css({	position:'fixed',
-												width: $width + 'px',
-												height: $height + 'px',
-												left: $left + 'px',
-												bottom: '-' + $height +'px'}).show().animate(keystrokeShow, 300);
-					$("#keystroke_input").focus();
-				}
-				else{
-					$("#keystroke_area").animate(keystrokeHide, 150, function(){
-						$("#keystroke_area").hide()
-					});
-				}
-			}
-		});
-	});
+	$('#keystroke_input').keydown(function(event){
 
-	$(".special_char_label").click(function(){
-		$(this).each(function(){
-			var attrfor = $(this).attr('for');
-			if(attrfor == 'special_ctrl'){
-				if($('#special_ctrl').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-			if(attrfor == 'special_shift'){
-				if($('#special_shift').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-			if(attrfor == 'special_alt'){
-				if($('#special_alt').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-		});
-	});
+		var keyCodeEnter = 13;
+		var keyCodeDelete = 46;
+		var keyCodeInsert = 45;
+		var keyCodeLetterS = 83;
 
+		if(event.ctrlKey && event.keyCode == keyCodeEnter){
+			$("#form_client").submit();
+			event.preventDefault();
+		}
+		else if(event.ctrlKey && event.keyCode == keyCodeLetterS){
+			alert('save now');
+			return false;
+		}
+		else if(event.ctrlKey && event.keyCode == keyCodeInsert){
+			alert('load now');
+			event.preventDefault();
+		}
+		else if(event.keyCode == keyCodeEnter){
+			specialInsertToTextArea('#keystroke_input', '{enter}');
+			event.preventDefault();
+		}
+
+
+		// alert(event.keyCode);
+
+	});
 
 	////////////////////////
 	// change(function(){});
 	////////////////////////
 
 	$('.specific_character').change(function(){
-	
-		//build the text
+
 		var $value = $(this).val();
+
 		if($('#special_alt').prop('checked')) $value = '{alt down}' + $value + '{alt up}';
 		if($('#special_shift').prop('checked')) $value = '{shift down}' + $value + '{shift up}';
 		if($('#special_ctrl').prop('checked')) $value = '{ctrl down}' + $value + '{ctrl up}';
 
-		// set the text
 		specialInsertToTextArea('#keystroke_input',$value);
 
-		//clear current value
+		setMsg('#message2', 'Inserted', 300, 1500);
+
 		$(this).val('none').attr('selected', 'selected');
-		if($('#special_ctrl').prop('checked')) $('label[for="special_ctrl"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
-		if($('#special_shift').prop('checked')) $('label[for="special_shift"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
-		if($('#special_alt').prop('checked')) $('label[for="special_alt"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
+		if($('#special_ctrl').prop('checked')) $('label[for="special_ctrl"]').click();
+		if($('#special_shift').prop('checked')) $('label[for="special_shift"]').click();
+		if($('#special_alt').prop('checked')) $('label[for="special_alt"]').click();
+
 	});
 
 	////////////////////////
-	// keydown(function(){});
+	// click(function(){});
 	////////////////////////
-	
-	$(document).keydown(function(event){
-		// event.preventDefault();
-		// alert(event.keyCode);
-		if(event.altKey && event.keyCode == 115){ //alt+f4
-			alert('dimatikan');
-		}
-		
+
+	$("#img").click(function(){
+		// prepare
+		var CoordinatWindowXY = getCoordinatWindow(arguments[0]);
+		var CoordinatX = CoordinatWindowXY[0] - this.offsetLeft;
+		var CoordinatY = CoordinatWindowXY[1] - this.offsetTop;
+
+		$("#form_client").find( 'input[name="client_action_click_x"]' ).val(CoordinatX);
+		$("#form_client").find( 'input[name="client_action_click_y"]' ).val(CoordinatY);
+		$("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('click');
+		$("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('Screen');
+		$("#form_client").find( 'input[name="client_action_click_button"]' ).val('left');
+		$("#form_client").find( 'input[name="client_action_click_count"]' ).val('1');
+		// submit
+		// $("#form_client").submit();
 	});
+
+	$("#keystroke_button").click(function(){
+		var $height = $(window).height()/2;
+		var $width = $(window).width()/2;
+		var $left = $(window).width()/4;
+		var keystrokeShow = {bottom:'0'};
+		var keystrokeHide = {bottom:'-' + $height +'px'};
+		if($("#keystroke_area").css('display') == 'none'){
+			$("#keystroke_area").css({	position:'fixed',
+										width: $width + 'px',
+										height: $height + 'px',
+										left: $left + 'px',
+										bottom: '-' + $height +'px'}).show().animate(keystrokeShow, 300);
+			$("#keystroke_input").focus();
+		}
+		else{
+			$("#keystroke_area").animate(keystrokeHide, 150, function(){
+				$("#keystroke_area").hide()
+			});
+		}
+
+
+	});
+
+	$('label[for="special_ctrl"]').click(function(){
+		if($('#special_ctrl').prop('checked')) $(this).css('color','#999999');
+		else $(this).css('color','#000000');
+	});
+
+	$('label[for="special_shift"]').click(function(){
+		if($('#special_shift').prop('checked')) $(this).css('color','#999999');
+		else $(this).css('color','#000000');
+	});
+
+	$('label[for="special_alt"]').click(function(){
+		if($('#special_alt').prop('checked')) $(this).css('color','#999999');
+		else $(this).css('color','#000000');
+	});
+
+	$('.action').click(function(){
+		$(this).each(function(){
+			var id = $(this).attr('id');
+			if(id == 'send'){
+				$("#form_client").submit();
+			}
+			if(id == 'load'){
+				alert('load now');
+				// $('#keystroke_input').val('').focus();
+			}
+		});
+	});
+
+	////////////////////////
+	// mouse(function(){});
+	////////////////////////
+
+
+
 
 });

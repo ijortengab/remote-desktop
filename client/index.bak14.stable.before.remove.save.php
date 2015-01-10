@@ -366,8 +366,8 @@ function draw($theme=NULL){
 			echo '</textarea>';
 			echo '<div class="keystroke_button">';
 			echo '<span title="Ctrl+Enter" class="button action" id="k-send">Send</span>';
-			// echo '<span title="Ctrl+Delete" class="button action" id="k-save">Save</span>';
-			// echo '<span title="Ctrl+Insert" class="button action" id="k-load">Load</span>';
+			echo '<span title="Ctrl+Delete" class="button action" id="k-save">Save</span>';
+			echo '<span title="Ctrl+Insert" class="button action" id="k-load">Load</span>';
 			echo '<span title="" class="message2" id="message2"></span>';
 			echo '</div><!-- ./keystroke_button-->';
 			echo '</div><!--/.keystroke_input -->';
@@ -459,7 +459,7 @@ function draw($theme=NULL){
 
 			echo '</fieldset>';
 
-			/* $limit = $data['setting']['key_save_limit'];
+			$limit = $data['setting']['key_save_limit'];
 			$a  = file(PATH_FILE_SAVE);
 			// print_r($a);
 			$show = 0;
@@ -516,7 +516,11 @@ function draw($theme=NULL){
 			// echo '<div class="shortkey" target="ctrl2">ctrl2<input id="ctrl2" type="text" disabled value="tahu"></div>';
 			echo $elementhide;
 			echo '</div><!--/.before-load-keystroke -->';
-			echo '</fieldset>'; */
+			echo '</fieldset>';
+
+
+			 
+
 
 
 

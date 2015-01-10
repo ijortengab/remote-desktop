@@ -64,7 +64,7 @@ while(time() <= $time_now+58){
 	
 	if(!isset($content)){
 		$config['command']['variable']['server_action'] = "request";
-		$content = curl_post($config);		
+		$content = curl_post($config);
 	}
 	
 	if($content == "") 

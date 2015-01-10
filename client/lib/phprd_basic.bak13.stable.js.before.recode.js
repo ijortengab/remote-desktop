@@ -33,7 +33,7 @@
 		// fix requirement
 		// frame.css('overflow','hidden');
 
-		// function msgDebug(text, hide=null, delay=null){
+		// function ajaxMsg2(text, hide=null, delay=null){
 			// var id = ".ajax_msg";
 			// var left = $(window).width()/4;
 			// $(id).css({'left': left}).show().text(text);
@@ -64,7 +64,7 @@
 
 			currentScrollLeft = frame.scrollLeft();
 			currentScrollTop = frame.scrollTop();
-
+			
 			if(currentScrollLeft > scrollMaxWidth){
 				mentokR = false;//penting jika pergerakan mouse keluar jalur dari frame
 				scrollMaxWidth = currentScrollLeft;
@@ -73,21 +73,21 @@
 				mentokB = false;//penting jika pergerakan mouse keluar jalur dari frame
 				scrollMaxHeight = currentScrollTop;
 			}
-
+			
 			clearTimeout(timer);
 			timer = setTimeout( function () {
 				if($coordinat.x > $startMoveR){
 					if($coordinat.x == tmpR){
 						mentokR = true;
 					}
-				}
+				}				
 				if($coordinat.y > $startMoveB){
 					if($coordinat.y == tmpB){
 						mentokB = true;
 					}
 				}
 			}, 150 );
-
+			
 			// var debug = '';
 			// debug += 'x: ' + $cursorPosition.x + ',';
 			// debug += 'y: ' + $cursorPosition.y + ';';
@@ -111,8 +111,8 @@
 			// debug += 'mentokB: ' + mentokB + ';';
 			// debug += 'tmpR: ' + tmpR + ';';
 			// debug += 'tmpB: ' + tmpB + ';';
-			// msgDebug(debug);
-
+			// ajaxMsg2(debug);
+			
 		});
 
 		frame.mousemove(function(e){
@@ -168,10 +168,10 @@
 
 			// horizontal, scroll to right
 			if($scrollDistanceX == scrollMaxWidth && mentokR == true ){
-				forceTo('hide', '#' + arrowRight);
+				forceTo('hide', '#' + arrowRight);				
 			}
 			else if($coordinat.x > $startMoveR && $coordinat.x > tmpX){
-				forceTo('show', '#' + arrowRight);
+				forceTo('show', '#' + arrowRight);				
 				tmpR = $coordinat.x;
 			}
 			else if($coordinat.x > $startMoveR && $coordinat.x < tmpX){
@@ -215,7 +215,7 @@
 			// update temporary value
 			tmpY = $coordinat.y;
 			tmpX = $coordinat.x;
-
+			
 			// var debug = '';
 			// debug += 'x: ' + $cursorPosition.x + ',';
 			// debug += 'y: ' + $cursorPosition.y + ';';
@@ -239,7 +239,7 @@
 			// debug += 'mentokB: ' + mentokB + ';';
 			// debug += 'tmpR: ' + tmpR + ';';
 			// debug += 'tmpB: ' + tmpB + ';';
-			// msgDebug(debug);
+			// ajaxMsg2(debug);
 		});
 
 		$('.' + arrow).mouseenter(function(){
@@ -349,7 +349,6 @@
 	}
 })(jQuery);
 
-
 // http://stackoverflow.com/questions/2897155/get-caret-position-within-an-text-input-field
 (function($) {
 	$.fn.getCursorPosition = function() {
@@ -369,7 +368,6 @@
 	}
 })(jQuery);
 
-
 // http://stackoverflow.com/questions/499126/jquery-set-cursor-position-in-text-area
 (function($) {
   $.fn.setCursorPosition = function(pos) {
@@ -385,24 +383,14 @@
   }
 })(jQuery);
 
-
 $(document).ready(function(){
-
-	////////////////////////
-	// prepare
-	////////////////////////
-
+	
 	$('#page').autoScrollMouseMove();
-
+	
 	////////////////////////
 	// function
 	////////////////////////
 
-	function ajaxMsg(text){
-		var id = ".ajax_msg";
-		var left = $(window).width()/4;
-		$(id).css({'left': left}).show().text(text);
-	}
 
 	function getCoordinatWindow(e){
 		if( !e ) {
@@ -443,6 +431,24 @@ $(document).ready(function(){
 
 		var xycoord = [xcoord, ycoord];
 		return xycoord;
+	}
+
+	function ajaxMsg(text, hide=null, delay=null){
+		var id = ".ajax_msg";
+		var left = $(window).width()/4;
+		$(id).css({'left': left}).show().text(text);
+		if(hide != null) {
+			if(delay != null) $(id).delay(delay).fadeOut(hide);
+			else $(id).fadeOut(hide);
+		}
+	}
+
+	function setMsg(elementID, text, hide=null, delay=null){
+		$(elementID).text(text).show();
+		if(hide != null) {
+			if(delay != null) $(elementID).delay(delay).fadeOut(hide);
+			else $(elementID).fadeOut(hide);
+		}
 	}
 
 	function specialInsertToTextArea(idTextArea, string){
@@ -553,117 +559,156 @@ $(document).ready(function(){
 			event.preventDefault();
 		});
 
-
 	////////////////////////
-	// click(function(){});
+	// keydown(function(){});
 	////////////////////////
 
-	$("#img").click(function(){
-		var CoordinatWindowXY = getCoordinatWindow(arguments[0]);
-		var CoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
-		var CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
-		$("#form_client").find( 'input[name="client_action_click_x"]' ).val(CoordinatX);
-		$("#form_client").find( 'input[name="client_action_click_y"]' ).val(CoordinatY);
-		$("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('click');
-		$("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('Screen');
-		$("#form_client").find( 'input[name="client_action_click_button"]' ).val('left');
-		$("#form_client").find( 'input[name="client_action_click_count"]' ).val('1');
-		$("#form_client").submit();
+	$(document).keydown(function(event){
+		// alert(event.keyCode);
+		var keyCodeEsc = 27;
+		var keyCodeK = 75;
+		if(event.keyCode == keyCodeEsc){
+			if($("#keystroke_area").css('display') != 'none'){
+				$("#keystroke_area").fadeOut();
+				event.preventDefault();
+			}
+		}
+		if(event.ctrlKey && event.shiftKey && event.keyCode == keyCodeK){
+			$("#keystroke_button").click();
+			event.preventDefault();
+		}
 	});
 
-	$(".action").click(function(){
-		$(this).each(function(){
-			var id = $(this).attr('id');
-			// alert(id);
-			if(id == 'fixbar_button'){
-				if($('#nav').css('position') != 'fixed'){
-					$('#nav').css({'position':'fixed', 'width':'100%', 'top':'0'});
-					$('#page').css({'margin-top':'34px'});
-				}
-				else{
-					$('#nav').css({'position':'relative', 'width':'auto', 'top':'0'});
-					$('#page').css({'margin-top':'0px'});
-				};
-			}
-			if(id == 'reload_button'){
-				$("#form_client").find( 'input[name="client_action_screenshot_reload"]' ).val('1');
-				$("#form_client").submit();
-			}
-			if(id == 'keystroke_button'){
-				var $height = $(window).height()/1.5;
-				var $width = $(window).width()/2;
-				var $left = $(window).width()/4;
-				var keystrokeShow = {bottom:'0'};
-				var keystrokeHide = {bottom:'-' + $height +'px'};
-				if($("#keystroke_area").css('display') == 'none'){
-					$("#keystroke_area").css({	position:'fixed',
-												width: $width + 'px',
-												height: $height + 'px',
-												left: $left + 'px',
-												bottom: '-' + $height +'px'}).show().animate(keystrokeShow, 300);
-					$("#keystroke_input").focus();
-				}
-				else{
-					$("#keystroke_area").animate(keystrokeHide, 150, function(){
-						$("#keystroke_area").hide()
-					});
-				}
-			}
-		});
-	});
+	$('#keystroke_input').keydown(function(event){
 
-	$(".special_char_label").click(function(){
-		$(this).each(function(){
-			var attrfor = $(this).attr('for');
-			if(attrfor == 'special_ctrl'){
-				if($('#special_ctrl').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-			if(attrfor == 'special_shift'){
-				if($('#special_shift').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-			if(attrfor == 'special_alt'){
-				if($('#special_alt').prop('checked')) $(this).css('color','#999999');
-				else $(this).css('color','#000000');
-			}
-		});
-	});
+		var keyCodeEnter = 13;
+		var keyCodeDelete = 46;
+		var keyCodeInsert = 45;
+		var keyCodeLetterS = 83;
 
+		if(event.ctrlKey && event.keyCode == keyCodeEnter){
+			$("#form_client").submit();
+			event.preventDefault();
+		}
+		else if(event.ctrlKey && event.keyCode == keyCodeLetterS){
+			alert('save now');
+			return false;
+		}
+		else if(event.ctrlKey && event.keyCode == keyCodeInsert){
+			alert('load now');
+			event.preventDefault();
+		}
+		else if(event.keyCode == keyCodeEnter){
+			specialInsertToTextArea('#keystroke_input', '{enter}');
+			event.preventDefault();
+		}
+
+
+		// alert(event.keyCode);
+
+	});
 
 	////////////////////////
 	// change(function(){});
 	////////////////////////
 
 	$('.specific_character').change(function(){
-	
-		//build the text
+
 		var $value = $(this).val();
+
 		if($('#special_alt').prop('checked')) $value = '{alt down}' + $value + '{alt up}';
 		if($('#special_shift').prop('checked')) $value = '{shift down}' + $value + '{shift up}';
 		if($('#special_ctrl').prop('checked')) $value = '{ctrl down}' + $value + '{ctrl up}';
 
-		// set the text
 		specialInsertToTextArea('#keystroke_input',$value);
 
-		//clear current value
+		setMsg('#message2', 'Inserted', 300, 1500);
+
 		$(this).val('none').attr('selected', 'selected');
-		if($('#special_ctrl').prop('checked')) $('label[for="special_ctrl"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
-		if($('#special_shift').prop('checked')) $('label[for="special_shift"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
-		if($('#special_alt').prop('checked')) $('label[for="special_alt"]').click(); // berhubungan dengan $(".special_char_label").click(function(){});
+		if($('#special_ctrl').prop('checked')) $('label[for="special_ctrl"]').click();
+		if($('#special_shift').prop('checked')) $('label[for="special_shift"]').click();
+		if($('#special_alt').prop('checked')) $('label[for="special_alt"]').click();
+
 	});
 
 	////////////////////////
-	// keydown(function(){});
+	// click(function(){});
 	////////////////////////
-	
-	$(document).keydown(function(event){
-		// event.preventDefault();
-		// alert(event.keyCode);
-		if(event.altKey && event.keyCode == 115){ //alt+f4
-			alert('dimatikan');
+
+	$("#img").click(function(){
+		// prepare
+		var CoordinatWindowXY = getCoordinatWindow(arguments[0]);
+		var CoordinatX = CoordinatWindowXY[0] - this.offsetLeft;
+		var CoordinatY = CoordinatWindowXY[1] - this.offsetTop;
+		var CoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
+		var CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
+
+		$("#form_client").find( 'input[name="client_action_click_x"]' ).val(CoordinatX);
+		$("#form_client").find( 'input[name="client_action_click_y"]' ).val(CoordinatY);
+		$("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('click');
+		$("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('Screen');
+		$("#form_client").find( 'input[name="client_action_click_button"]' ).val('left');
+		$("#form_client").find( 'input[name="client_action_click_count"]' ).val('1');
+		// submit
+		// $("#form_client").submit();
+	});
+
+	$("#keystroke_button").click(function(){
+		var $height = $(window).height()/2;
+		var $width = $(window).width()/2;
+		var $left = $(window).width()/4;
+		var keystrokeShow = {bottom:'0'};
+		var keystrokeHide = {bottom:'-' + $height +'px'};
+		if($("#keystroke_area").css('display') == 'none'){
+			$("#keystroke_area").css({	position:'fixed',
+										width: $width + 'px',
+										height: $height + 'px',
+										left: $left + 'px',
+										bottom: '-' + $height +'px'}).show().animate(keystrokeShow, 300);
+			$("#keystroke_input").focus();
 		}
-		
+		else{
+			$("#keystroke_area").animate(keystrokeHide, 150, function(){
+				$("#keystroke_area").hide()
+			});
+		}
+
+
 	});
 
+	$('label[for="special_ctrl"]').click(function(){
+		if($('#special_ctrl').prop('checked')) $(this).css('color','#999999');
+		else $(this).css('color','#000000');
+	});
+
+	$('label[for="special_shift"]').click(function(){
+		if($('#special_shift').prop('checked')) $(this).css('color','#999999');
+		else $(this).css('color','#000000');
+	});
+
+	$('label[for="special_alt"]').click(function(){
+		if($('#special_alt').prop('checked')) $(this).css('color','#999999');
+		else $(this).css('color','#000000');
+	});
+
+	$('.action').click(function(){
+		$(this).each(function(){
+			var id = $(this).attr('id');
+			if(id == 'send'){
+				$("#form_client").submit();
+			}
+			if(id == 'load'){
+				alert('load now');
+				// $('#keystroke_input').val('').focus();
+			}
+		});
+	});
+
+	////////////////////////
+	// mouse(function(){});
+	////////////////////////
+
+
+
+alert('a');
 });
