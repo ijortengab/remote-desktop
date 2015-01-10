@@ -1,58 +1,60 @@
 (function($) {
-// sumber: http://brandonaaron.net/code/mousewheel/demos
-// mirror: http://www.github.com/brandonaaron/jquery-mousewheel/downloads
-// diperbaiki pada attribut event oleh roji
-// sumber: http://stackoverflow.com/questions/8886281/event-wheeldelta-returns-undefined?lq=1
-// 18 April 2013
-var types = ['DOMMouseScroll', 'mousewheel'];
+	// sumber: http://brandonaaron.net/code/mousewheel/demos
+	// mirror: http://www.github.com/brandonaaron/jquery-mousewheel/downloads
+	// diperbaiki pada attribut event oleh roji
+	// sumber: http://stackoverflow.com/questions/8886281/event-wheeldelta-returns-undefined?lq=1
+	// 18 April 2013
 
-$.event.special.mousewheel = {
-    setup: function() {
-        if ( this.addEventListener )
-            for ( var i=types.length; i; )
-                this.addEventListener( types[--i], handler, false );
-        else
-            this.onmousewheel = handler;
-    },
+	var types = ['DOMMouseScroll', 'mousewheel'];
 
-    teardown: function() {
-        if ( this.removeEventListener )
-            for ( var i=types.length; i; )
-                this.removeEventListener( types[--i], handler, false );
-        else
-            this.onmousewheel = null;
-    }
-};
+	$.event.special.mousewheel = {
+		setup: function() {
+			if ( this.addEventListener )
+				for ( var i=types.length; i; )
+					this.addEventListener( types[--i], handler, false );
+			else
+				this.onmousewheel = handler;
+		},
 
-$.fn.extend({
-    mousewheel: function(fn) {
-        return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
-    },
+		teardown: function() {
+			if ( this.removeEventListener )
+				for ( var i=types.length; i; )
+					this.removeEventListener( types[--i], handler, false );
+			else
+				this.onmousewheel = null;
+		}
+	};
 
-    unmousewheel: function(fn) {
-        return this.unbind("mousewheel", fn);
-    }
-});
+	$.fn.extend({
+		mousewheel: function(fn) {
+			return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
+		},
 
+		unmousewheel: function(fn) {
+			return this.unbind("mousewheel", fn);
+		}
+	});
 
-function handler(event) {
-    var args = [].slice.call( arguments, 1 ), delta = 0, returnValue = true;
+	function handler(event) {
+		var args = [].slice.call( arguments, 1 ), delta = 0, returnValue = true;
 
-    event = $.event.fix(event || window.event);
-    event.type = "mousewheel";
+		event = $.event.fix(event || window.event);
+		event.type = "mousewheel";
 
-	// roji ijor tengab ijortengab edited. 18 April 2013
-    // if ( event.wheelDelta ) delta = event.wheelDelta/120;
-    // if ( event.detail     ) delta = -event.detail/3;
-	if ( event.originalEvent.wheelDelta ) delta = event.originalEvent.wheelDelta/120;
-    if ( event.originalEvent.detail     ) delta = -event.originalEvent.detail/3;
+		// roji ijor tengab ijortengab edited. 18 April 2013
+		// if ( event.wheelDelta ) delta = event.wheelDelta/120;
+		// if ( event.detail     ) delta = -event.detail/3;
+		// if ( event.originalEvent.wheelDelta ) delta = event.originalEvent.wheelDelta/120;
+		// if ( event.originalEvent.detail     ) delta = -event.originalEvent.detail/3;
+		// tidak perlu dibagi
+		if ( event.originalEvent.wheelDelta ) delta = event.originalEvent.wheelDelta;
+		if ( event.originalEvent.detail     ) delta = -event.originalEvent.detail;
 
+		// Add event and delta to the front of the arguments
+		args.unshift(event, delta);
 
-    // Add event and delta to the front of the arguments
-    args.unshift(event, delta);
-
-    return $.event.handle.apply(this, args);
-}
+		return $.event.handle.apply(this, args);
+	}
 
 })(jQuery);
 
@@ -450,15 +452,12 @@ $(document).ready(function(){
 
 	// var asldkfjasljfd = getSetting('webrd_smlc_x','left');
 	// ajaxMsg(asldkfjasljfd);
-	$('#img').mousewheel(function(event, delta) {
-		ajaxMsg(delta);
-	});
 
 	////////////////////////
 	// prepare
 	////////////////////////
 
-	$('#page').autoScrollMouseMove('target');
+	$('#page').autoScrollMouseMove();
 	var ww=window.innerWidth;
 	var wh=window.innerHeight;
 	$('#page').height(wh);
@@ -468,7 +467,6 @@ $(document).ready(function(){
 	// $('#layer-ada').height(wh);
 
 	effectSettingAll();
-
 
 	////////////////////////
 	// function
@@ -593,6 +591,19 @@ $(document).ready(function(){
 		$(idTextArea).val(newTextareaValue).focus().setCursorPosition(newCursorPosition);
 	}
 
+	function setMsg(id, variableMsg){
+		if(!variableMsg.status) variableMsg[status] = '';
+		if(!variableMsg.name) variableMsg[name] = '';
+		var construct = '<div class="message" id="'+id+'">'+'<span class="status">'+variableMsg.status+'</span>'+variableMsg.name+'</div>';
+		$('#messages').append(construct);
+	}
+
+	function delMsg(id, variableMsg){
+		objectId = $('#'+id);
+		if(!variableMsg.status) {objectId.find('span.status').text(data.messagestatus);}
+		objectId.delay(2500).fadeOut('slow',function(){$(this).remove()});
+	}
+
 	function ajaxPost(url, variableForm, variableMsg){
 		// time
 		var date = new Date();
@@ -603,16 +614,17 @@ $(document).ready(function(){
 			$('#messages').append(construct);
 		}
 		// send
-		$.post( url+'?'+timeNow, variableForm , function(data) {
-			if(data.result == 1){
-				if(variableMsg){
-					objectId = $('#'+timeNow);
-					objectId.find('span.status').text(data.messagestatus);
-					objectId.delay(2500).fadeOut('slow',function(){$(this).remove()});
-				}
-			}
-		}, 'json');
+		// $.post( url+'?'+timeNow, variableForm , function(data) {
+			// if(data.result == 1){
+				// if(variableMsg){
+					// objectId = $('#'+timeNow);
+					// objectId.find('span.status').text(data.messagestatus);
+					// objectId.delay(2500).fadeOut('slow',function(){$(this).remove()});
+				// }
+			// }
+		// }, 'json');
 		// $.post( url+'?'+timeNow, variableForm);
+		$.post( url, variableForm);
 	}
 
 	function setSetting(name,value){
@@ -625,9 +637,9 @@ $(document).ready(function(){
 		};
 		// set variables post
 		var variableForm = 	{
-			client_action: 'save_setting',
-			setName:name,
-			setValue:value
+			client_action: 'setting_client',
+			client_action_setting_client_name:name,
+			client_action_setting_client_value:value
 			// webrd_smlc: $('#page_settings').find('input[name="webrd_smlc"]').prop('checked'),
 			// webrd_smdc: $('#page_settings').find('input[name="webrd_smdc"]').prop('checked'),
 			// webrd_smrc: $('#page_settings').find('input[name="webrd_smrc"]').prop('checked'),
@@ -653,6 +665,84 @@ $(document).ready(function(){
 		return null;
 	}
 
+	function loadNewScreenshot(){
+		var variableForm = 	{
+			client_action: 'load_new_screenshot'
+		};
+		$.post( '', variableForm , function(data) {
+			if(data.result == 1) {  // no new screenshot
+				var cssObj = {'background-image' : 'url('+data.screenshot+')', 'width' : data.width, 'height' : data.height};
+				var hide = {opacity : 0};
+				var unhide = {opacity : 1};
+				var img = new Image();
+
+				$(img).load(data.screenshot, function(){
+					$('#img').hide();
+					$("#img").css(cssObj);
+					$("#img").animate(hide,0,function(){ // tidak ada fungsi complete pada css(), maka digunakan animate yang memiliki fungsi complete
+						$('#img').show(function(){
+							$("#img").animate(unhide,300,function(){
+								$("#img-background").css(cssObj);
+							});
+						});
+					});
+				});
+			}
+
+		}, 'json');
+	}
+
+
+	countSS = 0;
+
+	function reloadScreenshotStart(name,limit){
+		ajaxMsg(name+' '+limit+' '+ countSS);
+		countSS++;
+
+		loadNewScreenshot();
+		
+		if(limit !=0 && countSS == limit) {			
+			reloadScreenshotStop();
+			countSS = 0;
+		};
+	}
+
+	function reloadScreenshotStop(){
+		if(!int_ss_auto) return;
+		clearInterval(int_ss_auto);
+	}
+
+	function reloadScreenshot(name,limit){
+
+		var ss = getSetting(name);		
+		// jika ada cookie, maka itu settingan baru, seperti yang diterangkan pada fungsi
+		// getSetting. dan jika settingan baru, maka postkan agar configurasi server client
+		var rc = readCookie(name);
+		if(rc){
+			var variableForm = 	{
+				client_action: 'create_request',
+				client_action_setting_server_name:name,
+				client_action_setting_server_value:rc
+			};
+			var variableMsg = 	{
+				status: 'sending',
+				name: 'setting server'
+			};
+			ajaxPost('', variableForm, variableMsg);
+		}
+		if(ss == 0) {
+			// ini menyebabkan kegagalan dalam membuka div page setting
+			// reloadScreenshotStop();
+			// sebagai gantinya dipakai dibawah ini:
+			if(rc){
+				reloadScreenshotStop();
+			}
+		}
+		else{
+			int_ss_auto = setInterval( function(){reloadScreenshotStart(name,limit);}, 1000);
+		}
+	}
+
 	function effectSetting(name){
 		//set effect dikarenakan setting terhadap sesuatu.
 		if(name == 'webrd_smlc') {
@@ -667,6 +757,39 @@ $(document).ready(function(){
 		if(name == 'webrd_smmc') {
 			$('#page_settings').find('input[name="webrd_smmc"]').prop('checked') ? $('#page_settings').find('select[name="webrd_smmc_x"]').removeAttr('disabled') : $('#page_settings').find('select[name="webrd_smmc_x"]').attr('disabled', 'disabled');
 		}
+		if(name == 'webrd_smwu') {
+			var dsmwu = $('#page_settings').find('input[name="webrd_smwu"]').prop('checked');
+			var dsmwd = $('#page_settings').find('input[name="webrd_smwd"]').prop('checked');
+			dsmwu ? $('#page_settings').find('select[name="webrd_smwu_x"]').removeAttr('disabled') : $('#page_settings').find('select[name="webrd_smwu_x"]').attr('disabled', 'disabled');
+			if(!dsmwu && !dsmwd) $('#smw_y').hide('slideUp'); else { $('#smw_y').show('slideDown'); }
+		}
+		if(name == 'webrd_smwd') {
+			var dsmwu = $('#page_settings').find('input[name="webrd_smwu"]').prop('checked');
+			var dsmwd = $('#page_settings').find('input[name="webrd_smwd"]').prop('checked');
+			dsmwd ? $('#page_settings').find('select[name="webrd_smwd_x"]').removeAttr('disabled') : $('#page_settings').find('select[name="webrd_smwd_x"]').attr('disabled', 'disabled');
+			if(!dsmwu && !dsmwd) $('#smw_y').hide('slideUp'); else { $('#smw_y').show('slideDown'); }
+		}
+		if(name == 'webrd_smv') {
+			$('#page_settings').find('input[name="webrd_smv"]').prop('checked') ? $('#smv_y').show('slideDown') : $('#smv_y').hide('slideUp');
+		}
+		if(name == 'webrd_sk') {
+			$('#page_settings').find('input[name="webrd_sk"]').prop('checked') ? $('#sk_y').show('slideDown') : $('#sk_y').hide('slideUp');
+		}
+		if(name == 'webrd_ss_auto'){
+			var webrd_ss_auto = $('#page_settings').find('input[name="webrd_ss_auto"]').prop('checked');
+			if(webrd_ss_auto == true){
+				$('.child_of_item_ss_auto').each(function(){
+					$(this).hide('slideUp');
+				});
+			}
+			else{
+				$('.child_of_item_ss_auto').each(function(){
+					$(this).show('slideDown');
+				});
+			}
+
+			reloadScreenshot('webrd_ss_auto',0);
+		}
 	}
 
 	function effectSettingAll(){
@@ -674,71 +797,106 @@ $(document).ready(function(){
 		effectSetting('webrd_smdc');
 		effectSetting('webrd_smrc');
 		effectSetting('webrd_smmc');
+		effectSetting('webrd_smwu');
+		effectSetting('webrd_smwd');
+		effectSetting('webrd_smv');
+		effectSetting('webrd_sk');
+		effectSetting('webrd_ss_auto');
 	}
 
 	function dmouse(action,button,count){
+		
 		if(!count) count = 1;
-		if(button == 'left'){
+		// periksa configurasi
+		if(button == 'lc'){
 			var smlc = getSetting('webrd_smlc', '1');
 			if(smlc == 0) return;
-			var theX = getSetting('webrd_smlc_x', 'left');
-			if(theX == 'double'){
-				theX = 'left';
+			var praButton = getSetting('webrd_smlc_x', 'lc');
+			if(praButton == 'dc'){
+				praButton = 'lc';
 				count = 2;
 			}
 		}
-		if(button == 'double'){
+		if(button == 'dc'){
 			var smdc = getSetting('webrd_smdc', '1');
 			if(smdc == 0) return;
-			var theX = getSetting('webrd_smdc_x', 'double');
-			if(theX == 'double'){
-				theX = 'left';
+			var praButton = getSetting('webrd_smdc_x', 'dc');
+			if(praButton == 'dc'){
+				praButton = 'lc';
 				count = 2;
 			}
 		}
-		if(button == 'right'){
+		if(button == 'rc'){
 			var smrc = getSetting('webrd_smrc', '1');
 			if(smrc == 0) return;
-			var theX = getSetting('webrd_smrc_x', 'right');
-			if(theX == 'double'){
-				theX = 'left';
+			var praButton = getSetting('webrd_smrc_x', 'rc');
+			if(praButton == 'dc'){
+				praButton = 'lc';
 				count = 2;
 			}
 		}
-		if(button == 'middle'){
+		if(button == 'mc'){
 			var smmc = getSetting('webrd_smmc', '1');
 			if(smmc == 0) return;
-			var theX = getSetting('webrd_smmc_x', 'right');
-			if(theX == 'double'){
-				theX = 'left';
+			var praButton = getSetting('webrd_smmc_x', 'mc');
+			if(praButton == 'dc'){
+				praButton = 'lc';
 				count = 2;
 			}
 		}
+		if(button == 'wu'){
+			var smwu = getSetting('webrd_smwu', '1');
+			if(smwu == 0) return;
+			var praButton = getSetting('webrd_smwu_x', 'wu');
+		}
+		if(button == 'wd'){
+			var smwd = getSetting('webrd_smwd', '1');
+			if(smwd == 0) return;
+			var praButton = getSetting('webrd_smwd_x', 'wd');
+		}
 
+		if(praButton == 'lc'){
+			var realButton = 'left';
+		}
+		if(praButton == 'mc'){
+			var realButton = 'middle';
+		}
+		if(praButton == 'rc'){
+			var realButton = 'right';
+		}
+		if(praButton == 'wu'){
+			var realButton = 'WheelUp';
+		}
+		if(praButton == 'wd'){
+			var realButton = 'WheelDown';
+		}
+		// ajaxMsg(praButton);
+		if(action == 'click'){
+			var textmouse = '{Click , ' + realButton + ' , ' + CoordinatX + ' , ' + CoordinatY + ' , ' + count +'}';
+		}
+		if(action == 'wheel'){
+			var textmouse = '{' + realButton + ' , ' + count+'}';
+		}
+		if(action == 'move'){
+			var textmouse = '{Click , ' + CoordinatX + ' , ' + CoordinatY + ' , ' + 0 +'}';
+		}
+
+		$('#bacem').append(textmouse);
+		var text = $('#bacem').text();
+		$('#bacem').empty();
 		var variableMsg = 	{
 			status: 'sending',
-			name: 'save settings'
+			name: 'mouse event'
 		};
-		
 		var variableForm = 	{
 			client_action: 'create_request',
-			client_action_mouse_action:action,
-			client_action_mouse_mode:'Screen',
-			client_action_click_x:CoordinatX,
-			client_action_click_y:CoordinatY,
-			client_action_click_button:theX,
-			client_action_click_count:count
+			client_action_keystroke:text
 		};
-		
+
 		ajaxPost('', variableForm, variableMsg);
-		
-		// $("#form_client").find( 'input[name="client_action_mouse_action"]' ).val(action);
-		// $("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('Screen');
-		// $("#form_client").find( 'input[name="client_action_click_x"]' ).val(CoordinatX);
-		// $("#form_client").find( 'input[name="client_action_click_y"]' ).val(CoordinatY);
-		// $("#form_client").find( 'input[name="client_action_click_button"]' ).val(theX);
-		// $("#form_client").find( 'input[name="client_action_click_count"]' ).val(count);
-		
+
+
+
 	}
 
 	////////////////////////
@@ -746,90 +904,94 @@ $(document).ready(function(){
 	////////////////////////
 
 	$("#form_client").submit(function(event) {
-			ajaxMsg('Waiting...');
-			$('#img').hide();
+		ajaxMsg('Waiting...');
+		$('#img').hide();
 
-			var $form = $(this);
-			var url = $form.attr( 'action' );
-			var variableForm = {
-				client_action: $form.find( 'input[name="client_action"]' ).val(),
-				client_action_screenshot_reload: $form.find( 'input[name="client_action_screenshot_reload"]' ).val(),
-				client_action_mouse_action: $form.find( 'input[name="client_action_mouse_action"]' ).val(),
-				client_action_mouse_mode: $form.find( 'input[name="client_action_mouse_mode"]' ).val(),
-				client_action_click_x: $form.find( 'input[name="client_action_click_x"]' ).val(),
-				client_action_click_y: $form.find( 'input[name="client_action_click_y"]' ).val(),
-				client_action_click_button: $form.find( 'input[name="client_action_click_button"]' ).val(),
-				client_action_click_count: $form.find( 'input[name="client_action_click_count"]' ).val(),
-				client_action_keystroke: $form.find( 'textarea[name="client_action_keystroke"]' ).val()
-				};
+		var $form = $(this);
+		var url = $form.attr( 'action' );
+		var variableForm = {
+			client_action: $form.find( 'input[name="client_action"]' ).val(),
+			client_action_screenshot_reload: $form.find( 'input[name="client_action_screenshot_reload"]' ).val(),
+			client_action_mouse_action: $form.find( 'input[name="client_action_mouse_action"]' ).val(),
+			client_action_mouse_mode: $form.find( 'input[name="client_action_mouse_mode"]' ).val(),
+			client_action_mouse_x: $form.find( 'input[name="client_action_mouse_x"]' ).val(),
+			client_action_mouse_y: $form.find( 'input[name="client_action_mouse_y"]' ).val(),
+			client_action_mouse_button: $form.find( 'input[name="client_action_mouse_button"]' ).val(),
+			client_action_mouse_count: $form.find( 'input[name="client_action_mouse_count"]' ).val(),
+			client_action_keystroke: $form.find( 'textarea[name="client_action_keystroke"]' ).val()
+			};
 
+		// clear value
+		$("#form_client").find( 'textarea[name="client_action_keystroke"]' ).val('');
+
+		$.post( url, variableForm , function(data) {
 			// clear value
-			$("#form_client").find( 'textarea[name="client_action_keystroke"]' ).val('');
-
-			$.post( url, variableForm , function(data) {
-				// clear value
-				$("#form_client").find( 'input[name="client_action_click_x"]' ).val('');
-				$("#form_client").find( 'input[name="client_action_click_y"]' ).val('');
-				$("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('');
-				$("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('');
-				$("#form_client").find( 'input[name="client_action_click_button"]' ).val('');
-				$("#form_client").find( 'input[name="client_action_click_count"]' ).val('');
+			$("#form_client").find( 'input[name="client_action_mouse_x"]' ).val('');
+			$("#form_client").find( 'input[name="client_action_mouse_y"]' ).val('');
+			$("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('');
+			$("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('');
+			$("#form_client").find( 'input[name="client_action_mouse_button"]' ).val('');
+			$("#form_client").find( 'input[name="client_action_mouse_count"]' ).val('');
 
 
 
-				if(data.result == 1){
+			if(data.result == 1){
 
-					$('.ajax_msg').text(data.msg);	//Loading...
-					var cssObj = {'background-image' : 'url('+data.screenshot+')', 'width' : data.width, 'height' : data.height};
-					var hide = {opacity : 0};
-					var unhide = {opacity : 1};
-					var img = new Image();
+				$('.ajax_msg').text(data.msg);	//Loading...
+				var cssObj = {'background-image' : 'url('+data.screenshot+')', 'width' : data.width, 'height' : data.height};
+				var hide = {opacity : 0};
+				var unhide = {opacity : 1};
+				var img = new Image();
 
-					$(img).load(data.screenshot, function(){
-						$('.ajax_msg').hide();
-						$("#img").css(cssObj);
-						$("#img").animate(hide,0,function(){ // tidak ada fungsi complete pada css(), maka digunakan animate yang memiliki fungsi complete
-							$('#img').show(function(){
-								$("#img").animate(unhide,300,function(){
-									$("#img-disabled").css(cssObj);
-									$("#img-background").css(cssObj);
-								});
+				$(img).load(data.screenshot, function(){
+					$('.ajax_msg').hide();
+					$("#img").css(cssObj);
+					$("#img").animate(hide,0,function(){ // tidak ada fungsi complete pada css(), maka digunakan animate yang memiliki fungsi complete
+						$('#img').show(function(){
+							$("#img").animate(unhide,300,function(){
+								$("#img-disabled").css(cssObj);
+								$("#img-background").css(cssObj);
 							});
 						});
 					});
-				}
-				else{
-					// $('.ajax_msg').text(data.msg).delay(2000).fadeOut(1000);
-					$('.ajax_msg').text(data.msg);
-					$('#img').show();
-				}
+				});
+			}
+			else{
+				// $('.ajax_msg').text(data.msg).delay(2000).fadeOut(1000);
+				$('.ajax_msg').text(data.msg);
+				$('#img').show();
+			}
 
-			}, 'json');
+		}, 'json');
 
-			event.preventDefault();
-		});
+		event.preventDefault();
+	});
 
 
 	////////////////////////
 	// click(function(){});
 	////////////////////////
 
+	// $("#img").mousemove(function(e){
+		// ajaxMsg('move');
+	// }
+
 	// $("#img").click(function(){
 		// var CoordinatWindowXY = getCoordinatWindow(arguments[0]);
 		// var CoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
 		// var CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
-		// $("#form_client").find( 'input[name="client_action_click_x"]' ).val(CoordinatX);
-		// $("#form_client").find( 'input[name="client_action_click_y"]' ).val(CoordinatY);
+		// $("#form_client").find( 'input[name="client_action_mouse_x"]' ).val(CoordinatX);
+		// $("#form_client").find( 'input[name="client_action_mouse_y"]' ).val(CoordinatY);
 		// $("#form_client").find( 'input[name="client_action_mouse_action"]' ).val('click');
 		// $("#form_client").find( 'input[name="client_action_mouse_mode"]' ).val('Screen');
-		// $("#form_client").find( 'input[name="client_action_click_button"]' ).val('left');
-		// $("#form_client").find( 'input[name="client_action_click_count"]' ).val('1');
+		// $("#form_client").find( 'input[name="client_action_mouse_button"]' ).val('left');
+		// $("#form_client").find( 'input[name="client_action_mouse_count"]' ).val('1');
 		// $("#form_client").submit();
 	// });
 
 	var DELAY = 250,
     clicks = 0,
-    timer = null;
+    timerMouse = null;
 	mousedown = null;
 
 
@@ -851,48 +1013,111 @@ $(document).ready(function(){
 		newCoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
 		newCoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
 		if(clicks === 1) {
-			timer = setTimeout(function() {
+			timerMouse = setTimeout(function() {
 				if(CoordinatX == newCoordinatX && CoordinatY == newCoordinatY){
 					// PERFORM MOUSE SINGLE CLICK;
-					if(e.which == 1) dmouse('click','left');
-					if(e.which == 2) dmouse('click','middle');
-					if(e.which == 3) dmouse('click','right');
+					if(e.which == 1) dmouse('click','lc');
+					if(e.which == 2) dmouse('click','mc');
+					if(e.which == 3) dmouse('click','rc');
 				}
 				else {
 					// PERFORM MOUSE DRAG N DROP;
-					if(e.which == 1) dmouse('drag','left');
-					if(e.which == 2) dmouse('drag','middle');
-					if(e.which == 3) dmouse('drag','right');
+					if(e.which == 1) dmouse('drag','lc');
+					if(e.which == 2) dmouse('drag','mc');
+					if(e.which == 3) dmouse('drag','rc');
 				}
 				clicks = 0;
-				clearTimeout(timer);
 				mousedown = null;
 			}, DELAY);
 		} else {
 			if(mousedown){
 				// PERFORM MOUSE DOULE CLICK;
-				if(e.which == 1) dmouse('click','double');
-				if(e.which == 2) dmouse('click','middle','2');
-				if(e.which == 3) dmouse('click','right','2');
+				if(e.which == 1) dmouse('click','dc');
+				if(e.which == 2) dmouse('click','mc','2');
+				if(e.which == 3) dmouse('click','rc','2');
 			}
 			clicks = 0;
-			clearTimeout(timer);
 			mousedown = null;
-
+			clearTimeout(timerMouse);
 		}
 		// ajaxMsg(e.which+'.');
 	});
 
 	$("#img").on("contextmenu",function(){
-		var dsetting = getSetting('webrd_smrc');
-		if(dsetting == 1) return false;
+		var smrc = getSetting('webrd_smrc');
+		if(smrc == 1) return false;
     });
+
+	timerMousewheel = null;
+	countMousewheel = 0;
+	statusMousewheel = null;
+
+	$('#img').mousewheel(function(event, delta) {
+		smwu = getSetting('webrd_smwu', "1");
+		smwd = getSetting('webrd_smwd', "1");
+		if(smwu == 0 && smwd == 0) return;
+		else { event.preventDefault(); }
+
+		smw_x = getSetting('webrd_smw_x', "250");
+
+		if(delta > 0) {
+			if(!statusMousewheel) statusMousewheel = 1;
+			if(statusMousewheel < 0){
+				dmouse('wheel','wu',countMousewheel);
+				statusMousewheel = null;
+				countMousewheel = 0;
+				if(timerMousewheel) clearTimeout(timerMousewheel);
+				return;
+			}
+			if(timerMousewheel) clearTimeout(timerMousewheel);
+			timerMousewheel = setTimeout(function(){
+				dmouse('wheel','wu',countMousewheel);
+				statusMousewheel = null;
+				countMousewheel = 0;
+			},smw_x);
+			countMousewheel++;
+
+		} else if(delta < 0){
+			if(!statusMousewheel) statusMousewheel = -1;
+			if(statusMousewheel > 0){
+				dmouse('wheel','wd',countMousewheel);
+				statusMousewheel = null;
+				countMousewheel = 0;
+				if(timerMousewheel) clearTimeout(timerMousewheel);
+				return;
+			}
+			if(timerMousewheel) clearTimeout(timerMousewheel);
+			timerMousewheel = setTimeout(function(){
+				dmouse('wheel','wd',countMousewheel);
+				statusMousewheel = null;
+				countMousewheel = 0;
+			},smw_x);
+			countMousewheel++;
+		}
+	});
+
+	timerMousemove = null;
+	$("#img").on("mousemove",function(e){
+		smv = getSetting('webrd_smv', "0");
+		if(smv == 0) return;
+		smv_x = getSetting('webrd_smv_x', "250");
+		CoordinatWindowXY = getCoordinatWindow(arguments[0]);
+		CoordinatX = CoordinatWindowXY[0] - this.offsetLeft + $("#page").scrollLeft();
+		CoordinatY = CoordinatWindowXY[1] - this.offsetTop + $("#page").scrollTop();
+		// ajaxMsg(CoordinatX + ';' + CoordinatY);
+
+		if(timerMousemove) clearTimeout(timerMousemove);
+		timerMousemove = setTimeout(function() {
+			dmouse('move');
+		}, smv_x);
+    });
+
 	////////////////////////
 	// NAVIGATION
 	////////////////////////
 
-	$("#nav_button_settings").click(function(){
-		createCookie('A','asd','5');
+	$("#nav_button_settings").click(function(event){
+		event.preventDefault();
 		var page = '#page_settings';
 		var navheight = $("#nav").height();
 		var $height = $(window).height() - navheight;
@@ -902,6 +1127,7 @@ $(document).ready(function(){
 		var keystrokeShow = {left:'0'};
 		var keystrokeHide = {left:'-' + $width +'px'};
 		if($(page).css('display') == 'none'){
+			// ajaxMsg('none');
 			$(page).css({	position:'fixed',
 										width: $width + 'px',
 										height: $height + 'px',
@@ -909,6 +1135,7 @@ $(document).ready(function(){
 										left: '-' + $width +'px'}).show().animate(keystrokeShow, 300);
 		}
 		else{
+			// ajaxMsg('show');
 			$(page).animate(keystrokeHide, 150, function(){
 				$(page).hide()
 			});
@@ -920,7 +1147,7 @@ $(document).ready(function(){
 	// SETTINGS
 	////////////////////////
 
-	$(".settings_button").click(function(){
+	$(".settings_checkbox").click(function(){
 		$(this).each(function(){
 			// var id = $(this).attr('id');
 			var name = $(this).attr('name');
@@ -939,12 +1166,9 @@ $(document).ready(function(){
 		});
 	});
 
-
-
 	////////////////////////
 	// MISC
 	////////////////////////
-
 
 	$(".action").click(function(){
 		$(this).each(function(){
@@ -1036,12 +1260,67 @@ $(document).ready(function(){
 	// keydown(function(){});
 	////////////////////////
 
+	holdAlt = null; holdShift = null; holdCtrl = null;
+	repeatAlt = true; repeatShift = true; repeatCtrl = true; repeatChar = true;
+	timerKeystroke = null;
+	sk = null;
 	$(document).keydown(function(event){
-		// event.preventDefault();
-		// alert(event.keyCode);
-		if(event.altKey && event.keyCode == 115){ //alt+f4
-			alert('dimatikan');
+		sk = getSetting('webrd_sk', "1");
+		if(sk == 0) return;
+		if(timerKeystroke) clearTimeout(timerKeystroke);
+		var keycode = event.keyCode;
+		if(event.altKey && repeatAlt) {holdAlt = true;$('#bacem').append('{alt down}');repeatAlt = false;}
+		if(event.shiftKey && repeatShift) {holdShift = true;$('#bacem').append('{shift down}');repeatShift = false;}
+		if(event.ctrlKey && repeatCtrl) {holdCtrl = true;$('#bacem').append('{ctrl down}');repeatCtrl = false;}
+
+		// jika ctrl dan alt dan shift tidak ditekan, maka character boleh repeat
+		if(!holdCtrl && !holdAlt && !holdShift){
+			if(keycode != "16" && keycode != "17" && keycode != "18" && repeatChar) { // karakter ditekan selain shift, ctrl, alt
+				$('#bacem').append('[' + keycode + ']');
+			}
 		}
+		// jika hanya shift yang ditekan, maka character boleh repeat
+		else if(!holdCtrl && !holdAlt && holdShift){
+			if(keycode != "16" && keycode != "17" && keycode != "18" && repeatChar) { // karakter ditekan selain shift, ctrl, alt
+				$('#bacem').append('[' + keycode + ']');
+			}
+		}
+		// selain itu character tidak boleh repeat
+		else{
+			if(keycode != "16" && keycode != "17" && keycode != "18" && repeatChar) { // karakter ditekan selain shift, ctrl, alt
+				$('#bacem').append('[' + keycode + ']');
+				repeatChar = false;
+			}
+		}
+		event.preventDefault();
+
+	});
+
+	$(document).keyup(function(event){
+		if(sk == 0) return;
+		var sk_x = getSetting('webrd_sk_x', "250");
+		var keycode = event.keyCode;
+		if(holdAlt && event.altKey == false) {holdAlt = null;$('#bacem').append('{alt up}');repeatAlt = true;}
+		if(holdCtrl && event.ctrlKey == false) {holdCtrl = null;$('#bacem').append('{ctrl up}');repeatCtrl = true;}
+		if(holdShift && event.shiftKey == false) {holdShift = null;$('#bacem').append('{shift up}');repeatShift = true;}
+		repeatChar = true;
+		if(timerKeystroke) clearTimeout(timerKeystroke);
+		timerKeystroke = setTimeout(function(){
+			repeatChar = true;
+			var text = $('#bacem').text();
+			$('#bacem').empty();
+			var variableMsg = 	{
+				status: 'sending',
+				name: 'keystroke event'
+			};
+			var variableForm = 	{
+				client_action: 'create_request',
+				client_action_keystroke:text
+			};
+			ajaxPost('', variableForm, variableMsg);
+		},sk_x);
+
+		event.preventDefault();
 	});
 
 });

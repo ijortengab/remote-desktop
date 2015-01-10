@@ -49,7 +49,7 @@ foreach ($_POST as $key => $val) $data[$key]=$val;
 foreach ($_COOKIE as $key => $val) $data[$key]=$val;
 foreach ($_FILES as $key => $val) $data[$key]=$val;
 include('functions.php');
-// $isi = file_get_contents('settings.ini');
+
 if(!file_exists('settings.ini')){
 	$array = array(
 		'password' => md5('a'),
@@ -58,14 +58,26 @@ if(!file_exists('settings.ini')){
 		'webrd_smdc' => "1",
 		'webrd_smrc' => "1",
 		'webrd_smmc' => "1",
-		'webrd_smlc_x' => "left",
-		'webrd_smdc_x' => "double",
-		'webrd_smrc_x' => "right",
-		'webrd_smmc_x' => "middle",
+		'webrd_smlc_x' => "lc",
+		'webrd_smdc_x' => "dc",
+		'webrd_smrc_x' => "rc",
+		'webrd_smmc_x' => "mc",
 	);
 	write_ini_file($array,'settings.ini');
 }
 $data['settings'] = parse_ini_file("settings.ini");
+
+
+
+
+
+
+
+
+
+// print_r(load_new_screenshot()) ;
+// exit;
+
 //jika ada masalah dengan settings.ini saat proses, maka hilangkan dan bikin baru.
 if(empty($data['settings'])){
 	unlink('settings.ini');
@@ -85,7 +97,8 @@ if(isset($data['webrd']) && $data['webrd'] == $data['settings']['password']){
 	switch($data['client_action']){
 		case 'logout': process('logout'); break;
 		case 'create_request': process('create_request'); break;
-		case 'save_setting': process('save_setting'); break;
+		case 'setting_client': process('setting_client'); break;
+		case 'load_new_screenshot': process('load_new_screenshot'); break;
 		default: process();
 	}
 }
@@ -110,10 +123,23 @@ function read($file){
 	global $data;
 	switch($file){
 		case "client_request.ini":
-			if(file_exists("client_request.ini")){
-				print serialize(parse_ini_file("client_request.ini", TRUE));
-				unlink("client_request.ini");
+			// if(file_exists("client_request.ini")){
+				// print serialize(parse_ini_file("client_request.ini", TRUE));
+				// unlink("client_request.ini");
+			// }
+			$dir = getcwd();
+			$scandir = scandir($dir);
+			$all = array();
+			foreach($scandir as $file){
+				$pola = '/^client_request\.(.*)\.ini/';
+				if(preg_match($pola, $file, $matches)){
+					$time = $matches[1];
+					$array = parse_ini_file($file);
+					unlink($file);
+					$all[$time] = $array;
+				}
 			}
+			if(!empty($all)) print serialize($all);
 			break;
 	}
 }
@@ -134,7 +160,10 @@ function write($file){
 			create_file(".confirm",'w','');
 			break;
 		case "client_request.ini":
-			write_ini_file($data['client_request'],"client_request.ini",TRUE);
+			$time = time();
+			write_ini_file($data['client_request'],"client_request.".$time.".ini");
+			// write_ini_file($data['client_request'],"client_request.ini",TRUE);
+			// write_ini_file($data['client_request'],"client_request.ini");
 			break;
 		case "settings.ini":
 			write_ini_file($data['settings'],"settings.ini");
@@ -164,35 +193,37 @@ function process($action=NULL){
 			break;
 		case 'create_request':
 			// CREATE FILE COMMAND
-			$data['client_request']['screenshot']['reload'] = $data['client_action_screenshot_reload'];
-			$data['client_request']['mouse']['action'] 		= $data['client_action_mouse_action'];
-			$data['client_request']['mouse']['mode'] 		= $data['client_action_mouse_mode'];
-			$data['client_request']['click']['x'] 			= $data['client_action_click_x'];
-			$data['client_request']['click']['y'] 			= $data['client_action_click_y'];
-			$data['client_request']['click']['button'] 		= $data['client_action_click_button'];
-			$data['client_request']['click']['count'] 		= $data['client_action_click_count'];
-			$data['client_request']['keystroke']['value'] 	= $data['client_action_keystroke'];
+			// screenshot
+			if(isset($data['client_action_screenshot_reload'])) $data['client_request']['client_action_screenshot_reload'] = $data['client_action_screenshot_reload'];
+			// send input
+			if(isset($data['client_action_keystroke'])) $data['client_request']['client_action_keystroke'] = $data['client_action_keystroke'];
+			// setting server
+			if(isset($data['client_action_setting_server_name'])) $data['client_request']['client_action_setting_server_name'] = $data['client_action_setting_server_name'];
+			if(isset($data['client_action_setting_server_value'])) $data['client_request']['client_action_setting_server_value'] = $data['client_action_setting_server_value'];
+			// $data['client_request']['screenshot']['reload'] = $data['client_action_screenshot_reload'];
+			// $data['client_request']['keystroke']['value'] 	= $data['client_action_keystroke'];
+
 			write('client_request.ini');
 			// WAITING FOR OUTPUT
-			if(!file_exists_loop(".confirm",MAX_LOOP_TIME)){//jika gagal
-				delete_if_exists('client_request.ini');
-				delete_if_exists('.confirm');
-				echo json_encode(array("result" => 0, "msg" => "No response from server."));
-			}
-			else{
-				delete_if_exists('client_request.ini');
-				delete_if_exists('.confirm');
-				$screenshot = the_last_screenshot();
-				$size = getimagesize($screenshot);
-				$width = $size[0];
-				$height = $size[1];
-				echo json_encode(array("result" => 1, "msg" => "Loading...", "screenshot" => $screenshot, "width" => $width, "height" => $height));
-			}
+			// if(!file_exists_loop(".confirm",MAX_LOOP_TIME)){//jika gagal
+				// delete_if_exists('client_request.ini');
+				// delete_if_exists('.confirm');
+				// echo json_encode(array("result" => 0, "msg" => "No response from server."));
+			// }
+			// else{
+				// delete_if_exists('client_request.ini');
+				// delete_if_exists('.confirm');
+				// $screenshot = the_last_screenshot();
+				// $size = getimagesize($screenshot);
+				// $width = $size[0];
+				// $height = $size[1];
+				// echo json_encode(array("result" => 1, "msg" => "Loading...", "screenshot" => $screenshot, "width" => $width, "height" => $height));
+			// }
 			break;
-		case 'save_setting':
+		case 'setting_client':
 			// sleep(2);
-			$name = $data['setName'];
-			$value = $data['setValue'];
+			$name = $data['client_action_setting_client_name'];
+			$value = $data['client_action_setting_client_value'];
 			// foreach($_POST as $key=>$value){
 				// if($key == 'client_action') continue;
 				// $data['settings'][$key] = $value;
@@ -200,6 +231,9 @@ function process($action=NULL){
 			$data['settings'][$name] = $value;
 			write('settings.ini');
 			echo json_encode(array('result'=> 1, 'messagestatus'=>'saved'));
+			break;
+		case 'load_new_screenshot':
+			load_new_screenshot();			
 			break;
 		default:
 			if(file_exists("client_request.ini")) {
@@ -224,7 +258,6 @@ function process($action=NULL){
 	}
 }
 function the_last_screenshot(){
-	$list = scandir(DIRNAME_SCREENSHOT);
 	if(!file_exists(DIRNAME_SCREENSHOT)) mkdir(DIRNAME_SCREENSHOT,0755,TRUE);
 	$list = scandir(DIRNAME_SCREENSHOT);
 	if(count($list) == 2){ //it means Array ( [0] => . [1] => .. )
@@ -240,6 +273,84 @@ function the_last_screenshot(){
 	$the_last_screenshot = array_pop($list);
 	$screenshot = DIRNAME_SCREENSHOT . '/'. $the_last_screenshot;
 	return $screenshot;
+}
+
+function load_new_screenshot(){
+	global $data;
+	if(!file_exists(DIRNAME_SCREENSHOT)) mkdir(DIRNAME_SCREENSHOT,0755,TRUE);
+	$list = scandir(DIRNAME_SCREENSHOT);
+	if(count($list) == 2){ //it means Array ( [0] => . [1] => .. )
+		// create sample image
+		$im = imagecreatetruecolor(600, 400);
+		$text_color = imagecolorallocate($im, 255, 255, 255);
+		imagestring($im, 5, 200, 100,  'Screenshot not found', $text_color);
+		imagejpeg($im, DIRNAME_SCREENSHOT . '/screenshot.jpg');
+		imagedestroy($im);
+		// replay
+		$list = scandir(DIRNAME_SCREENSHOT);
+	}
+	$the_last_screenshot = array_pop($list);
+	$the_last_screenshot = DIRNAME_SCREENSHOT . '/'. $the_last_screenshot;
+
+	// cari di settings, jika tidak ada di settings, maka tulis baru di settings.
+	// if(!isset($data['settings']['screenshot'])){
+		// $data['settings']['screenshot'] = $the_last_screenshot;
+		// write('settings.ini');
+		// $size = getimagesize($the_last_screenshot);
+		// $width = $size[0];
+		// $height = $size[1];
+		// echo json_encode(array("result" => 1, "msg" => "", "screenshot" => $the_last_screenshot, "width" => $width, "height" => $height));		
+	// }
+	// else{
+		// if($data['settings']['screenshot'] == $the_last_screenshot){
+			// echo json_encode(array("result" => 0));
+		// }
+		// else{
+			// $data['settings']['screenshot'] = $the_last_screenshot;
+			// write('settings.ini');
+			// $size = getimagesize($the_last_screenshot);
+			// $width = $size[0];
+			// $height = $size[1];
+			// echo json_encode(array("result" => 1, "msg" => "", "screenshot" => $the_last_screenshot, "width" => $width, "height" => $height));
+		// }
+	// }
+	
+	if(isset($data['settings']['screenshot']) && $data['settings']['screenshot'] == $the_last_screenshot){
+		echo json_encode(array("result" => 0));	
+	}
+	else{		
+		$data['settings']['screenshot'] = $the_last_screenshot;
+		write('settings.ini');
+		$size = getimagesize($the_last_screenshot);
+		$width = $size[0];
+		$height = $size[1];
+		echo json_encode(array("result" => 1, "msg" => "", "screenshot" => $the_last_screenshot, "width" => $width, "height" => $height));	
+	}
+	
+	
+	
+	// if(isset($data['settings']['screenshot']) && $data['settings']['screenshot'] == $the_last_screenshot){
+		// $return = '0';
+	// }
+	// else{
+		// $data['settings']['screenshot'] = $the_last_screenshot;
+		// write('settings.ini');
+		// $return = $the_last_screenshot;
+	// }
+	// return $return;
+	
+	// $screenshot = load_new_screenshot();
+	// if($screenshot == 0){
+		// echo json_encode(array("result" => 0));
+	// }
+	// else{
+		// $size = getimagesize($screenshot);
+		// $width = $size[0];
+		// $height = $size[1];
+		// echo json_encode(array("result" => 1, "msg" => "", "screenshot" => $screenshot, "width" => $width, "height" => $height));
+	// }
+			
+			
 }
 function draw($theme=NULL){
 	global $data;
@@ -292,6 +403,7 @@ function draw($theme=NULL){
 			// hapus settingan di cookie
 			// buat settingan di object javascript
 			$extend = array();
+			//default value disini
 			foreach($data['settings'] as $key => $value){
 				if(substr($key, 0, 6) == 'webrd_'){
 					setcookie($key, '', -1);//hapus cookie
@@ -311,17 +423,6 @@ function draw($theme=NULL){
 			// echo "<script>var Webrd = { 'settings': {}};</script>";
 			echo "<script>var Webrd = { 'settings': ".$extend."};</script>";
 			echo '<script src="lib/webrd_basic.js"></script>';
-			// echo '<div id="page" style="width:'.$width.'px;">';
-			// echo '<div id="layer" style="position:absolute;z-index: 2;">';
-
-			// echo '<div id="layer-ada" style="position:absolute;z-index: 2;">';
-
-			// echo '</div><!--/#layer -->';
-			// echo '</div><!--/#layer -->';
-			/* echo '<!--//--><![CDATA[//><!--
-jQuery.extend(Drupal, { "basePath": "roji"} );
-//--><!]]>'; */
-			// echo '<script>jQuery.extend(Webrd.settings, '.$extend.' )</script>';
 			echo '</head>';
 			echo '<body>';
 			echo '<div id="page">';
@@ -362,30 +463,259 @@ jQuery.extend(Drupal, { "basePath": "roji"} );
 			echo '</div><!--/#nav -->';
 			// echo '<div id="scrolling" style="width:'.$width.'px;height:3000px;overflow:scroll;">';
 			echo '<div id="img-background" style="width:'.$width.'px;height:'.$height.'px;background:url('.$screenshot.');">';
-			echo '<div id="img-disabled" style="width:'.$width.'px;height:'.$height.'px;background:url('.$screenshot.');">';
+			// echo '<div id="img-disabled" style="width:'.$width.'px;height:'.$height.'px;background:url('.$screenshot.');">';
 			echo '<div id="img" style="width:'.$width.'px;height:'.$height.'px;background:url('.$screenshot.');">';
 			// echo '<img id="img" src="screenshot/'.$the_last_screenshot.'">';
 			echo '</div><!--/#img -->';
-			echo '</div><!--/#img-disabled -->';
+			// echo '</div><!--/#img-disabled -->';
 			echo '</div><!--/#img-background -->';
 			// echo '</div><!--/#scrolling -->';
 			echo '</div><!--/#page -->';
 			// echo '<script type="text/javascript">';
 			// echo 'writemenu();';
 			// echo '</script>';
-			echo '<form name="form_client" method="post" id="form_client" action="">';
+
+			echo '<div id="page_settings">';
+			$mouse_array = array('lc' => 'click','dc' => 'double click', 'rc' => 'rightclick', 'mc' => 'middleclick');
+			echo '#mouse click'; echo '<br>';
+			echo '<ul>';
+			foreach($mouse_array as $key => $value){
+				$var_check = 'webrd_sm' . $key;
+				$var_select = 'webrd_sm' . $key . '_x';
+				$checked = (isset($data['settings'][$var_check]) && $data['settings'][$var_check] == "1") ? " checked" : "";
+				echo '<li>';
+				echo '<input type="checkbox" id="sm'.$key.'" class="settings_checkbox" name="webrd_sm'.$key.'" title="settings mouse '.$value.'" value="1"'.$checked.'>';
+				echo '<label for="sm'.$key.'">if I '.$value.', it means server do </label>';
+				echo '<select class="settings_select" name="webrd_sm'.$key.'_x">';
+				foreach($mouse_array as $key2 => $value2){
+					$selected = (isset($data['settings'][$var_select]) && $data['settings'][$var_select] == $key2) ? " selected" : "";
+					echo '<option value="'.$key2.'"'.$selected.'>';
+					echo $value2;
+					echo '</option>';
+				}
+				echo '</select>';
+				echo '</li>';
+			}
+			echo '</ul>';
+			$options_array = array('250' => '0.25 seconds', '500' => '0.5 seconds', '1000' => '1 seconds', '1500' => '1.5 seconds', '2000' => '2 seconds');
+			$checked = (isset($data['settings']['webrd_smv']) && $data['settings']['webrd_smv'] == "1") ? " checked" : "";
+			echo '#mouse move (change pointer position)';
+			echo '<ul>';
+			echo '<li>';
+			echo '<input type="checkbox" id="smv" class="settings_checkbox" name="webrd_smv" value="1"'.$checked.'><label for="smv">If I mouse move, it means server do mouse move.</label>';
+			echo '</li>';
+			echo '<li id="smv_y">';
+			echo 'Send mouse move if idle in ';
+			echo '<select id="smv_x" class="settings_select" name="webrd_smv_x">';
+				foreach($options_array as $key2 => $value2){
+					$selected = (isset($data['settings']['webrd_smv_x']) && $data['settings']['webrd_smv_x'] == $key2) ? " selected" : "";
+					echo '<option value="'.$key2.'"'.$selected.'>';
+					echo $value2;
+					echo '</option>';
+				}
+				echo '</select>';
+			echo '</li>';
+			echo '</ul>';
+			$mouse_array = array('wu' => 'scrolling up','wd' => 'scrolling down');
+			$options_array = array('250' => '0.25 seconds', '500' => '0.5 seconds', '1000' => '1 seconds', '1500' => '1.5 seconds', '2000' => '2 seconds');
+			echo '#mouse wheel ';
+			echo '<ul>';
+			foreach($mouse_array as $key => $value){
+				$var_check = 'webrd_sm' . $key;
+				$var_select = 'webrd_sm' . $key . '_x';
+				$checked = (isset($data['settings'][$var_check]) && $data['settings'][$var_check] == "1") ? " checked" : "";
+				echo '<li>';
+				echo '<input type="checkbox" id="sm'.$key.'" class="settings_checkbox" name="webrd_sm'.$key.'" title="settings mouse '.$value.'" value="1"'.$checked.'>';
+				echo '<label for="sm'.$key.'">if I '.$value.', it means server do </label>';
+				echo '<select class="settings_select" name="webrd_sm'.$key.'_x">';
+				foreach($mouse_array as $key2 => $value2){
+					$selected = (isset($data['settings'][$var_select]) && $data['settings'][$var_select] == $key2) ? " selected" : "";
+					echo '<option value="'.$key2.'"'.$selected.'>';
+					echo $value2;
+					echo '</option>';
+				}
+				echo '</select>';
+				echo '</li>';
+			}
+			echo '<li id="smw_y">';
+			echo 'Send scrolling if idle in ';
+			echo '<select id="smw_x" class="settings_select" name="webrd_smw_x">';
+				foreach($options_array as $key2 => $value2){
+					$selected = (isset($data['settings']['webrd_smw_x']) && $data['settings']['webrd_smw_x'] == $key2) ? " selected" : "";
+					echo '<option value="'.$key2.'"'.$selected.'>';
+					echo $value2;
+					echo '</option>';
+				}
+				echo '</select>';
+			echo '</li>';
+			echo '</ul>';
+			$options_array = array('250' => '0.25 seconds', '500' => '0.5 seconds', '1000' => '1 seconds', '1500' => '1.5 seconds', '2000' => '2 seconds');
+			$checked = (isset($data['settings']['webrd_sk']) && $data['settings']['webrd_sk'] == "1") ? " checked" : "";
+			echo '#keystroke';
+			echo '<ul>';
+			echo '<li>';
+			echo '<input type="checkbox" id="sk" class="settings_checkbox" name="webrd_sk" value="1"'.$checked.'><label for="sk">If I keystroke, it means server do keystroke.</label>';
+			echo '</li>';
+			echo '<li id="sk_y">';
+			echo 'Send keystroke if idle in ';
+			echo '<select id="sk_x" class="settings_select" name="webrd_sk_x">';
+				foreach($options_array as $key2 => $value2){
+					$selected = (isset($data['settings']['webrd_sk_x']) && $data['settings']['webrd_sk_x'] == $key2) ? " selected" : "";
+					echo '<option value="'.$key2.'"'.$selected.'>';
+					echo $value2;
+					echo '</option>';
+				}
+				echo '</select>';
+			echo '</li>';
+			echo '</ul>';
+
+			echo '#screenshot'; echo '<br>';
+
+
+			$screenshot_array = array(
+				'ss_auto' => array('name'=> 'auto reload screenshot every seconds', 'li_id' => ' id="item_ss_auto"', 'li_class' => '', 'desc' => 'Caution, consume more bandwith.'),
+				'ss_k' => array('name'=> 'auto reload screenshot after send keystroke', 'li_id' => ' id="item_ss_k"', 'li_class' => ' class="child_of_item_ss_auto"', 'desc' => ''),
+				'ss_mc' => array('name'=> 'auto reload screenshot after send mouse click', 'li_id' => ' id="item_ss_mc"', 'li_class' => ' class="child_of_item_ss_auto"', 'desc' => ''),
+				'ss_mw' => array('name'=> 'auto reload screenshot after send mouse wheel', 'li_id' => ' id="item_ss_mw"', 'li_class' => ' class="child_of_item_ss_auto"', 'desc' => ''),
+				'ss_mv' => array('name'=> 'auto reload screenshot after send mouse move', 'li_id' => ' id="item_ss_mv"', 'li_class' => ' class="child_of_item_ss_auto"', 'desc' => '')
+			);
+			echo '<ul>';
+			foreach($screenshot_array as $key => $value){
+				$var_check = 'webrd_' . $key;
+				$checked = (isset($data['settings'][$var_check]) && $data['settings'][$var_check] == "1") ? " checked" : "";
+				echo '<li'.$value['li_id'].$value['li_class'].'>';
+				echo '<input type="checkbox" id="'.$key.'" class="settings_checkbox" name="webrd_'.$key.'" title="settings screenshot '.$value.'" value="1"'.$checked.'>';
+				echo '<label for="'.$key.'">'.$value['name'].'</label>';
+				if(!empty($value['desc'])) echo '<span>' . $value['desc'] . '</span>';
+				echo '</li>';
+			}
+			echo '</ul>';
+
+
+			echo '</div><!--/#page_settings -->';
+
+
+			echo '<div class="ajax_msg">';
+			echo '</div><!--/.ajax_msg -->';
+
+			echo '<div id="messages">';
+			echo '</div><!--/#messages -->';
+			echo '<textarea id="bacem" style="height:150px;width:200px"></textarea>';
+			echo '</body>';
+			echo '</html>';
+	}
+}
+
+// echo '<div id="page" style="width:'.$width.'px;">';
+			// echo '<div id="layer" style="position:absolute;z-index: 2;">';
+
+			// echo '<div id="layer-ada" style="position:absolute;z-index: 2;">';
+
+			// echo '</div><!--/#layer -->';
+			// echo '</div><!--/#layer -->';
+			/* echo '<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal, { "basePath": "roji"} );
+//--><!]]>'; */
+			// echo '<script>jQuery.extend(Webrd.settings, '.$extend.' )</script>';
+
+// echo '<div class="arrow-right">';
+			// echo '</div><!--/.arrow-right -->';
+			// echo ' <span>Move the mouse over the div.</span>';
+			// echo '<input id="temporaryX" value="" type="text">';
+
+
+			// echo '<div class="message" id="13245687">';
+			// echo '[success...] mouse move to 234,567';
+			// echo '</div><!--/#13245687 -->';
+			// echo '<div class="message" id="5465466546">';
+			// echo '[success...] mouse move to 234,567';
+			// echo '</div><!--/#5465466546 -->';
+// mouse
+// if(isset($data['client_action_mouse_action'])) $data['client_request']['client_action_mouse_action'] = $data['client_action_mouse_action'];
+// if(isset($data['client_action_mouse_mode'])) $data['client_request']['client_action_mouse_mode'] = $data['client_action_mouse_mode'];
+// if(isset($data['client_action_mouse_x'])) $data['client_request']['client_action_mouse_x'] = $data['client_action_mouse_x'];
+// if(isset($data['client_action_mouse_y'])) $data['client_request']['client_action_mouse_y'] = $data['client_action_mouse_y'];
+// if(isset($data['client_action_mouse_x2'])) $data['client_request']['client_action_mouse_x2'] = $data['client_action_mouse_x2'];
+// if(isset($data['client_action_mouse_y2'])) $data['client_request']['client_action_mouse_y2'] = $data['client_action_mouse_y2'];
+// if(isset($data['client_action_mouse_button'])) $data['client_request']['client_action_mouse_button'] = $data['client_action_mouse_button'];
+// if(isset($data['client_action_mouse_count'])) $data['client_request']['client_action_mouse_count'] = $data['client_action_mouse_count'];
+/* $limit = $data['settings']['key_save_limit'];
+			$a  = file(PATH_FILE_SAVE);
+			// print_r($a);
+			$show = 0;
+			$hide= 0;
+			$countkey = 0;
+			$elementshow = '';
+			$elementhide = '';
+			echo '<br>';
+			foreach($a as $key=>$value){
+				$value = rtrim($value);
+				if($key < $limit){
+					if(!empty($value)){
+						$id = $key+1;
+						$elementshow .=  '<div id="parent'.$id.'" class="savedvalue"><a class="shortkey" target="ctrl'.$id.'">ctrl+'.$id.': '.$value.'</a><!-- /.shortkey --><input size="50" id="ctrl'.$id.'" type="text" disabled value="'.$value.'"><div target="parent'.$id.'" class="closekey">[X]</div><!-- /.closekey --></div><!-- /.savedvalue -->';
+						// $show++;
+					}
+					else{
+						$id = $key+1;
+						// $elementhide .=  '<div class="shortkey" target="ctrl'.$id.'">ctrl'.$id.'<input size="50" id="ctrl'.$id.'" type="text" disabled value=""><div class="closekey">[X]</div></div>';
+						$elementhide .=  '<div id="parent'.$id.'" class="savedvalue"><a class="shortkey" target="ctrl'.$id.'">ctrl+'.$id.': '.$value.'</a><!-- /.shortkey --><input size="50" id="ctrl'.$id.'" type="text" disabled value="'.$value.'"><div target="parent'.$id.'" class="closekey">[X]</div><!-- /.closekey --></div><!-- /.savedvalue -->';
+						// $hide++;
+					}
+					$countkey++;
+				}
+			}
+			// $nextid = $hide+$show;
+			// echo '($nextid: '.$nextid.')';
+			echo '($countkey: '.$countkey.')';
+			while($countkey < $limit){
+				$id = $countkey+1;
+				// $elementhide .=  '<div class="shortkey" target="ctrl'.$id.'">ctrl'.$id.'<input size="50" id="ctrl'.$id.'" type="text" disabled value=""><div class="closekey">[X]</div></div>';
+				$elementhide .=  '<div id="parent'.$id.'" class="savedvalue"><a class="shortkey" target="ctrl'.$id.'">ctrl+'.$id.': '.$value.'</a><!-- /.shortkey --><input size="50" id="ctrl'.$id.'" type="text" disabled value="'.$value.'"><div target="parent'.$id.'" class="closekey">[X]</div><!-- /.closekey --></div><!-- /.savedvalue -->';
+				$countkey++;
+			}
+			echo '<br>';
+			// echo $elementshow;
+			// echo $elementhide;
+			echo '<fieldset>';
+			echo '<legend>';
+			echo 'Load';
+			echo '</legend>';
+			echo '<div class="load-keystroke">';
+			// echo '<div class="shortkey" target="ctrl1">ctrl1<input id="ctrl1" type="text" disabled value="tempe"></div>';
+			echo $elementshow;
+			echo '</div><!--/.load-keystroke -->';
+			echo '</fieldset>';
+			echo '<fieldset>';
+			echo '<legend>';
+			echo 'Before Load';
+			echo '</legend>';
+			echo '<div class="before-load-keystroke">';
+			// echo '<div class="shortkey" target="ctrl2">ctrl2<input id="ctrl2" type="text" disabled value="tahu"></div>';
+			echo $elementhide;
+			echo '</div><!--/.before-load-keystroke -->';
+			echo '</fieldset>'; */
+
+
+/*
+echo '<form name="form_client" method="post" id="form_client" action="">';
 			echo '<input name="client_action" value="create_request" placeholder="client_action" type="text" >';
 			echo '<input name="client_action_screenshot_reload" value="1" placeholder="client_action_screenshot_reload" type="text">';
 			echo '<input name="client_action_mouse_action" value="" placeholder="client_action_mouse_action" type="text">';
 			echo '<input name="client_action_mouse_mode" value="" placeholder="client_action_mouse_mode" type="text">';
-			echo '<input name="client_action_click_x" value="" placeholder="client_action_click_x" type="text">';
-			echo '<input name="client_action_click_y" value="" placeholder="client_action_click_y" type="text">';
-			echo '<input name="client_action_click_button" value="" placeholder="client_action_click_button" type="text">';
-			echo '<input name="client_action_click_count" value="" placeholder="client_action_click_count" type="text">';
+			echo '<input name="client_action_mouse_x" value="" placeholder="client_action_mouse_x" type="text">';
+			echo '<input name="client_action_mouse_y" value="" placeholder="client_action_mouse_y" type="text">';
+			echo '<input name="client_action_mouse_button" value="" placeholder="client_action_mouse_button" type="text">';
+			echo '<input name="client_action_mouse_count" value="" placeholder="client_action_mouse_count" type="text">';
+			echo '<input name="client_action_keystroke_holdshift" value="" placeholder="client_action_keystroke_holdshift" type="text">';
+			echo '<input name="client_action_keystroke_holdctrl" value="" placeholder="client_action_keystroke_holdctrl" type="text">';
+			echo '<input name="client_action_keystroke_holdalt" value="" placeholder="client_action_keystroke_holdalt" type="text">';
+			echo '<textarea id="tempe" style="height:150px;width:200px"></textarea>';
+			echo '<textarea id="bacem" style="height:150px;width:200px"></textarea>';
 			// echo '<input type="text" name="client_action_keystroke" value="">';
 			// echo '<input type="text" name="client_action_keystroke_value" value="">';
-			/* echo '<input type="text" name="client_action_screenshot" value="<?php echo $client_action_screenshot;?>">';
-			echo '<input type="text" name="client_action_screenshot_delay" value="<?php echo $client_action_screenshot_delay;?>">'; */
+			// echo '<input type="text" name="client_action_screenshot" value="<?php echo $client_action_screenshot;?>">';
+			echo '<input type="text" name="client_action_screenshot_delay" value="<?php echo $client_action_screenshot_delay;?>">';
 			// echo '<img id="hideimage" style="display:none;">';
 			echo '<div id="keystroke_area">';
 			echo '<div class="keystroke_input">';
@@ -479,127 +809,7 @@ jQuery.extend(Drupal, { "basePath": "roji"} );
 			echo '';
 			echo '';
 			echo '</fieldset>';
-			/* $limit = $data['settings']['key_save_limit'];
-			$a  = file(PATH_FILE_SAVE);
-			// print_r($a);
-			$show = 0;
-			$hide= 0;
-			$countkey = 0;
-			$elementshow = '';
-			$elementhide = '';
-			echo '<br>';
-			foreach($a as $key=>$value){
-				$value = rtrim($value);
-				if($key < $limit){
-					if(!empty($value)){
-						$id = $key+1;
-						$elementshow .=  '<div id="parent'.$id.'" class="savedvalue"><a class="shortkey" target="ctrl'.$id.'">ctrl+'.$id.': '.$value.'</a><!-- /.shortkey --><input size="50" id="ctrl'.$id.'" type="text" disabled value="'.$value.'"><div target="parent'.$id.'" class="closekey">[X]</div><!-- /.closekey --></div><!-- /.savedvalue -->';
-						// $show++;
-					}
-					else{
-						$id = $key+1;
-						// $elementhide .=  '<div class="shortkey" target="ctrl'.$id.'">ctrl'.$id.'<input size="50" id="ctrl'.$id.'" type="text" disabled value=""><div class="closekey">[X]</div></div>';
-						$elementhide .=  '<div id="parent'.$id.'" class="savedvalue"><a class="shortkey" target="ctrl'.$id.'">ctrl+'.$id.': '.$value.'</a><!-- /.shortkey --><input size="50" id="ctrl'.$id.'" type="text" disabled value="'.$value.'"><div target="parent'.$id.'" class="closekey">[X]</div><!-- /.closekey --></div><!-- /.savedvalue -->';
-						// $hide++;
-					}
-					$countkey++;
-				}
-			}
-			// $nextid = $hide+$show;
-			// echo '($nextid: '.$nextid.')';
-			echo '($countkey: '.$countkey.')';
-			while($countkey < $limit){
-				$id = $countkey+1;
-				// $elementhide .=  '<div class="shortkey" target="ctrl'.$id.'">ctrl'.$id.'<input size="50" id="ctrl'.$id.'" type="text" disabled value=""><div class="closekey">[X]</div></div>';
-				$elementhide .=  '<div id="parent'.$id.'" class="savedvalue"><a class="shortkey" target="ctrl'.$id.'">ctrl+'.$id.': '.$value.'</a><!-- /.shortkey --><input size="50" id="ctrl'.$id.'" type="text" disabled value="'.$value.'"><div target="parent'.$id.'" class="closekey">[X]</div><!-- /.closekey --></div><!-- /.savedvalue -->';
-				$countkey++;
-			}
-			echo '<br>';
-			// echo $elementshow;
-			// echo $elementhide;
-			echo '<fieldset>';
-			echo '<legend>';
-			echo 'Load';
-			echo '</legend>';
-			echo '<div class="load-keystroke">';
-			// echo '<div class="shortkey" target="ctrl1">ctrl1<input id="ctrl1" type="text" disabled value="tempe"></div>';
-			echo $elementshow;
-			echo '</div><!--/.load-keystroke -->';
-			echo '</fieldset>';
-			echo '<fieldset>';
-			echo '<legend>';
-			echo 'Before Load';
-			echo '</legend>';
-			echo '<div class="before-load-keystroke">';
-			// echo '<div class="shortkey" target="ctrl2">ctrl2<input id="ctrl2" type="text" disabled value="tahu"></div>';
-			echo $elementhide;
-			echo '</div><!--/.before-load-keystroke -->';
-			echo '</fieldset>'; */
 			echo '</div><!--/#keystroke_area -->';
 			echo '</form>';
-			echo '<div id="page_settings">';
-			$mouse_array = array('lc' => 'click','dc' => 'double click', 'rc' => 'rightclick', 'mc' => 'middleclick');
-			$options_array = array('left' => 'click', 'double' => 'double click', 'right' => 'rightclick', 'middle' => 'middleclick');
-			echo '#mouse click'; echo '<br>';
-			echo '<ul>';
-			foreach($mouse_array as $key => $value){
-				$var_check = 'webrd_sm' . $key;
-				$var_select = 'webrd_sm' . $key . '_x';
-				$checked = (isset($data['settings'][$var_check]) && $data['settings'][$var_check] == "1") ? "checked" : "";
-				echo '<li>';
-				echo '<input type="checkbox" id="sm'.$key.'" class="settings_button" name="webrd_sm'.$key.'" title="settings mouse '.$value.'" value="1" '.$checked.'>';
-				echo '<label for="sm'.$key.'">if I '.$value.', it means server do </label>';
-				echo '<select class="settings_select" name="webrd_sm'.$key.'_x">';
-				foreach($options_array as $key2 => $value2){
-					$selected = (isset($data['settings'][$var_select]) && $data['settings'][$var_select] == $key2) ? " selected" : "";
-					echo '<option value="'.$key2.'"'.$selected.'>';
-					echo $value2;
-					echo '</option>';
-				}
-				echo '</select>';
-				echo '</li>';
-			}
-			echo '</ul>';
-			// echo '<input type="checkbox" id="smlc" class="settings_button" name="webrd_smlc" title="settings mouse left click">';
-			// echo '<label for="smlc">if I left click, it means server do </label>';
-			// echo '<select class="settings_select" name="webrd_smlc_x">'.$options_click.'</select>';
-			echo '<br>';
-			echo '#mouse move (change pointer position)'; echo '<br>';
-			echo '[ * ] if I mouse move then delay in 1 seconds, it means server do mouse move'; echo '<br>';
-			echo '<br>';
-			echo '#mouse wheel '; echo '<br>';
-			echo '[ * ] if I scrolling up, it means server do scrolling up'; echo '<br>';
-			echo '[ * ] if I scrolling down, it means server do scrolling down'; echo '<br>';
-			echo '<br>';
-			echo '#keystroke'; echo '<br>';
-			echo '[ v ] auto send keystroke if idle in 2 seconds'; echo '<br>';
-			echo '#screenshot'; echo '<br>';
-			echo '[   ] auto relaod screenshot every 1 seconds. (caution, consume a lot of bandwidth)'; echo '<br>';
-			echo '[ v ] auto reload screenshot after send keystroke'; echo '<br>';
-			echo '[ v ] auto reload screenshot after click'; echo '<br>';
-			echo '[ v ] auto reload screenshot after mouse move then delay in 2 seconds.'; echo '<br>';
-			// echo 'mouse'; echo '<br>';
-			// echo 'mouse'; echo '<br>';
-			// echo 'mouse'; echo '<br>';
-			echo '</div><!--/#page_settings -->';
-
-			// echo '<div class="arrow-right">';
-			// echo '</div><!--/.arrow-right -->';
-			// echo ' <span>Move the mouse over the div.</span>';
-			// echo '<input id="temporaryX" value="" type="text">';
-			echo '<div class="ajax_msg">';
-			echo '</div><!--/.ajax_msg -->';
-
-			echo '<div id="messages">';
-			// echo '<div class="message" id="13245687">';
-			// echo '[success...] mouse move to 234,567';
-			// echo '</div><!--/#13245687 -->';
-			// echo '<div class="message" id="5465466546">';
-			// echo '[success...] mouse move to 234,567';
-			// echo '</div><!--/#5465466546 -->';
-			echo '</div><!--/#messages -->';
-			echo '</body>';
-			echo '</html>';
-	}
-}
+     */
 ?>

@@ -1,5 +1,120 @@
 <?php
 
+function microtime_float(){
+    list($usec, $sec) = explode(" ", microtime());
+    return ((float)$usec + (float)$sec);
+}
+
+function create_log($msg,$time=null){
+	if(is_null($time)) $time = defined('TIME') ? TIME : time();
+	if(defined('CREATE_LOG') && !CREATE_LOG) return;
+	if(defined('DIRNAME_LOG') && !file_exists(DIRNAME_LOG)) mkdir(DIRNAME_LOG,0755,TRUE);
+	$path_file_log = defined('PATH_FILE_LOG') ? PATH_FILE_LOG : $time.".log";
+	$name = defined('NAME') ? NAME : "unnamed";
+	$fopen = fopen($path_file_log, "a");
+	fwrite($fopen, $name . "\t" . $time . "\t" . date("Y-m-d", $time) . "\t" . date("H:i:s", $time) .  "\t|\t" . date("H:i:s") . "\t" . $msg . "\r\n");
+	fclose($fopen);
+}
+
+function translate(&$text){
+	$before = array(); $after = array();	
+	$before[] = "[8]"; $after[] = "{Backspace}";
+	$before[] = "[9]"; $after[] = "{Tab}";
+	$before[] = "[13]"; $after[] = "{Enter}";
+	$before[] = "[19]"; $after[] = "{Pause}";	
+	$before[] = "[20]"; $after[] = "{CapsLock}";
+	$before[] = "[27]"; $after[] = "{Esc}";
+	$before[] = "[32]"; $after[] = "{Space}";
+	$before[] = "[33]"; $after[] = "{PgUp}";
+	$before[] = "[34]"; $after[] = "{PgDn}";
+	$before[] = "[35]"; $after[] = "{End}";
+	$before[] = "[36]"; $after[] = "{Home}";
+	$before[] = "[37]"; $after[] = "{Left}";
+	$before[] = "[38]"; $after[] = "{Up}";
+	$before[] = "[39]"; $after[] = "{Right}";
+	$before[] = "[40]"; $after[] = "{Down}";
+	$before[] = "[45]"; $after[] = "{Insert}"; 	
+	$before[] = "[46]"; $after[] = "{Delete}"; 
+	$before[] = "[48]"; $after[] = "0"; 
+	$before[] = "[49]"; $after[] = "1"; 
+	$before[] = "[50]"; $after[] = "2"; 
+	$before[] = "[51]"; $after[] = "3"; 
+	$before[] = "[52]"; $after[] = "4"; 
+	$before[] = "[53]"; $after[] = "5"; 
+	$before[] = "[54]"; $after[] = "6"; 
+	$before[] = "[55]"; $after[] = "7"; 
+	$before[] = "[56]"; $after[] = "8"; 
+	$before[] = "[57]"; $after[] = "9"; 
+	$before[] = "[61]"; $after[] = "="; 
+	$before[] = "[65]"; $after[] = "a"; 
+	// $before[] = "[65]"; $after[] = "{WheelUp 20}"; 
+	// $before[] = "[65]"; $after[] = "{Click 100, 200}"; 	
+	// $before[] = "[65]"; $after[] = "{Click 6, 52, down}{click 45, 52, up}"; 		
+	$before[] = "[66]"; $after[] = "b"; 
+	$before[] = "[67]"; $after[] = "c"; 
+	$before[] = "[68]"; $after[] = "d"; 
+	$before[] = "[69]"; $after[] = "e"; 
+	$before[] = "[70]"; $after[] = "f"; 
+	$before[] = "[71]"; $after[] = "g"; 
+	$before[] = "[72]"; $after[] = "h"; 
+	$before[] = "[73]"; $after[] = "i"; 
+	$before[] = "[74]"; $after[] = "j"; 
+	$before[] = "[75]"; $after[] = "k"; 
+	$before[] = "[76]"; $after[] = "l"; 
+	$before[] = "[77]"; $after[] = "m"; 
+	$before[] = "[78]"; $after[] = "n"; 
+	$before[] = "[79]"; $after[] = "o"; 
+	$before[] = "[80]"; $after[] = "p"; 
+	$before[] = "[81]"; $after[] = "q"; 
+	$before[] = "[82]"; $after[] = "r"; 
+	$before[] = "[83]"; $after[] = "s"; 
+	$before[] = "[84]"; $after[] = "t"; 
+	$before[] = "[85]"; $after[] = "u"; 
+	$before[] = "[86]"; $after[] = "v"; 
+	$before[] = "[87]"; $after[] = "w"; 
+	$before[] = "[88]"; $after[] = "x"; 
+	$before[] = "[89]"; $after[] = "y"; 
+	$before[] = "[90]"; $after[] = "z"; 
+	$before[] = "[91]"; $after[] = "{LWin}"; 
+	$before[] = "[93]"; $after[] = "{AppsKey}"; 
+	$before[] = "[96]"; $after[] = "0"; 
+	$before[] = "[97]"; $after[] = "1"; 
+	$before[] = "[98]"; $after[] = "2"; 
+	$before[] = "[99]"; $after[] = "3"; 
+	$before[] = "[100]"; $after[] = "4"; 
+	$before[] = "[101]"; $after[] = "5"; 
+	$before[] = "[102]"; $after[] = "6"; 
+	$before[] = "[103]"; $after[] = "7"; 
+	$before[] = "[104]"; $after[] = "8"; 
+	$before[] = "[105]"; $after[] = "9"; 
+	$before[] = "[106]"; $after[] = "{NumpadMult}"; 
+	$before[] = "[107]"; $after[] = "{NumpadAdd}"; 
+	$before[] = "[109]"; $after[] = "{NumpadSub}"; 
+	$before[] = "[111]"; $after[] = "{NumpadDiv}"; 
+	$before[] = "[112]"; $after[] = "{F1}"; 
+	$before[] = "[113]"; $after[] = "{F2}"; 
+	$before[] = "[114]"; $after[] = "{F3}"; 
+	$before[] = "[115]"; $after[] = "{F4}"; 
+	$before[] = "[116]"; $after[] = "{F5}"; 
+	$before[] = "[117]"; $after[] = "{F6}"; 
+	$before[] = "[118]"; $after[] = "{F7}"; 
+	$before[] = "[119]"; $after[] = "{F8}"; 
+	$before[] = "[120]"; $after[] = "{F9}"; 
+	$before[] = "[121]"; $after[] = "{F10}"; 
+	$before[] = "[122]"; $after[] = "{F11}"; 
+	$before[] = "[123]"; $after[] = "{F12}"; 
+	$before[] = "[145]"; $after[] = "{ScrollLock}"; 
+	$before[] = "[173]"; $after[] = "-"; 
+	$before[] = "[188]"; $after[] = ","; 
+	$before[] = "[190]"; $after[] = "."; 
+	$before[] = "[191]"; $after[] = "/"; 
+	$before[] = "[192]"; $after[] = "`";
+	$before[] = "[219]"; $after[] = "["; 
+	$before[] = "[220]"; $after[] = "\\"; 
+	$before[] = "[221]"; $after[] = "]"; 
+	$text = str_replace($before,$after,$text);
+}
+
 function write_ini_file($assoc_arr, $path, $has_sections=FALSE) {
     $content = "";
     if ($has_sections) {
@@ -103,7 +218,7 @@ function phprd_post(){
 	global $data;
 
 	//konfigurasi
-	$url = $data['setting']['client'];
+	$url = $data['settings']['client'];
 	$form = array();
 	$form['method'] = "post";
 

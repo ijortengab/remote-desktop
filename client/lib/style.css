@@ -241,3 +241,11 @@ a.shortkey:hover{
 .message{	
 	
 }
+#bacem{
+    background:none repeat scroll 0 0 white;    
+    opacity:0.9;
+    position:absolute;
+    right:50px;
+    top:40px;
+    width:300px;
+}

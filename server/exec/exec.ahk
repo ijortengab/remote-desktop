@@ -1,2 +1,2 @@
 CoordMode, mouse, Screen
-MouseClick, middle, 572, 93, 1
+Send {Click , left , 642 , 207 , 1}
