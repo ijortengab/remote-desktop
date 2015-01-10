@@ -213,3 +213,17 @@ a.shortkey:hover{
     right:0;
     top:0;
 }
+
+
+#form_client{
+    background:none repeat scroll 0 0 white;
+    height:500px;
+    opacity:0.9;
+    position:absolute;
+    right:0;
+    top:40px;
+    width:300px;
+}
+#form_client input{   
+    width:300px;
+}

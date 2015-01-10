@@ -662,8 +662,7 @@ $(document).ready(function(){
 		// alert(event.keyCode);
 		if(event.altKey && event.keyCode == 115){ //alt+f4
 			alert('dimatikan');
-		}
-		
+		}		
 	});
 
 });
